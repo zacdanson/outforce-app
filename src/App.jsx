@@ -3,6 +3,8 @@ import { Component } from 'react';
 import Header from './containers/Header.js';
 import Sidebar from './containers/Siderbar';
 
+import './sass/App.scss';
+
 export class App extends Component {
 	render() {
 
@@ -12,8 +14,8 @@ export class App extends Component {
 
 		return (
 			<div style={appContainer}>
-				<Header />
 				<Sidebar />
+				<Header />
 			</div>
 		);
 	}
