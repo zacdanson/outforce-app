@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import HeaderLeft from '../components/HeaderLeft.js';
 
 class Header extends Component {
 
@@ -11,8 +12,7 @@ class Header extends Component {
 
 		return (
 			<div style={style}>
-
-
+				<HeaderLeft></HeaderLeft>
 			</div>
 		);
 	}
