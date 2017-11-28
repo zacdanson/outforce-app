@@ -1,0 +1,27 @@
+.login-page-container {
+  height: 100%;
+  width: 100%;
+  background-color: #232C52;
+  display: flex;
+  justify-content: center; }
+  .login-page-container .login-form-container {
+    width: 350px;
+    position: absolute;
+    top: 200px; }
+  .login-page-container .email-input {
+    margin-top: 15px;
+    margin-bottom: 15px; }
+  .login-page-container .password-input {
+    margin-top: 15px;
+    margin-bottom: 15px; }
+  .login-page-container .login-header-container {
+    text-align: center; }
+    .login-page-container .login-header-container .login-header {
+      color: #fff;
+      border-bottom: 1px solid #fff;
+      padding: 20px; }
+  .login-page-container .loginErrorMsg {
+    color: #ff3333;
+    font-size: 12px;
+    text-align: center;
+    padding-top: 5px; }

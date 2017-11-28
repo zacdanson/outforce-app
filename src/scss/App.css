@@ -1,0 +1,170 @@
+.sidebar {
+  background-color: #232C52;
+  width: 250px;
+  height: 100%;
+  min-height: 100%;
+  top: -75px; }
+  .sidebar .side-nav-container {
+    position: absolute;
+    top: 110px;
+    width: 250px; }
+    .sidebar .side-nav-container .side-nav-item {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      color: #fff;
+      padding-left: 35px; }
+    .sidebar .side-nav-container .selected-side-nav-item {
+      background-color: #6178DE; }
+
+.headerStyle {
+  background: white;
+  height: 75px;
+  box-shadow: rgba(38, 50, 56, 0.2) 0 6px 25px 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between; }
+  .headerStyle .headerLeftStyle {
+    width: 200px;
+    height: 75px;
+    display: flex;
+    align-items: center; }
+  .headerStyle .logoStyle {
+    width: 122px;
+    padding: 20px;
+    margin-left: 16px; }
+  .headerStyle .menuStyle {
+    margin-left: 62px; }
+    .headerStyle .menuStyle .iconStyle {
+      font-size: 20px; }
+
+.login-page-container {
+  height: 100%;
+  width: 100%;
+  background-color: #232C52;
+  display: flex;
+  justify-content: center; }
+  .login-page-container .login-form-container {
+    width: 350px;
+    position: absolute;
+    top: 200px; }
+  .login-page-container .email-input {
+    margin-top: 15px;
+    margin-bottom: 15px; }
+  .login-page-container .password-input {
+    margin-top: 15px;
+    margin-bottom: 15px; }
+  .login-page-container .login-header-container {
+    text-align: center; }
+    .login-page-container .login-header-container .login-header {
+      color: #fff;
+      border-bottom: 1px solid #fff;
+      padding: 20px; }
+  .login-page-container .loginErrorMsg {
+    color: #ff3333;
+    font-size: 12px;
+    text-align: center;
+    padding-top: 5px; }
+
+.loaderContainer {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: rgba(159, 159, 159, 0.6); }
+  .loaderContainer .loader {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%); }
+
+@keyframes lds-flickr-opacity {
+  0% {
+    -webkit-transform: translate(0 0);
+    transform: translate(0 0);
+    opacity: 1; }
+  49.99% {
+    opacity: 1;
+    -webkit-transform: translate(80px, 0);
+    transform: translate(80px, 0); }
+  50% {
+    opacity: 0;
+    -webkit-transform: translate(80px, 0);
+    transform: translate(80px, 0); }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0); } }
+
+@-webkit-keyframes lds-flickr-opacity {
+  0% {
+    -webkit-transform: translate(0 0);
+    transform: translate(0 0);
+    opacity: 1; }
+  49.99% {
+    opacity: 1;
+    -webkit-transform: translate(80px, 0);
+    transform: translate(80px, 0); }
+  50% {
+    opacity: 0;
+    -webkit-transform: translate(80px, 0);
+    transform: translate(80px, 0); }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0); } }
+
+@keyframes lds-flickr {
+  0% {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0); }
+  50% {
+    -webkit-transform: translate(80px, 0);
+    transform: translate(80px, 0); }
+  100% {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0); } }
+
+@-webkit-keyframes lds-flickr {
+  0% {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0); }
+  50% {
+    -webkit-transform: translate(80px, 0);
+    transform: translate(80px, 0); }
+  100% {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0); } }
+  .loaderContainer .lds-flickr {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -85%); }
+  .loaderContainer .lds-flickr div {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    top: 60px;
+    left: 20px; }
+  .loaderContainer .lds-flickr div:nth-child(1) {
+    background: #232C52;
+    -webkit-animation: lds-flickr 1s linear infinite;
+    animation: lds-flickr 1s linear infinite;
+    -webkit-animation-delay: -0.5s;
+    animation-delay: -0.5s; }
+  .loaderContainer .lds-flickr div:nth-child(2) {
+    background: #6178DE;
+    -webkit-animation: lds-flickr 1s linear infinite;
+    animation: lds-flickr 1s linear infinite;
+    -webkit-animation-delay: 0s;
+    animation-delay: 0s; }
+  .loaderContainer .lds-flickr div:nth-child(3) {
+    background: #232C52;
+    -webkit-animation: lds-flickr-opacity 1s linear infinite;
+    animation: lds-flickr-opacity 1s linear infinite;
+    -webkit-animation-delay: -0.5s;
+    animation-delay: -0.5s; }
+  .loaderContainer .lds-flickr {
+    width: 200px !important;
+    height: 200px !important; }

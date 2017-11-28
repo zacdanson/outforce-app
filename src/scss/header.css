@@ -1,0 +1,22 @@
+.headerStyle {
+  background: white;
+  height: 75px;
+  box-shadow: rgba(38, 50, 56, 0.2) 0 6px 25px 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between; }
+  .headerStyle .headerLeftStyle {
+    width: 200px;
+    height: 75px;
+    display: flex;
+    align-items: center; }
+  .headerStyle .logoStyle {
+    width: 122px;
+    padding: 20px;
+    margin-left: 16px; }
+  .headerStyle .menuStyle {
+    margin-left: 62px; }
+    .headerStyle .menuStyle .iconStyle {
+      font-size: 20px; }
