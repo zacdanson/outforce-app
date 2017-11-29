@@ -1,7 +1,41 @@
 import React, { Component } from 'react';
 import Input from '../forms/Input.component';
+import { connect } from 'react-redux';
+import Loader from '../loading-animation/Loader';
+
+import {
+	updateEmail,
+	updatePass
+} from '../../actions/auth_actions/signup_actions';
+
+
+@connect((store)=>{
+
+	return {
+		user: store.user.user,
+		email: store.user.password,
+		password: store.user.password,
+		error: store.user.error,
+		loading: store.user.loading
+	};
+
+})
 
 class EmployerSignup extends Component{
+
+	updateEmail(email){
+		console.log(this.props);
+		this.props.dispatch(updateEmail(email.target.value));
+	}
+
+	updatePassword(password){
+		console.log(this.props);
+		this.props.dispatch(updatePass(password.target.value));
+	}
+
+	handleSignup(){
+		//this.props.dispatch(handleSignup(this.props.email, this.props.password));
+	}
 
     render(){
 

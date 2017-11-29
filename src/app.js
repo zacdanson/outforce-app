@@ -15,20 +15,24 @@ const routes = (
 
 	<Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
 		<BrowserRouter>
-			<Switch style={{height:'100%'}}>
+			<Switch>
 				<Route
 					path="/index"
 					exact={true}
 					component={App}
 				/>
-				<Route
-					path="/login"
-					component={Login}
-				/>
-				<Route
-					path="/employeer-signup"
-					component={EmployerSignup}
-				/>
+				<Route>
+					<Switch>
+						<Route
+							path="/login"
+							component={Login}
+						/>
+						<Route
+							path="/employer-signup"
+							component={EmployerSignup}
+						/>
+					</Switch>
+				</Route>
 			</Switch>
 		</BrowserRouter>
 	</Provider>
