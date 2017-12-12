@@ -1,27 +1,42 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import { selectTab } from '../../actions/main_actions';
 
+@connect((store)=>{
+	return {
+		selectedTab: store.main.selectedTab,
+		sidebar: store.main.sidebar
+	}
+})
 
 class SideNavItem extends Component {
 
 	constructor(props){
 		super(props);
-
 	}
+
+	switchTab(){
+		this.props.dispatch(selectTab(this.props.name));
+	}
+
 
 	render() {
 
+		let vm = this;
 		let item = null;
 
-		if(this.props.selected){
-			console.log('selected');
-			item = <p className="side-nav-item selected-side-nav-item">{this.props.icon}  {this.props.name}</p>;
-		} else {
-			item = <p className="side-nav-item">{this.props.icon}  {this.props.name}</p>;
-		}
+		let toggleSelected = this.props.sidebar === 'max' ? 'side-nav-item selected-side-nav-item sidebar-max' : 'side-nav-item selected-side-nav-item minimised sidebar-min' ;
+		let toggleNotSelected = this.props.sidebar === 'max' ? 'side-nav-item sidebar-max' : 'side-nav-item minimised sidebar-min';
+		let toggleClassName = this.props.sidebar === 'max' ?  'side-nav-name side-nav-show' : 'side-nav-name side-nav-hide';
 
 		return (
-			<div>
-				{ item }
+			<div onClick={this.switchTab.bind(this)}>
+				<NavLink to={this.props.href}>
+					<p className={this.props.selectedTab === this.props.name ? toggleSelected : toggleNotSelected }>
+						{this.props.icon}<span className={toggleClassName}>{this.props.name}</span>
+					</p>
+				</NavLink>
 			</div>
 		);
 

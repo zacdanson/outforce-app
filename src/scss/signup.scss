@@ -1,0 +1,56 @@
+@import './mainStyles.scss';
+
+.signup-page-container{
+  height:100%;
+  width:100%;
+  background-color: $primaryColor;
+  display: flex;
+  justify-content: center;
+
+  .signup-form-container{
+    width: 350px;
+    position: absolute;
+    top: 200px;
+  }
+
+  .signup-email-input{
+    margin-top:15px;
+    margin-bottom:15px;
+  }
+
+  .signup-password-input{
+    margin-top:15px;
+    margin-bottom:15px;
+  }
+
+  .signup-pic-upload{
+    margin-bottom:15px;
+  }
+
+  .signup-button{
+
+  }
+
+  .invalid{
+    border:1px solid red;
+  }
+
+  .signup-header-container{
+    text-align: center;
+
+    .signup-header{
+      color:#fff;
+      border-bottom:1px solid #fff;
+      padding:20px;
+    }
+  }
+
+  .signupErrorMsg{
+    color: #ff3333;
+    font-size: 12px;
+    text-align: center;
+    padding-top: 5px;
+  }
+
+
+}

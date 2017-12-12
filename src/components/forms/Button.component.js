@@ -10,13 +10,16 @@ class Button extends Component {
     render(){
 
         return(
-            <div name={this.props.name}
-                 className={"btn btn-primary form-control " + this.props.className}
-                 id={this.props.name}
-                 onClick={this.props.onClick}
-            >
-                {this.props.text}
-            </div>
+            <button
+							name={this.props.name}
+						  className={"btn form-control " + this.props.className}
+						  id={this.props.id}
+						  onClick={this.props.onClick}
+							disabled={this.props.disabled}
+						>
+              {this.props.text}
+							{this.props.children}
+            </button>
         );
 
     }

@@ -1,26 +1,32 @@
 import React from 'react';
 import SideNavItem from './SideNavItem.component.js';
+import { selectTab } from '../../actions/main_actions';
+import { connect } from 'react-redux';
 
-const SideNav = () => {
+
+const SideNav = (props) => {
 
 	return (
-			<div className="side-nav-container">
+			<div className="side-nav-container ">
 				<SideNavItem
-					selected={true}
-					icon={<i className="fa fa-bar-chart" aria-hidden="true" style={{marginRight:5}}></i>}
-					name={'Dashboard'}
+					href="/index/user-dashboard"
+					icon={<i className="fa fa-bar-chart" aria-hidden="true" style={{width: 20}}></i>}
+					name='Dashboard'
 				/>
 				<SideNavItem
-					icon={<i className="fa fa-users" aria-hidden="true" style={{marginRight:5}}></i>}
-					name={'Contractors'}
+					href="/index/employer-contractors"
+					icon={<i className="fa fa-users" aria-hidden="true" style={{width: 20}}></i>}
+					name='Contractors'
 				/>
 				<SideNavItem
-					icon={<i className="fa fa-area-chart" aria-hidden="true" style={{marginRight:5}}></i>}
-					name={'Forecasts'}
+					href="/index/employer-forecasts"
+					icon={<i className="fa fa-area-chart" aria-hidden="true" style={{width: 20}}></i>}
+					name='Forecasts'
 				/>
 				<SideNavItem
-					icon={<i className="fa fa-lock" aria-hidden="true" style={{marginRight:5}}></i>}
-					name={'Admin'}
+					href="/index/employer-admin"
+					icon={<i className="fa fa-lock" aria-hidden="true" style={{width: 20}}></i>}
+					name='Admin'
 				/>
 			</div>
 		);

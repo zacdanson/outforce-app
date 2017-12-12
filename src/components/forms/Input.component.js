@@ -20,7 +20,9 @@ class Input extends Component {
                     placeholder={this.props.placeholder}
                     type={this.props.type}
                     accept={this.props.accept}
-                />
+										defaultValue={this.props.defaultValue}
+								/>
+
             </div>
         );
 
