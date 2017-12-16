@@ -6,6 +6,7 @@
   background-color: $primaryColor;
   display: flex;
   justify-content: center;
+  pointer-events: auto;
 
   .signup-form-container{
     width: 350px;

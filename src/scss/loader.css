@@ -23,12 +23,21 @@ a, a:hover {
 .btn-secondary:hover {
   background-color: #5564BE !important; }
 
+.btn-success {
+  background-color: #5525C2 !important;
+  border-color: #151A32 !important; }
+
+.btn-success:hover {
+  background-color: #151A32 !important; }
+
 .home-container {
   height: 100%;
   position: absolute;
-  width: 100%; }
+  width: 100%;
+  pointer-events: none; }
 
 .home-content {
+  pointer-events: auto;
   margin-left: 250px;
   margin-top: 75px;
   padding: 20px; }

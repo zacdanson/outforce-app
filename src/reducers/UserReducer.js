@@ -14,9 +14,7 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action ) =>{
-
-		console.log(action);
-    switch (action.type){
+ 		switch (action.type){
     	/// FUNCTION REDUCERS.
         case 'LOGIN_USER':
           return { ...state, result: action.payload};

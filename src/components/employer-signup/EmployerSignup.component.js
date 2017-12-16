@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import Input from '../forms/Input.component';
-import Button from '../forms/Button.component';
+import {
+	Input,
+	Button
+} from '../elements';
 import { connect } from 'react-redux';
 import Loader from '../loading-animation/Loader.component';
 import { ValidateInput } from '../../helpers/FormValidation';
@@ -32,7 +34,6 @@ import {
 class EmployerSignup extends Component{
 
 	componentWillMount(){
-		this.props.dispatch(checkAuth(this.props));
 	}
 
 	bindInputValue(property, valType, element){
@@ -81,7 +82,7 @@ class EmployerSignup extends Component{
 										<Input name="firstname" className="signup-password-input" placeholder="first name" onChange={this.bindInputValue.bind(this, 'firstName', 'required')} />
 										<Input name="secondname" className="signup-password-input" placeholder="second name" onChange={this.bindInputValue.bind(this, 'secondName', 'required')}/>
 										<Input name="company" className="signup-password-input" placeholder="company name" onChange={this.bindInputValue.bind(this, 'companyName', 'required')}/>
-										{ this.props.formValid ? <Button className="btn-primary" text="Signup" id="signupBtn" onClick={this.handleSignup.bind(this)}/> : <Button className="btn-primary" text="Signup" id="signupBtn" disabled={true}/>}
+										{ this.props.formValid ? <Button className="form-control btn-primary" text="Signup" id="signupBtn" onClick={this.handleSignup.bind(this)}/> : <Button className="form-control btn-primary" text="Signup" id="signupBtn" disabled={true}/>}
                     <div className="signupErrorMsg">{this.props.error }</div>
 										<div className="small-link">
 											<small>

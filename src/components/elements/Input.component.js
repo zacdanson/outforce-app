@@ -21,6 +21,7 @@ class Input extends Component {
                     type={this.props.type}
                     accept={this.props.accept}
 										defaultValue={this.props.defaultValue}
+										rows={this.props.rows}
 								/>
 
             </div>

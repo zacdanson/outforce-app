@@ -10,7 +10,7 @@ import Sidebar from '../containers/Sidebar';
 
 @connect((store)=>{
 	return {
-		user: store.user.user,
+		user: store.user.userData,
 		loading: store.user.loading
 	}
 })
@@ -21,9 +21,8 @@ class Home extends Component{
 		super(props);
 	}
 
-	componentWillMount(){
+	componentDidMount(){
 		this.props.dispatch(loading(true));
-		this.props.dispatch(checkAuth(this.props));
 	}
 
 	loading(){

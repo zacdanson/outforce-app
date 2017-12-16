@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Input from '../forms/Input.component';
-import Button from '../forms/Button.component';
+import {
+	Input,
+	Button
+}from '../elements';
 import Loader from '../loading-animation/Loader.component';
 import {
 	ImageUploader,

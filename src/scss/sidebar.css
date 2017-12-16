@@ -23,12 +23,21 @@ a, a:hover {
 .btn-secondary:hover {
   background-color: #5564BE !important; }
 
+.btn-success {
+  background-color: #5525C2 !important;
+  border-color: #151A32 !important; }
+
+.btn-success:hover {
+  background-color: #151A32 !important; }
+
 .home-container {
   height: 100%;
   position: absolute;
-  width: 100%; }
+  width: 100%;
+  pointer-events: none; }
 
 .home-content {
+  pointer-events: auto;
   margin-left: 250px;
   margin-top: 75px;
   padding: 20px; }
@@ -62,6 +71,7 @@ a, a:hover {
   font-weight: 400; }
 
 .sidebar {
+  pointer-events: auto;
   background-color: #232C52;
   width: 250px;
   height: 100%;
@@ -98,6 +108,9 @@ a, a:hover {
       cursor: pointer; }
     .sidebar .side-nav-container .selected-side-nav-item {
       background-color: #6178DE; }
+
+.side-nav-min {
+  width: 75px !important; }
 
 .home-content-max {
   margin-left: 250px; }

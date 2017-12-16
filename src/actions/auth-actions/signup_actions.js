@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { handleLogin } from './login_actions';
+import firebase from 'firebase';
+import { db } from '../../../firebase-config.js'
 
 
 export const bindInputValue = (value, property, valid) => {
@@ -11,41 +13,26 @@ export const bindInputValue = (value, property, valid) => {
 };
 
 
+export const signupError = (error) => {
+	return {
+		type: 'SIGNUP_ERROR',
+		payload: error
+	}
+};
+
+
 export const handleSignup = ( email, password, firstName, secondName, companyName ) => {
 	return async (dispatch) =>{
-		const userData = {
-			email: email,
-			password:password,
-			firstName: firstName,
-			secondName: secondName,
-			companyName: companyName
-		};
-		dispatch(loading(true));
 		try {
-			await axios.post('https://us-central1-outforce-app.cloudfunctions.net/app/users/signupWithCredentials/', {
-				userData
-			})
-				.then(data=>{
-					console.log(data);
-					const user = {
-						email: userData.email,
-						firstName: userData.firstName,
-						secondName: userData.secondName,
-						companyName: userData.companyName
-					};
-					dispatch(signupSuccess(user));
-					dispatch(handleLogin(email, password));
-			})
-				.catch(response=>{
-					console.log('error - ', response.response.data.error);
-					dispatch(loading(false));
-					dispatch(signupFailed(response.response.data.error));
-				});
-
-		} catch (response){
-			console.log('error - ', response.response.data.error);
+			dispatch(loading(true));
+			firebase.auth().createUserWithEmailAndPassword(email, password).catch(error=>{
+				if(error){
+					dispatch(signupError(error.code));
+				}
+			});
+		} catch (error){
 			dispatch(loading(false));
-			dispatch(signupFailed(response.response.data.error));
+			dispatch(signupFailed(error));
 		}
 	};
 };

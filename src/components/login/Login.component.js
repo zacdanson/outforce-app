@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
-import Input from '../forms/Input.component';
-import Button from '../forms/Button.component';
+import {
+	Input,
+	Button
+} from '../elements';
 import { connect } from 'react-redux';
 import { ValidateInput } from '../../helpers/FormValidation';
 import firebase from 'firebase';
@@ -29,7 +31,6 @@ import Loader from '../loading-animation/Loader.component';
 class Login extends Component {
 
 		componentWillMount(){
-			this.props.dispatch(checkAuth(this.props));
 			this.props.dispatch(loginError(null));
 
 		}
@@ -69,7 +70,7 @@ class Login extends Component {
                   </div>
                   <Input name="email" className="email-input" placeholder="email" onChange={this.bindInputValue.bind(this, 'email', 'email')} />
                   <Input name="password" className="password-input" placeholder="password" onChange={this.bindInputValue.bind(this, 'password', 'password')} type="password"/>
-									{ this.props.formValid ? <Button className="btn-primary" text="Login" onClick={()=>this.handleLogin()}/> : <Button className="btn-primary" text="Login" onClick={()=>this.handleLogin()} disabled={true} /> }
+									{ this.props.formValid ? <Button className="form-control btn-primary" text="Login" onClick={()=>this.handleLogin()}/> : <Button className="form-control btn-primary" text="Login" onClick={()=>this.handleLogin()} disabled={true} /> }
                   <div className="loginErrorMsg">{this.props.error}</div>
 									<div className="small-link">
 										<small>

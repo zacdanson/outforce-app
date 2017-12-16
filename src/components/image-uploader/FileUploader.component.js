@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Input from '../forms/Input.component';
-import Button from '../forms/Button.component';
+import Input from '../elements/Input.component';
+import Button from '../elements/Button.component';
 
 export const getImageString = async (props)=>{
 

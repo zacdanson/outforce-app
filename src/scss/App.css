@@ -23,12 +23,21 @@ a, a:hover {
 .btn-secondary:hover {
   background-color: #5564BE !important; }
 
+.btn-success {
+  background-color: #5525C2 !important;
+  border-color: #151A32 !important; }
+
+.btn-success:hover {
+  background-color: #151A32 !important; }
+
 .home-container {
   height: 100%;
   position: absolute;
-  width: 100%; }
+  width: 100%;
+  pointer-events: none; }
 
 .home-content {
+  pointer-events: auto;
   margin-left: 250px;
   margin-top: 75px;
   padding: 20px; }
@@ -62,6 +71,7 @@ a, a:hover {
   font-weight: 400; }
 
 .sidebar {
+  pointer-events: auto;
   background-color: #232C52;
   width: 250px;
   height: 100%;
@@ -98,6 +108,9 @@ a, a:hover {
       cursor: pointer; }
     .sidebar .side-nav-container .selected-side-nav-item {
       background-color: #6178DE; }
+
+.side-nav-min {
+  width: 75px !important; }
 
 .home-content-max {
   margin-left: 250px; }
@@ -146,12 +159,21 @@ a, a:hover {
 .btn-secondary:hover {
   background-color: #5564BE !important; }
 
+.btn-success {
+  background-color: #5525C2 !important;
+  border-color: #151A32 !important; }
+
+.btn-success:hover {
+  background-color: #151A32 !important; }
+
 .home-container {
   height: 100%;
   position: absolute;
-  width: 100%; }
+  width: 100%;
+  pointer-events: none; }
 
 .home-content {
+  pointer-events: auto;
   margin-left: 250px;
   margin-top: 75px;
   padding: 20px; }
@@ -185,6 +207,7 @@ a, a:hover {
   font-weight: 400; }
 
 .headerStyle {
+  pointer-events: auto;
   background: white;
   height: 75px;
   box-shadow: rgba(38, 50, 56, 0.2) 0 6px 25px 0;
@@ -215,6 +238,7 @@ a, a:hover {
     border-radius: 50%;
     width: 30px; }
   .headerStyle #profile-menu {
+    border-radius: 6px;
     height: 0;
     top: 60px;
     right: 20px;
@@ -227,7 +251,6 @@ a, a:hover {
     font-family: Roboto, sans-serif;
     -webkit-tap-highlight-color: transparent;
     box-shadow: rgba(0, 0, 0, 0.12) 0 1px 6px, rgba(0, 0, 0, 0.12) 0 1px 4px;
-    border-radius: 2px;
     position: fixed;
     z-index: 2100;
     opacity: 1;
@@ -309,12 +332,21 @@ a, a:hover {
 .btn-secondary:hover {
   background-color: #5564BE !important; }
 
+.btn-success {
+  background-color: #5525C2 !important;
+  border-color: #151A32 !important; }
+
+.btn-success:hover {
+  background-color: #151A32 !important; }
+
 .home-container {
   height: 100%;
   position: absolute;
-  width: 100%; }
+  width: 100%;
+  pointer-events: none; }
 
 .home-content {
+  pointer-events: auto;
   margin-left: 250px;
   margin-top: 75px;
   padding: 20px; }
@@ -348,6 +380,7 @@ a, a:hover {
   font-weight: 400; }
 
 .login-page-container {
+  pointer-events: auto;
   height: 100%;
   width: 100%;
   background-color: #232C52;
@@ -402,12 +435,21 @@ a, a:hover {
 .btn-secondary:hover {
   background-color: #5564BE !important; }
 
+.btn-success {
+  background-color: #5525C2 !important;
+  border-color: #151A32 !important; }
+
+.btn-success:hover {
+  background-color: #151A32 !important; }
+
 .home-container {
   height: 100%;
   position: absolute;
-  width: 100%; }
+  width: 100%;
+  pointer-events: none; }
 
 .home-content {
+  pointer-events: auto;
   margin-left: 250px;
   margin-top: 75px;
   padding: 20px; }
@@ -570,12 +612,21 @@ a, a:hover {
 .btn-secondary:hover {
   background-color: #5564BE !important; }
 
+.btn-success {
+  background-color: #5525C2 !important;
+  border-color: #151A32 !important; }
+
+.btn-success:hover {
+  background-color: #151A32 !important; }
+
 .home-container {
   height: 100%;
   position: absolute;
-  width: 100%; }
+  width: 100%;
+  pointer-events: none; }
 
 .home-content {
+  pointer-events: auto;
   margin-left: 250px;
   margin-top: 75px;
   padding: 20px; }
@@ -613,7 +664,8 @@ a, a:hover {
   width: 100%;
   background-color: #232C52;
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  pointer-events: auto; }
   .signup-page-container .signup-form-container {
     width: 350px;
     position: absolute;
@@ -659,3 +711,46 @@ a, a:hover {
     position: absolute;
     top: 0;
     left: 0; }
+
+#employer-contractors {
+  pointer-events: auto; }
+  #employer-contractors .add-contractor-btn {
+    float: right;
+    margin-top: 10px; }
+  #employer-contractors .add-contractor-modal-info {
+    margin: 10px;
+    display: flex;
+    justify-content: center; }
+
+.readmin-panel {
+  position: relative;
+  width: 100%;
+  background: #fff;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 5px; }
+  .readmin-panel.righticonmenu .panel-heading {
+    padding: 5 20;
+    padding-right: 5; }
+  .readmin-panel.body-text-center .panel-body {
+    text-align: center; }
+  .readmin-panel .panel-heading {
+    position: relative;
+    width: 100%;
+    border-bottom: 1px solid #f2f2f2;
+    padding: 7 20;
+    padding-right: 5;
+    display: flex;
+    justify-content: space-between; }
+    .readmin-panel .panel-heading h5 {
+      margin: 0; }
+  .readmin-panel .panel-body {
+    padding: 10;
+    width: 100%;
+    display: inline-block; }
+
+.table thead th {
+  border-top: 0; }
+
+.product-table tbody tr td {
+  vertical-align: middle; }

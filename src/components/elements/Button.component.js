@@ -7,16 +7,23 @@ class Button extends Component {
         super(props);
     }
 
+    openModal(){
+			$('#'+this.props.modalName).modal('toggle');
+		}
+
     render(){
 
         return(
             <button
+							type="button"
 							name={this.props.name}
-						  className={"btn form-control " + this.props.className}
+						  className={"btn " + this.props.className}
 						  id={this.props.id}
-						  onClick={this.props.onClick}
+						  onClick={this.props.openModal ? this.openModal.bind(this) : this.props.onClick}
 							disabled={this.props.disabled}
 						>
+							{this.props.icon}
+
               {this.props.text}
 							{this.props.children}
             </button>

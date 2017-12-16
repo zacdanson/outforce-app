@@ -23,12 +23,21 @@ a, a:hover {
 .btn-secondary:hover {
   background-color: #5564BE !important; }
 
+.btn-success {
+  background-color: #5525C2 !important;
+  border-color: #151A32 !important; }
+
+.btn-success:hover {
+  background-color: #151A32 !important; }
+
 .home-container {
   height: 100%;
   position: absolute;
-  width: 100%; }
+  width: 100%;
+  pointer-events: none; }
 
 .home-content {
+  pointer-events: auto;
   margin-left: 250px;
   margin-top: 75px;
   padding: 20px; }
@@ -66,7 +75,8 @@ a, a:hover {
   width: 100%;
   background-color: #232C52;
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  pointer-events: auto; }
   .signup-page-container .signup-form-container {
     width: 350px;
     position: absolute;

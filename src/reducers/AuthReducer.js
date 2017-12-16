@@ -13,6 +13,8 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
 	switch(action.type){
+		case 'CLEAR_FORM_DATA':
+			return { ...INITIAL_STATE };
 		case 'UPDATE_FORM_VALID':
 			return {...state, formValid: action.payload};
 		case 'UPDATE_VALIDATED':

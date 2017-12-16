@@ -1,6 +1,7 @@
 @import 'mainStyles.scss';
 
 .sidebar{
+  pointer-events: auto;
   background-color: $primaryColor;
   width: 250px;
   height: 100%;
@@ -58,6 +59,10 @@
 
   }
 
+}
+
+.side-nav-min{
+  width:75px !important;
 }
 
 .home-content-max{

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Link, Switch, Router } from 'react-router-dom';
 import reduxReset from 'redux-reset'
@@ -7,6 +7,7 @@ import { PersistGate } from 'redux-persist/es/integration/react'
 import storage from 'redux-persist/es/storage';
 import Login from './components/login/Login.component';
 const app = require('./scss/App.scss');
+import { checkAuth } from './actions/auth-actions/login_actions';
 import reducers from './reducers';
 import { compose, createStore, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
@@ -18,9 +19,11 @@ import EmployerContractors from './components/employer-contractors/EmployerContr
 import UserDashboard from './components/user-dashboard/User.dashboard.component';
 import { LogoutUser } from './components/logout-user/LogoutUser.component';
 import UserProfile from './components/user-profile/UserProfile.component';
-import createBrowserHistory from 'history/createBrowserHistory'
+import createBrowserHistory from 'history/createBrowserHistory';
 import Home from './components/index';
+import { connect } from 'react-redux';
 require('../firebase-config');
+const uuid = require('uuid4');
 
 ///////////////////////////////////////////////
 
@@ -40,8 +43,29 @@ let store = createStore(reducer, {}, enhancer);
 
 let persistor = persistStore(store, storage);
 
-const App = () => {
-	return (
+
+@connect((store)=>{
+	return {
+		user: store.user.userData,
+		loading: store.user.loading,
+		formData: store.auth.formData
+	}
+})
+
+
+class App extends Component{
+
+	constructor(props){
+		super(props);
+	}
+
+	componentDidMount(){
+
+		this.props.dispatch(checkAuth(this.props));
+	}
+
+	render(){
+		return (
 			<BrowserRouter>
 				<div>
 					<div className="home-container">
@@ -55,8 +79,9 @@ const App = () => {
 					</div>
 				</div>
 			</BrowserRouter>
-	);
-};
+		);
+	}
+}
 
 const routes = (
 

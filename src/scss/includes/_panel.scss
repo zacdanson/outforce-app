@@ -1,0 +1,40 @@
+.readmin-panel {
+  position: relative;
+  width: 100%;
+  background: #fff;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 5px;
+
+  &.righticonmenu {
+    .panel-heading {
+      padding: 5 20;
+      padding-right: 5;
+    }
+  }
+
+  &.body-text-center {
+    .panel-body {
+      text-align: center;
+    }
+  }
+
+  .panel-heading {
+    position: relative;
+    width: 100%;
+    border-bottom: 1px solid darken(#fff, 5%);
+    padding: 5 + 2 20;
+    padding-right: 5;
+    display: flex;
+    justify-content: space-between;
+
+    h5 {
+      margin: 0;
+    }
+  }
+  .panel-body {
+    padding: 10;
+    width: 100%;
+    display: inline-block;
+  }
+}
