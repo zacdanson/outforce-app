@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 import { App } from './App.jsx';
-import Login from './components/login/Login.component';
+import Login from './compgitonents/login/Login.component';
 const app = require('./scss/App.scss');
 import reducers from './reducers';
 import { createStore, applyMiddleware } from 'redux';
@@ -29,7 +29,7 @@ const routes = (
 					path="/employeer-signup"
 					component={EmployerSignup}
 				/>
-			</Switch>
+			</Switch> ?
 		</BrowserRouter>
 	</Provider>
 
