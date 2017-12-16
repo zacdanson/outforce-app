@@ -1,0 +1,9 @@
+#employer-contractors {
+  pointer-events: auto; }
+  #employer-contractors .add-contractor-btn {
+    float: right;
+    margin-top: 10px; }
+  #employer-contractors .add-contractor-modal-info {
+    margin: 10px;
+    display: flex;
+    justify-content: center; }

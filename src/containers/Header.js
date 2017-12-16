@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
-import HeaderLeft from '../components/header/HeaderLeft.component.js';
-import HeaderRight from '../components/header/HeaderRight.component.js';
+import {
+	HeaderLeft,
+	HeaderRight
+} from '../components';
 
 
-const Header = () => {
+const Header = (props) => {
 	return (
 		<div className="headerStyle">
-			<HeaderLeft></HeaderLeft>
-			<HeaderRight></HeaderRight>
+			<HeaderLeft/>
+			<HeaderRight user={props.user}/>
 		</div>
 	);
 };

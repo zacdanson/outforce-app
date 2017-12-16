@@ -1,38 +1,97 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
-import { App } from './App.jsx';
-import Login from './compgitonents/login/Login.component';
 const app = require('./scss/App.scss');
+import { checkAuth } from './actions/auth-actions/login_actions';
 import reducers from './reducers';
-import { createStore, applyMiddleware } from 'redux';
+import { compose, createStore, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
-import logger from 'redux-logger';
-import { Provider } from 'react-redux';
-import EmployerSignup from './components/employer-signup/EmployerSignup';
+import { Provider, connect} from 'react-redux';
+import { BrowserRouter, Route } from 'react-router-dom';
+import reduxReset from 'redux-reset'
+import { autoRehydrate, persistStore, persistCombineReducers } from 'redux-persist'
+import { PersistGate } from 'redux-persist/es/integration/react'
+import storage from 'redux-persist/es/storage';
+const uuid = require('uuid4');
+require('../firebase-config');
+
+import Home from './containers/Home.js';
+import {
+    EmployerSignup,
+    EmployerContractors,
+    UserDashboard,
+    LogoutUser,
+    Loader,
+    UserProfile,
+    Login,
+
+} from './components';
+
+
+const config = {
+	key: 'root',
+	storage,
+};
+
+const enhancer = compose(
+	applyMiddleware(ReduxThunk),
+	reduxReset()
+);
+
+let reducer = persistCombineReducers(config, reducers);
+
+let store = createStore(reducer, {}, enhancer);
+
+let persistor = persistStore(store, storage);
+
+
+@connect((store)=>{
+	return {
+		user: store.user.userData,
+		loading: store.user.loading,
+		formData: store.auth.formData
+	}
+})
+
+
+class App extends Component{
+
+	constructor(props){
+		super(props);
+	}
+
+	componentDidMount(){
+
+		this.props.dispatch(checkAuth(this.props));
+	}
+
+	render(){
+		return (
+			<BrowserRouter>
+				<div>
+					<div className="home-container">
+						<Route path="/index/" component={Home}/>
+						<Route path="/index/user-dashboard" component={UserDashboard}/>
+						<Route path="/index/user-profile" component={UserProfile}/>
+						<Route path="/index/employer-contractors" component={EmployerContractors} />
+						<Route path="/login" exact={true} component={Login} />
+						<Route path="/logout" exact={true} component={LogoutUser} />
+						<Route path="/employer-signup" exact={true} component={EmployerSignup} />
+					</div>
+				</div>
+			</BrowserRouter>
+		);
+	}
+}
 
 const routes = (
 
-	<Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
-		<BrowserRouter>
-			<Switch style={{height:'100%'}}>
-				<Route
-					path="/index"
-					exact={true}
-					component={App}
-				/>
-				<Route
-					path="/login"
-					component={Login}
-				/>
-				<Route
-					path="/employeer-signup"
-					component={EmployerSignup}
-				/>
-			</Switch> ?
-		</BrowserRouter>
+	<Provider store={store}>
+			<PersistGate
+				loading={<Loader />}
+				persistor={persistor}>
+				<App />
+			</PersistGate>
 	</Provider>
-
 );
 
 ReactDOM.render(

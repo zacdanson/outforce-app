@@ -1,6 +1,7 @@
 @import './mainStyles.scss';
 
 .login-page-container{
+  pointer-events: auto;
   height:100%;
   width:100%;
   background-color: $primaryColor;
@@ -11,6 +12,10 @@
     width: 350px;
     position: absolute;
     top: 200px;
+  }
+
+  .invalid{
+    border:1px solid red;
   }
 
   .email-input{
@@ -43,6 +48,5 @@
     text-align: center;
     padding-top: 5px;
   }
-
 
 }
