@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import UserReducer from './UserReducer';
-import MainReducer from '../reducers/MainReducer';
-import AuthReducer from '../reducers/AuthReducer';
+import MainReducer from './MainReducer';
+import AuthReducer from './AuthReducer';
+import ContractorReducer from './ContractorReducer';
 
 export default {
     user: UserReducer,
 		main: MainReducer,
-		auth: AuthReducer
+		auth: AuthReducer,
+		contractor: ContractorReducer
 };

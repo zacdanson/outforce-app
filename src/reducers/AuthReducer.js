@@ -7,12 +7,17 @@ const INITIAL_STATE = {
 		secondName: {value: '', valid: null },
 		firstName: {value: '', valid: null },
 		companyName: {value: '', valid: null },
+		userRole: null
 	}
 };
 
 
 export default (state = INITIAL_STATE, action) => {
 	switch(action.type){
+		case 'SET_USER_ROLE':
+			let form = {...state.formData};
+			form.userRole = action.payload;
+			return { ...state, formData: form };
 		case 'CLEAR_FORM_DATA':
 			return { ...INITIAL_STATE };
 		case 'UPDATE_FORM_VALID':

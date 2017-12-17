@@ -19,6 +19,8 @@ import {
     EmployerSignup,
     EmployerContractors,
     UserDashboard,
+		ContractorSignup,
+		DisabledInvite,
     LogoutUser,
     Loader,
     UserProfile,
@@ -69,12 +71,14 @@ class App extends Component{
 			<BrowserRouter>
 				<div>
 					<div className="home-container">
-						<Route path="/index/" component={Home}/>
-						<Route path="/index/user-dashboard" component={UserDashboard}/>
-						<Route path="/index/user-profile" component={UserProfile}/>
+						<Route path="/index/" component={Home} />
+						<Route path="/index/user-dashboard" component={UserDashboard} />
+						<Route path="/index/user-profile" component={UserProfile} />
 						<Route path="/index/employer-contractors" component={EmployerContractors} />
 						<Route path="/login" exact={true} component={Login} />
 						<Route path="/logout" exact={true} component={LogoutUser} />
+						<Route path="/contractor-signup" exact={true} component={ContractorSignup} />
+						<Route path="/disabled-invite" exact={true} component={DisabledInvite} />
 						<Route path="/employer-signup" exact={true} component={EmployerSignup} />
 					</div>
 				</div>

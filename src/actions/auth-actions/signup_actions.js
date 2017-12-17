@@ -20,10 +20,24 @@ export const signupError = (error) => {
 	}
 };
 
+export const setUserRole = () => {
+	let role;
+	if(window.location.pathname === 'employer-signup'){
+		role = 'employer';
+	} else {
+		role = 'contractor';
+	}
+	return{
+		type: 'SET_USER_ROLE',
+		payload: role
+	};
+};
 
-export const handleSignup = ( email, password, firstName, secondName, companyName ) => {
+
+export const handleSignup = ( email, password ) => {
 	return async (dispatch) =>{
 		try {
+			dispatch(setUserRole());
 			dispatch(loading(true));
 			firebase.auth().createUserWithEmailAndPassword(email, password).catch(error=>{
 				if(error){
@@ -34,6 +48,34 @@ export const handleSignup = ( email, password, firstName, secondName, companyNam
 			dispatch(loading(false));
 			dispatch(signupFailed(error));
 		}
+	};
+};
+
+export const checkInviteLink = () => {
+	return (dispatch) => {
+		dispatch(loading(true));
+		let queryStr = window.location.search;
+		let idPos = queryStr.indexOf('id=')+3;
+		let id = queryStr.slice(idPos, queryStr.length);
+		console.log(id);
+		if(!id){
+			window.location.pathname= '/login';
+			dispatch(loading(false));
+		}
+		db.collection('pendingInvites').doc(id).get()
+			.then(docRef=>{
+				/// if there isn't an active link or the link is === false.
+				if(docRef.exists){
+					let data  = docRef.data();
+					if(data.linkActive){
+						console.log('link active so contiue');
+						return;
+					}
+				}
+				console.log('link not active.');
+				window.location.pathname= '/disabled-invite';
+				dispatch(loading(false));
+		});
 	};
 };
 

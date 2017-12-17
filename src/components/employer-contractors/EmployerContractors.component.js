@@ -6,13 +6,16 @@ import {
 	Modal
 } from '../elements';
 import {
-	addContractor
+	addContractor,
+	bindAddContractorInput,
+	clearFormData
 } from '../../actions/user-contractors-actions/handle-contractors';
 
 @connect((store)=>{
 	return {
 		user: store.user.userData,
-		sidebar: store.main.sidebar
+		sidebar: store.main.sidebar,
+		formData: store.contractor.formData
 	}
 })
 
@@ -22,17 +25,35 @@ export class EmployerContractors extends Component {
 		super(props);
 	}
 
+	bindAddContractorInput(property, input){
+		this.props.dispatch(bindAddContractorInput(input.target.value, property));
+	}
 
-	componentWillMount(){
+	clearFormData(){
+		this.props.dispatch(clearFormData());
+	}
 
+	componentWillUnmount(){
+		this.clearFormData();
 	}
 
 
 	addContractor(){
-		this.props.dispatch(addContractor());
+		let { phoneNumber, email, name } = this.props.formData;
+		let { uid, fullName, companyName, companyId } = this.props.user;
+		this.props.dispatch(addContractor(
+			uid,
+			phoneNumber,
+			email,
+			name,
+			fullName,
+			companyName,
+			companyId
+		));
 	}
 
 	render() {
+
 		return (
 			<div id="employer-contractors" className={this.props.sidebar === 'max' ? 'home-content home-content-max' : 'home-content home-content-min' }>
 				<Button
@@ -74,19 +95,15 @@ export class EmployerContractors extends Component {
 						<small className="add-contractor-modal-info">By adding a contractor, they will also be invited to signup to OutForce.</small>
 						<div className="form-group">
 							<div> Name </div>
-							<Input name="contractorName" className="contractor-name" />
+							<Input name="contractorName" className="contractor-name" onChange={this.bindAddContractorInput.bind(this,'name')} />
 						</div>
 						<div className="form-group">
 							<div> Email </div>
-							<Input name="contractorName" className="contractor-name" />
+							<Input name="contractorName" className="contractor-name" onChange={this.bindAddContractorInput.bind(this,'email')} />
 						</div>
 						<div className="form-group">
 							<div> Phone Number </div>
-							<Input name="contractorName" className="contractor-name" />
-						</div>
-						<div className="form-group">
-							<div> Message </div>
-							<textarea name="contractorName" className="form-control contractor-name" rows="3" cols="30" wrap="soft"/>
+							<Input name="contractorName" className="contractor-name" onChange={this.bindAddContractorInput.bind(this,'phoneNumber')} />
 						</div>
 					</div>
 				</Modal>

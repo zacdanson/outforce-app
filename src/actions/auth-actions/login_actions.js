@@ -113,7 +113,8 @@ export const checkAuth = (props) =>{
 									firstName: props.formData.firstName.value,
 									secondName: props.formData.secondName.value,
 									fullName: props.formData.firstName.value + ' ' + props.formData.secondName.value,
-									companyName: props.formData.companyName.value
+									companyName: props.formData.companyName.value,
+									userRole: props.formData.userRole
 								};
 							db.collection('users').doc(data.uid)
 								.set(userData).then(()=>{
@@ -123,6 +124,7 @@ export const checkAuth = (props) =>{
 									}).then(docRef=>{
 										let uid = userData.uid;
 										db.collection('companies').doc(docRef.id+'/users/'+uid).set({uid});
+										db.collection('users').doc(uid).add({companyId: docRef.id});
 										dispatch(clearFormData());
 										dispatch(loading(false));
 										window.location.pathname = '/index/user-dashboard';
@@ -150,11 +152,10 @@ export const checkAuth = (props) =>{
 
 			} else {
 				console.log('not signed in.');
-				if(window.location.pathname !== '/login' && window.location.pathname !== '/employer-signup'  ){
-					window.location.pathname = '/index/user-dashboard';
+				if(window.location.pathname.includes('index')){
+					window.location.pathname = '/login';
 				}
 				localStorage.clear();
-				dispatch(loading(false));
 			}
 		 });
 		} catch(error) {
