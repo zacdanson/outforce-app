@@ -1,11 +1,12 @@
 import axios from 'axios';
-import { handleLogin } from './login_actions';
+import { handleLogin } from './auth_actions';
 import firebase from 'firebase';
 import { db } from '../../../firebase-config.js'
-
+import {
+	getUrlParameter
+} from '../helper-actions/helper-actions';
 
 export const bindInputValue = (value, property, valid) => {
-	console.log(property);
 	return{
 		type: 'BIND_AUTH_INPUT',
 		payload: { value: value, property: property, valid: valid }
@@ -22,7 +23,7 @@ export const signupError = (error) => {
 
 export const setUserRole = () => {
 	let role;
-	if(window.location.pathname === 'employer-signup'){
+	if(window.location.pathname === '/employer/employer-signup'){
 		role = 'employer';
 	} else {
 		role = 'contractor';
@@ -35,40 +36,49 @@ export const setUserRole = () => {
 
 
 export const handleSignup = ( email, password ) => {
-	return async (dispatch) =>{
+	return (dispatch) =>{
 		try {
-			dispatch(setUserRole());
-			dispatch(loading(true));
-			firebase.auth().createUserWithEmailAndPassword(email, password).catch(error=>{
+			console.log('here');
+		firebase.auth().createUserWithEmailAndPassword(email, password).catch(error=>{
 				if(error){
-					dispatch(signupError(error.code));
+					console.log(error);
+					dispatch(signupError(error));
 				}
 			});
 		} catch (error){
+			console.log(error);
 			dispatch(loading(false));
-			dispatch(signupFailed(error));
+			dispatch(signupError(error));
 		}
 	};
 };
 
+
 export const checkInviteLink = () => {
 	return (dispatch) => {
 		dispatch(loading(true));
-		let queryStr = window.location.search;
-		let idPos = queryStr.indexOf('id=')+3;
-		let id = queryStr.slice(idPos, queryStr.length);
+
+		let id = getUrlParameter('id');
+		let cid = getUrlParameter('cid');
+		let type = getUrlParameter('type');
+
 		console.log(id);
-		if(!id){
+		if(!id || !cid  ||!type){
 			window.location.pathname= '/login';
 			dispatch(loading(false));
 		}
+
 		db.collection('pendingInvites').doc(id).get()
 			.then(docRef=>{
 				/// if there isn't an active link or the link is === false.
 				if(docRef.exists){
 					let data  = docRef.data();
+					console.log(data);
 					if(data.linkActive){
 						console.log('link active so contiue');
+						dispatch(bindInputValue(cid, 'companyId', true));
+						dispatch(bindInputValue(id, 'userId', true));
+						dispatch(loading(false));
 						return;
 					}
 				}
@@ -79,24 +89,27 @@ export const checkInviteLink = () => {
 	};
 };
 
-export const uploadImg = (blob) => {
-	return {
-		type: 'UPLOAD_IMAGE',
-		payload: blob
-	}
+
+export const handleContractorSignup = (email, password, companyId) => {
+	return (dispatch) => {
+	console.log('contractor signup! ');
+		dispatch(loading(true));
+		firebase.auth().createUserWithEmailAndPassword(email, password).catch(error=>{
+			if(error){
+				console.log('error with contractor signup - ', error );
+				dispatch(signupError(error.code));
+			}
+		});
+
+	};
 };
+
+
 
 const signupFailed = (error) => {
 	return {
 		type: 'SIGNUP_FAILED',
 		payload: error
-	};
-};
-
-const signupSuccess = (user) => {
-	return {
-		type: 'SIGNUP_SUCCESS',
-		payload: user
 	};
 };
 

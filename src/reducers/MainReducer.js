@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
 	sidebar: 'max',
 	loading:false,
+	loadingAnimation:false,
 	selectedTab: 'dashboard'
 };
 
@@ -13,9 +14,11 @@ export default (state = INITIAL_STATE, action) => {
 			return {...state, selectedTab: action.payload};
 		case 'ERROR':
 			return {...state, error: action.payload };
-		case 'LOADING':
+		case 'IS_LOADING':
 			return { ...state, loading: action.payload};
 			break;
+		case 'LOADING':
+			return { ...state, loadingAnimation: action.payload };
 		default:
 			return state;
 	}

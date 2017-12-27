@@ -7,6 +7,9 @@ const INITIAL_STATE = {
 		secondName: {value: '', valid: null },
 		firstName: {value: '', valid: null },
 		companyName: {value: '', valid: null },
+		phoneNumber: {value: '', valid: null },
+		companyId: { value: '', valid: null},
+		userId: { value: '', valid: null},
 		userRole: null
 	}
 };
@@ -15,9 +18,13 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
 	switch(action.type){
 		case 'SET_USER_ROLE':
+			console.log('set_user_role');
 			let form = {...state.formData};
 			form.userRole = action.payload;
+			console.log(form.userRole);
 			return { ...state, formData: form };
+		case 'SIGNUP_ERROR':
+			return { ...state, error: action.payload };
 		case 'CLEAR_FORM_DATA':
 			return { ...INITIAL_STATE };
 		case 'UPDATE_FORM_VALID':
@@ -28,7 +35,7 @@ export default (state = INITIAL_STATE, action) => {
 			return {...state, error: action.payload };
 		case 'BIND_AUTH_INPUT':
 			let formData = { ...state.formData };
-			console.log('form data - ', formData);
+
 			formData[action.payload.property].value = action.payload.value;
 			formData[action.payload.property].valid = action.payload.valid;
 			return {...state, formData:formData };

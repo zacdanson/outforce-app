@@ -23,7 +23,7 @@ class Modal extends Component{
 						</div>
 						<div className="modal-footer">
 							{this.props.closeBtn ? <button type="button" className="btn btn-danger" data-dismiss="modal">Close</button> : ''}
-							{this.props.rightBtn ? <button type="button" className="btn btn-primary" onClick={this.props.rightBtnOnClick }>{this.props.rightBtnIcon} {this.props.rightBtnName }</button> : '' }
+							{this.props.rightBtn ? <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.props.rightBtnOnClick }>{this.props.rightBtnIcon} {this.props.rightBtnName }</button> : '' }
 						</div>
 					</div>
 				</div>

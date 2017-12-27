@@ -6,7 +6,7 @@ export const checkAuth = (props) =>{
 		console.log('auth status - ', user);
 		if(user){
 			console.log(props);
-			props.history.push({pathname: '/index/user-dashboard'});
+			props.history.push({pathname: '/index/employer-dashboard'});
 		} else {
 			console.log('not signed in.');
 			if(props.history.pathname !== '/login'){

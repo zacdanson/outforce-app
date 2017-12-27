@@ -14,7 +14,7 @@ import {
 
 import {
 	checkAuth
-} from '../../actions/auth-actions/login_actions';
+} from '../../actions/auth-actions/auth_actions';
 
 import {
 	checkValid
@@ -83,7 +83,7 @@ class EmployerSignup extends Component{
 										<Input name="secondname" className="signup-password-input" placeholder="second name" onChange={this.bindInputValue.bind(this, 'secondName', 'required')}/>
 										<Input name="company" className="signup-password-input" placeholder="company name" onChange={this.bindInputValue.bind(this, 'companyName', 'required')}/>
 										{ this.props.formValid ? <Button className="form-control btn-primary" text="Signup" id="signupBtn" onClick={this.handleSignup.bind(this)}/> : <Button className="form-control btn-primary" text="Signup" id="signupBtn" disabled={true}/>}
-                    <div className="signupErrorMsg">{this.props.error }</div>
+                    <div className="signupErrorMsg">{this.props.error ? this.props.error.message  : ''}</div>
 										<div className="small-link">
 											<small>
 												<a href="/login">

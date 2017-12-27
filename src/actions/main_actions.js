@@ -8,6 +8,22 @@ export const handleSidebar = (sidebar) =>{
 	};
 };
 
+export const loading = (status) =>{
+	console.log('loadennn - ', status );
+	return{
+		type:'IS_LOADING',
+		payload: status
+	};
+};
+
+export const loadingAnimation = (status) =>{
+	console.log('loadennn - ', status );
+	return{
+		type:'LOADING',
+		payload: status
+	};
+};
+
 
 export const selectTab = (tab) => {
 	return{

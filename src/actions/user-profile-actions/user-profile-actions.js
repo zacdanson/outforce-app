@@ -2,10 +2,10 @@ import firebase from 'firebase';
 let storage = firebase.storage();
 import { db } from '../../../firebase-config.js'
 import {
-	loading,
 	handleError,
 	updateUser
 } from '../helper-actions/helper-actions';
+import { loading } from '../main_actions';
 
 export const bindInputValue = (value, property) => {
 	return {

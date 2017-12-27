@@ -20,27 +20,52 @@ a, a:hover {
   border-color: #5564be !important;
   color: #fff; }
 
+.row {
+  margin: 0 !important; }
+
+.panel {
+  box-shadow: 0 1px 22px rgba(0, 0, 0, 0.19), 0 1px 3px rgba(0, 0, 0, 0.23);
+  padding: 0 !important;
+  border: 1px solid #ebebeb;
+  border-radius: 5px;
+  min-width: 380px;
+  margin: 10px; }
+
+.panel-body {
+  padding: 20px;
+  overflow: auto !important; }
+
+.panel-heading {
+  padding: 15px 0 7px 0;
+  text-align: center;
+  border-bottom: 1px solid #c9c9c9;
+  border-top: 1px #c9c9c9 outset;
+  background: #EBEBFF;
+  color: #444;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px; }
+
 .btn-secondary:hover {
   background-color: #5564BE !important; }
 
 .btn-success {
-  background-color: #5525C2 !important;
-  border-color: #151A32 !important; }
+  background-color: #57eaaf !important;
+  border-color: #41ae82 !important;
+  color: #000 !important;
+  font-weight: 600; }
 
 .btn-success:hover {
-  background-color: #151A32 !important; }
+  background-color: #41ae82 !important; }
 
 .home-container {
-  height: 100%;
-  position: absolute;
-  width: 100%;
-  pointer-events: none; }
+  height: 100%; }
+
+.wrapper {
+  height: 100%; }
 
 .home-content {
   pointer-events: auto;
-  margin-left: 250px;
-  margin-top: 75px;
-  padding: 20px; }
+  padding: 100px 20px 0 20px; }
 
 .home-content-header {
   border-bottom: 1px solid #ebebeb;
@@ -56,7 +81,6 @@ a, a:hover {
   width: calc(100% - 250px); }
 
 .pages-container {
-  height: 100%;
   width: 100%; }
 
 .small-link {
@@ -88,6 +112,63 @@ a, a:hover {
       margin: 0 auto;
       margin-top: 20px; }
 
+.react-datepicker__current-month {
+  color: #fff !important;
+  font-weight: 400 !important; }
+
+.react-datepicker__day-name {
+  color: #fff !important;
+  font-weight: 400 !important; }
+
+.react-datepicker__header {
+  background-color: #6178DE !important;
+  padding-top: 13px; }
+
+.react-datepicker__month {
+  margin: 0 !important; }
+
+.react-datepicker__day {
+  border: 1px solid #EBEBEF !important;
+  margin: 0 !important;
+  padding: 13px;
+  width: 55px;
+  color: #000 !important; }
+
+.react-datepicker__day--selected {
+  background-color: #57eaaf !important;
+  border-radius: 0 !important; }
+
+.react-datepicker__day--keyboard-selected {
+  background-color: #57eaaf !important;
+  border-radius: 0 !important; }
+
+.react-datepicker__day--today {
+  background-color: #ebebeb !important; }
+
+.react-datepicker__day:hover {
+  background-color: #57eaaf !important;
+  border-radius: 0 !important; }
+
+.swal-modal {
+  padding-bottom: 30px !important; }
+
+.time_picker_modal_container {
+  position: absolute !important;
+  top: -461px !important; }
+
+.time_picker_container {
+  width: 300px !important; }
+
+.classic_theme_container {
+  position: absolute;
+  top: -300px; }
+
+.time_picker_preview {
+  width: 300px !important; }
+
+.classic_time:hover, .light:hover {
+  background: #6178DE !important; }
+
 .loaderContainer {
   position: absolute;
   top: 0;
@@ -96,11 +177,23 @@ a, a:hover {
   width: 100%;
   height: 100%;
   background: rgba(159, 159, 159, 0.6); }
+  .loaderContainer .loader-container-small {
+    position: absolute;
+    left: 0;
+    width: 100% !important;
+    height: 0 important;
+    background: transparent !important; }
   .loaderContainer .loader {
     top: 50%;
     left: 50%;
     position: absolute;
     transform: translate(-50%, -50%); }
+  .loaderContainer .small-loader {
+    left: 50% !important;
+    width: 0 !important;
+    height: 0 !important;
+    position: absolute !important;
+    top: 18% !important; }
 
 @keyframes lds-flickr-opacity {
   0% {
@@ -190,5 +283,5 @@ a, a:hover {
     -webkit-animation-delay: -0.5s;
     animation-delay: -0.5s; }
   .loaderContainer .lds-flickr {
-    width: 200px !important;
-    height: 200px !important; }
+    width: 200px;
+    height: 200px; }

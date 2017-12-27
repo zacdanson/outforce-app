@@ -32,11 +32,12 @@ class SideNavItem extends Component {
 
 		return (
 			<div onClick={this.switchTab.bind(this)}>
+				{ this.props.strict === this.props.userRole || !this.props.strict ?
 				<NavLink to={this.props.href}>
 					<p className={this.props.selectedTab === this.props.name ? toggleSelected : toggleNotSelected }>
 						{this.props.icon}<span className={toggleClassName}>{this.props.name}</span>
 					</p>
-				</NavLink>
+				</NavLink>  : "" }
 			</div>
 		);
 

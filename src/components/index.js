@@ -7,8 +7,10 @@ export { default as Loader } from './loading-animation/Loader.component';
 export { default as Login } from './login/Login.component';
 export { default as LogoutUser } from './logout-user/LogoutUser.component';
 export { default as SideNav } from './sidebar/SideNav.component';
-export { default as UserDashboard } from './user-dashboard/User.dashboard.component';
+export { default as EmployerDashboard } from './employer-dashboard/Employer.dashboard.component';
+export { default as ContractorDashboard} from './contractor-dashboard/Contractor.dashboard.component';
 export { default as UserProfile } from './user-profile/UserProfile.component';
 export { DisabledInvite } from './contractor-signup/DisabledInvite.component';
 export { default as ContractorSignup} from './contractor-signup/ContractorSignup.component';
+export { default as ManageContractor } from './employer-contractors/ManageContractor.component';
 

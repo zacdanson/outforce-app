@@ -5,11 +5,12 @@
   background: rgb(255, 255, 255);
   height: 75px;
   box-shadow: rgba(38, 50, 56, 0.2) 0 6px 25px 0;
-  position: absolute;
-  top: 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
+  position: fixed;
+  top:0;
+  z-index: 2;
 
   .headerLeftStyle{
     width:200px;

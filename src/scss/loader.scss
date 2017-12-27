@@ -9,12 +9,28 @@
   height:100%;
   background: rgba(159,159,159,0.6);
 
+  .loader-container-small{
+    position: absolute;
+    left: 0;
+    width: 100% !important;
+    height: 0 important;
+    background:transparent !important;
+  }
+
   .loader{
     top: 50%;
     left: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
 
+  }
+
+  .small-loader{
+    left: 50% !important;
+    width: 0 !important;
+    height: 0 !important;
+    position: absolute !important;
+    top: 18% !important;
   }
 
   @keyframes lds-flickr-opacity {
@@ -125,8 +141,8 @@
     animation-delay: -0.5s;
   }
   .lds-flickr {
-    width: 200px !important;
-    height: 200px !important;
+    width: 200px ;
+    height: 200px ;
 
   }
 

@@ -21,6 +21,7 @@ class Button extends Component {
 						  id={this.props.id}
 						  onClick={this.props.openModal ? this.openModal.bind(this) : this.props.onClick}
 							disabled={this.props.disabled}
+							style={this.props.style}
 						>
 							{this.props.icon}
 

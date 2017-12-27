@@ -16,8 +16,8 @@ class Loader extends Component {
         }
 
         return (
-            <div className="loaderContainer">
-                <div className="lds-flickr">
+            <div className={this.props.size === 'small' ? 'loaderContainer loader-container-small' : 'loaderContainer' }>
+                <div className={this.props.size === 'small' ? 'lds-flickr small-loader' : 'lds-flickr'}>
                     <div></div>
                     <div></div>
                 </div>

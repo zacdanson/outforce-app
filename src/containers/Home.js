@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Loader } from '../components';
-import { loading } from '../actions/helper-actions/helper-actions';
+import { loading } from '../actions/main_actions';
 import Header from './Header';
 import Sidebar from './Sidebar';
 
@@ -9,7 +9,7 @@ import Sidebar from './Sidebar';
 @connect((store)=>{
 	return {
 		user: store.user.userData,
-		loading: store.user.loading
+		loading: store.main.loading
 	}
 })
 
@@ -20,7 +20,7 @@ class Home extends Component{
 	}
 
 	componentDidMount(){
-		this.props.dispatch(loading(true));
+		$(document).scrollTop(0);
 	}
 
 	loading(){
@@ -31,6 +31,7 @@ class Home extends Component{
 				<div className="home-container">
 					 <Header user={this.props.user} />
 					 <Sidebar/>
+					{this.props.children}
 				</div>
 			)
 		}

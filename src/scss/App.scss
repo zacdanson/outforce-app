@@ -4,6 +4,7 @@ $successColor: #4FF7B4;
 $warningColor: #5525C2;
 $darkColor: #151A32;
 
+//////   MY STYLES   //////
 @import './sidebar.scss';
 @import './header.scss';
 @import './login.scss';
@@ -13,3 +14,10 @@ $darkColor: #151A32;
 @import './employer-contractors.scss';
 @import './includes/panel.scss';
 @import './includes/table.scss';
+
+
+//////   INCLUDES   //////
+@import '../../node_modules/react-infinite-calendar/styles.css';
+@import '../../node_modules/react-datepicker/dist/react-datepicker.css';
+@import '../../node_modules/react-times/css/classic/default.css';
+

@@ -1,9 +1,4 @@
-export const loading = (status) => {
-	return {
-		type: 'LOADING',
-		payload: status
-	};
-};
+import { loading } from '../main_actions';
 
 export const handleError = (error) => {
 	return {
@@ -13,11 +8,21 @@ export const handleError = (error) => {
 };
 
 export const updateUser = (user) => {
-	console.log(user);
-	return {
-		type:'UPDATE_USER',
-		payload: user
-	};
+	return async (dispatch) => {
+		console.log(user);
+		await dispatch({
+			type: 'UPDATE_USER',
+			payload: user
+		});
+		console.log('ere');
+		await dispatch(loading(false));
+	}
 };
 
 
+export const getUrlParameter = (name) => {
+	name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+	const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+	const results = regex.exec(location.search);
+	return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};

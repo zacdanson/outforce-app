@@ -40,7 +40,8 @@ export default (state = INITIAL_STATE, action ) =>{
 					return { ...state, companyName: { value: action.payload.name, valid: action.payload.valid } };
 				case 'UPDATE_USER':
 					return { ...state, userData: action.payload, password:null};
-
+				case 'CLEAR_USER_DATA':
+					return { ...INITIAL_STATE };
 				/// BINDING REDUCERS.
 				case 'BIND_INPUT_VALUE':
 						let property = action.payload.property;

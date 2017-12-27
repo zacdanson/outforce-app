@@ -11,7 +11,7 @@ import {
 		bindInputValue,
 		loginError,
 		checkAuth
-} from '../../actions/auth-actions/login_actions';
+} from '../../actions/auth-actions/auth_actions';
 import {
 	checkValid
 } from '../../actions/validation_actions';
@@ -24,7 +24,8 @@ import Loader from '../loading-animation/Loader.component';
 				formData:store.auth.formData,
         error: store.auth.error,
         loading: store.main.loading,
-				formValid: store.auth.formValid
+				formValid: store.auth.formValid,
+				user: store.user.userData
     }
 })
 
@@ -71,10 +72,10 @@ class Login extends Component {
                   <Input name="email" className="email-input" placeholder="email" onChange={this.bindInputValue.bind(this, 'email', 'email')} />
                   <Input name="password" className="password-input" placeholder="password" onChange={this.bindInputValue.bind(this, 'password', 'password')} type="password"/>
 									{ this.props.formValid ? <Button className="form-control btn-primary" text="Login" onClick={()=>this.handleLogin()}/> : <Button className="form-control btn-primary" text="Login" onClick={()=>this.handleLogin()} disabled={true} /> }
-                  <div className="loginErrorMsg">{this.props.error}</div>
+                  <div className="loginErrorMsg">{this.props.error ? this.props.error.message : ''}</div>
 									<div className="small-link">
 										<small>
-											<a href="/employer-signup">
+											<a href="/employer/employer-signup">
 												Not registered? Signup here.
 											</a>
 										</small>

@@ -1,0 +1,25 @@
+# IDEs
+.idea
+
+# Random files
+*~
+\#*
+.DS_Store
+
+# Build files
+dist
+
+# Node modules
+node_modules/
+npm-debug.log
+
+# Coverage 
+coverage/
+.coverage
+.cache
+
+# static validation files
+.eslintrc
+.sass-lint.yml
+.prospector.yml
+.coveragerc

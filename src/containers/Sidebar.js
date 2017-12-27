@@ -19,10 +19,10 @@ class Sidebar extends Component{
 
     render(){
         return(
-			<div className={this.props.sidebar === 'max' ? 'sidebar sidebar-max' : 'sidebar minimised sidebar-min' }>
-				<SideNav />
-            </div>
-        );
+					<div className={this.props.sidebar === 'max' ? 'sidebar sidebar-max' : 'sidebar minimised sidebar-min' }>
+							<SideNav />
+					</div>
+   		  );
 
     }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { logoutUser } from '../../actions/auth-actions/login_actions';
+import { logoutUser } from '../../actions/auth-actions/auth_actions';
 
 export default class LogoutUser extends Component{
 
