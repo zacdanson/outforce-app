@@ -2,35 +2,34 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import {
 	Button,
-	Input
+	Input,
+	Card,
+	Select
 } from '../elements'
 import DatePicker from 'react-datepicker';
 import TimePicker from 'react-times';
 
 export const WorkData = (props) => {
-	return (
-			<div className="panel col-md">
-				<div className="panel-heading">
-					<Button
-						className="btn-primary uploadDataBtn"
-						icon={<i className="fa fa-upload"></i>}
-						text=" upload"
-				/>
-					<h4>Work Data </h4>
-				</div>
-				<div className="panel-body container">
 
+	return (
+			<div>
 					<div className="form-group">
 						<h5 className="work-data-header">Work Type</h5>
-						<Input
-							value={props.workType}
+						{props.workTypes.length < 1 ? 'No Work Types - Please add work types <a href="/index/employer/employer-admin">here</a>' :
+						<Select
+							options={props.workTypes}
+							optionName='workType'
+							optionKey='workTypeId'
 							onChange={props.handleWorkType}
-						/>
+							selected={props.workTypes.workType}
+
+						/> }
 					</div>
 
 					<div className="form-group">
 						<h5  className="work-data-header">Date Worked</h5>
 						<DatePicker
+							value={props.dateSelected }
 							selected={ props.dateSelected}
 							onChange={props.dateOnChange}
 							dateFormat="LL"
@@ -58,14 +57,6 @@ export const WorkData = (props) => {
 						</div>
 					</div>
 
-					<Button
-						className="btn-success add-work-data-btn"
-						icon={<i className="fa fa-plus"></i>}
-						text=" add"
-						onClick={props.addWorkData}
-					/>
-
-				</div>
 			</div>
 	);
 

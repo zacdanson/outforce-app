@@ -4,55 +4,51 @@ import { selectTab } from '../../actions/main_actions';
 import { connect } from 'react-redux';
 
 
+const SideNav = (props)=>{
 
-@connect((store)=>{
-	return {
-		sidebar: store.main.sidebar,
-		user: store.user.userData
-	}
-})
 
-class SideNav extends Component {
-
-	render(){
-
-		console.log('userrr- ', this.props.user);
-		let employer = this.props.user.userRole === 'employer';
+		let employer = props.user.userRole === 'employer';
 
 		return(
-			<div className={this.props.sidebar === 'max' ? 'side-nav-container' : 'side-nav-container side-nav-min'}>
+			<div className={props.sidebar === 'max' ? 'side-nav-container' : 'side-nav-container side-nav-min'}>
 					<SideNavItem
-						href={ this.props.user.userRole === 'employer' ? '/index/employer/employer-dashboard' : '/index/contractor/contractor-dashboard'}
-						icon={<i className="fa fa-bar-chart" aria-hidden="true" style={{width: 20}}></i>}
+						href={ props.user.userRole === 'employer' ? '/index/employer/employer-dashboard' : '/index/contractor/contractor-dashboard'}
+						icon="fa fa-bar-chart"
 						name='Dashboard'
-						userRole={this.props.user.userRole}
+						route="employer-dashboard"
+						userRole={props.user.userRole}
 						strict={false}
+						location={props.location}
 					/>
 					<SideNavItem
 						href="/index/employer/employer-contractors"
-						icon={<i className="fa fa-users" aria-hidden="true" style={{width: 20}}></i>}
+						icon="fa fa-users"
 						name='Contractors'
 						strict='employer'
-						userRole={this.props.user.userRole}
+						route="employer-contractors"
+						userRole={props.user.userRole}
+						location={props.location}
 					/>
 					<SideNavItem
 						href="/index/employer/employer-forecasts"
-						icon={<i className="fa fa-area-chart" aria-hidden="true" style={{width: 20}}></i>}
+						icon='fa-area-chart'
 						name='Forecasts'
 						strict='employer'
-						userRole={this.props.user.userRole}
+						route="employer-forecasts"
+						userRole={props.user.userRole}
+						location={props.location}
 					/>
 					<SideNavItem
 						href="/index/employer/employer-admin"
-						icon={<i className="fa fa-lock" aria-hidden="true" style={{width: 20}}></i>}
+						icon='fa-lock'
 						strict='employer'
 						name='Admin'
-						userRole={this.props.user.userRole}
-
+						route="employer-admin"
+						userRole={props.user.userRole}
+						location={props.location}
 					/>
 				</div>
 		);
-	}
-}
+};
 
 export default SideNav;

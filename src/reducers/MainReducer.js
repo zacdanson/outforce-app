@@ -2,7 +2,11 @@ const INITIAL_STATE = {
 	sidebar: 'max',
 	loading:false,
 	loadingAnimation:false,
-	selectedTab: 'dashboard'
+	selectedTab: {
+		name: '',
+		location: ''
+	}
+
 };
 
 

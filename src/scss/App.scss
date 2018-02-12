@@ -1,17 +1,18 @@
-$primaryColor: #232C52;
-$secondaryColor: #6178DE;
-$successColor: #4FF7B4;
-$warningColor: #5525C2;
-$darkColor: #151A32;
+
 
 //////   MY STYLES   //////
-@import './sidebar.scss';
-@import './header.scss';
-@import './login.scss';
-@import './loader.scss';
-@import './signup.scss';
-@import './user-profile.scss';
-@import './employer-contractors.scss';
+@import '../components/sidebar/sidebar.scss';
+@import '../components/header/header.scss';
+@import '../components/login/login.scss';
+@import '../components/loading-animation/loader.scss';
+@import '../components/employer-signup/signup.scss';
+@import '../components/elements/tabs.scss';
+@import '../components/elements/card.scss';
+@import '../components/user-profile/user-profile.scss';
+@import '../components/employer-contractors/employer-contractors.scss';
+@import '../components/employer-dashboard/employer-dashboard.scss';
+@import '../components/employer-admin/work-information/WorkInformation.scss';
+@import '../components/dashboard-list/dashboard-list.scss';
 @import './includes/panel.scss';
 @import './includes/table.scss';
 
@@ -20,4 +21,6 @@ $darkColor: #151A32;
 @import '../../node_modules/react-infinite-calendar/styles.css';
 @import '../../node_modules/react-datepicker/dist/react-datepicker.css';
 @import '../../node_modules/react-times/css/classic/default.css';
-
+@import '../../node_modules/animate.css/animate.min.css';
+@import '../../node_modules/muicss/dist/css/mui.min.css';
+@import '../../node_modules/grommet/grommet.min.css';

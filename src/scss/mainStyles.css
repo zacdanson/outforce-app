@@ -9,19 +9,45 @@ a, a:hover {
   cursor: pointer !important; }
 
 .btn-primary {
-  background-color: #5525C2 !important;
-  border-color: #151A32 !important; }
+  background-color: #f4516c !important;
+  border-color: #01a597 !important;
+  color: #fff !important;
+  font-weight: 300 !important;
+  font-size: 13px; }
 
 .btn-primary:hover {
-  background-color: #151A32 !important; }
+  background-color: #01a597 !important; }
+
+.btn-yellow {
+  background-color: #FBA502 !important;
+  border-color: #B77B01 !important;
+  color: #fff; }
+
+.btn-yellow:hover {
+  background-color: #B77B01 !important; }
 
 .btn-secondary {
-  background-color: #6178DE !important;
-  border-color: #5564be !important;
-  color: #fff; }
+  background-color: #3960AE !important;
+  border-color: #1244A7 !important;
+  color: #fff !important;
+  font-weight: 300 !important;
+  font-size: 13px; }
 
 .row {
   margin: 0 !important; }
+
+.check-box {
+  background-color: #e2e5ec;
+  border: 1px solid transparent !important; }
+
+.check-box::after {
+  border-color: #716aca; }
+
+.nav-link-active {
+  border-radius: 20px;
+  font-size: 11.05px;
+  color: #fff;
+  background-color: #716aca; }
 
 .panel {
   box-shadow: 0 1px 22px rgba(0, 0, 0, 0.19), 0 1px 3px rgba(0, 0, 0, 0.23);
@@ -46,16 +72,27 @@ a, a:hover {
   border-top-right-radius: 5px; }
 
 .btn-secondary:hover {
-  background-color: #5564BE !important; }
+  background-color: #04355b !important; }
 
 .btn-success {
-  background-color: #57eaaf !important;
-  border-color: #41ae82 !important;
-  color: #000 !important;
-  font-weight: 600; }
+  background-color: #716aca !important;
+  border-color: #625CB0 !important;
+  color: #fff !important;
+  font-weight: 300 !important;
+  font-size: 13px; }
 
 .btn-success:hover {
-  background-color: #41ae82 !important; }
+  background-color: #625CB0 !important; }
+
+.btn-warning {
+  background-color: #06245F !important;
+  border-color: #041161 !important;
+  color: #fff !important;
+  font-weight: 300 !important;
+  font-size: 13px; }
+
+.btn-warning:hover {
+  background-color: #041161 !important; }
 
 .home-container {
   height: 100%; }
@@ -77,8 +114,8 @@ a, a:hover {
   width: calc(100% - 75px); }
 
 .home-content-max {
-  margin-right: 250px;
-  width: calc(100% - 250px); }
+  margin-right: 200px;
+  width: calc(100% - 200px); }
 
 .pages-container {
   width: 100%; }
@@ -88,7 +125,10 @@ a, a:hover {
   color: #bbbbbb; }
 
 .small-link:hover {
-  color: #6178DE; }
+  color: #3960AE; }
+
+.invalid {
+  border: 1px solid red; }
 
 .error {
   color: red;
@@ -97,7 +137,7 @@ a, a:hover {
 .disabled-invite-container {
   width: 100%;
   height: 100%;
-  background-color: #151A32; }
+  background-color: #010527; }
   .disabled-invite-container .disabled-invite-content {
     background-color: #ebebeb;
     border-radius: 6px;
@@ -112,6 +152,70 @@ a, a:hover {
       margin: 0 auto;
       margin-top: 20px; }
 
+.swal-custom-padding {
+  padding-bottom: 30px !important; }
+
+.input-select {
+  background-color: #fff;
+  border: 1px solid #716aca;
+  width: auto;
+  color: #333;
+  border-radius: 20px;
+  font-size: 13px; }
+
+.input-select:hover {
+  background-color: #716aca;
+  cursor: pointer; }
+
+.drop-down-button {
+  position: relative;
+  float: right;
+  width: 10px;
+  cursor: pointer; }
+  .drop-down-button .drop-down-container {
+    border-radius: 6px;
+    height: auto;
+    top: 20px;
+    user-select: none;
+    width: 0;
+    color: rgba(0, 0, 0, 0.87);
+    background-color: white;
+    transition: transform 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, opacity 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    box-sizing: border-box;
+    font-family: Roboto, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    box-shadow: rgba(0, 0, 0, 0.12) 0 1px 6px, rgba(0, 0, 0, 0.12) 0 1px 4px;
+    position: absolute;
+    z-index: 2100;
+    opacity: 1;
+    transform: scale(1, 1);
+    transform-origin: left top 0;
+    max-height: 933px;
+    overflow-y: auto; }
+    .drop-down-button .drop-down-container .drop-down-icon {
+      font-size: 15px !important; }
+    .drop-down-button .drop-down-container .drop-down-item {
+      display: flex;
+      font-weight: 200;
+      margin-left: 0;
+      position: relative;
+      width: 100%;
+      padding: 0 16px 0 24px;
+      font-size: 15px; }
+      .drop-down-button .drop-down-container .drop-down-item .drop-down-item-icon {
+        padding: 12px 0 12px 0;
+        font-size: 20px; }
+      .drop-down-button .drop-down-container .drop-down-item .drop-down-item-name {
+        width: 100%;
+        margin-left: 20px;
+        padding: 10px; }
+    .drop-down-button .drop-down-container .drop-down-item:hover {
+      background-color: #ebebeb; }
+
+.date-range {
+  width: 110px;
+  height: 25px; }
+
 .react-datepicker__current-month {
   color: #fff !important;
   font-weight: 400 !important; }
@@ -121,7 +225,7 @@ a, a:hover {
   font-weight: 400 !important; }
 
 .react-datepicker__header {
-  background-color: #6178DE !important;
+  background-color: #3960AE !important;
   padding-top: 13px; }
 
 .react-datepicker__month {
@@ -135,22 +239,19 @@ a, a:hover {
   color: #000 !important; }
 
 .react-datepicker__day--selected {
-  background-color: #57eaaf !important;
+  background-color: #716aca !important;
   border-radius: 0 !important; }
 
 .react-datepicker__day--keyboard-selected {
-  background-color: #57eaaf !important;
+  background-color: #716aca !important;
   border-radius: 0 !important; }
 
 .react-datepicker__day--today {
-  background-color: #ebebeb !important; }
+  background-color: #FBA502 !important; }
 
 .react-datepicker__day:hover {
-  background-color: #57eaaf !important;
+  background-color: #716aca !important;
   border-radius: 0 !important; }
-
-.swal-modal {
-  padding-bottom: 30px !important; }
 
 .time_picker_modal_container {
   position: absolute !important;
@@ -167,4 +268,35 @@ a, a:hover {
   width: 300px !important; }
 
 .classic_time:hover, .light:hover {
-  background: #6178DE !important; }
+  background: #3960AE !important; }
+
+.grommet {
+  pointer-events: all !important; }
+
+.grommetux-select__control {
+  width: 25px !important; }
+
+.grommetux-control-icon {
+  width: 13px !important; }
+
+.grommetux-button__icon:focus {
+  border: none !important;
+  outline: none !important; }
+
+.grommetux-button__icon, polygon {
+  stroke: #716aca !important; }
+
+.grommetux-select {
+  width: 115px !important;
+  border-radius: 100px; }
+
+.grommetux-select__input {
+  border-radius: 100px;
+  padding-right: 0px !important;
+  font-size: 15px !important;
+  width: 115px !important;
+  height: 35px !important;
+  color: #716aca !important; }
+
+.grommetux-select__input:hover {
+  border: 1px solid #716aca !important; }

@@ -17,7 +17,7 @@ export const DisabledInvite = () => {
 						onClick={()=>{ window.location.pathname="/login"}}
 						name="login"
 						text="login"
-						className="btn-primary disabled-invite-btn"
+						className="btn-success disabled-invite-btn"
 					/>
 				</div>
 		</div>

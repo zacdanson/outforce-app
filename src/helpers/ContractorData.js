@@ -1,77 +1,64 @@
 import { db } from '../../firebase-config';
 
 
-export const getContractor = (uid, callback) => {
-	return (dispatch) => {
+export const getContractorDetails = (uid) => {
+	return new Promise((resolve, reject)=>{
 		db.collection('users').doc(uid).get().then(docRef=>{
 			console.log('get contractor');
 			if(!docRef.exists){
-				dispatch(getPendingContractor(uid, callback));
+				console.log('no contractor.....');
+				getPendingContractor(uid).then(reponse=>{
+					if(response.error){
+						reject(response.error);
+					}
+					resolve(response);/**/
+				});
 				return console.log('no contractor found with that id. Checking pending invites.');
 			} else {
-				callback(docRef.data());
+
+				resolve(docRef.data());
 			}
+		}).catch(error=>{
+			reject({error});
 		})
-	};
+	});
 };
 
 
-export const getPendingContractor = (uid, callback) => {
-	return (dispatch) => {
-		db.collection('pendingInvites').doc(uid).get().then(docRef=>{
+export const getPendingContractor = (uid) => {
+	return new Promise((resolve, reject)=>{
+		db.collection('users').doc(uid).get().then(docRef=>{
 			if(!docRef.exists){
+				reject({error:'no contractor found with that id'});
 				return console.log('no contractor found with that id. Check users table.');
 			} else {
-				callback(docRef.data());
+				resolve(docRef.data());
 			}
+		}).catch(error=>{
+			reject({error});
 		});
-	};
+	});
 };
 
-
-export const getAllContractors = (userId, companyId, callback) => {
-	return (dispatch) => {
-
-		let contractors = [];
-		db.collection('users').where('companyId', '==' , companyId ).where('userRole', '==', 'contractor').get()
-			.then(snapshot=>{
-
-				console.log(snapshot);
-				snapshot.forEach(doc=>{
-					if(!doc.exists){
-						return;
-					}
-					let userData = doc.data();
-					userData.uid = doc.id;
-					contractors.push(userData);
-				});
-
-				db.collection('pendingInvites').where('companyId', '==', companyId).get()
-					.then(snapshot=>{
-						console.log(snapshot);
-						snapshot.forEach(doc=>{
-							if(!doc.exists){
-								return;
-							}
-							let userData = doc.data();
-							userData.uid = doc.id;
-							contractors.push(userData);
-						});
-
-						callback(contractors);
-
-					});
-
+export const getContractorObject = (uid) => {
+	return new Promise((resolve, reject)=>{
+		getContractorDetails(uid).then(data=>{
+			console.log(data);
+			getUserWorkData(data.companyId, data.uid).then(logs=>{
+				resolve({logs, details: data});
 			});
-	};
+		});
+	});
+
 };
 
 
-export const getUserWorkData = (companyId, userId, callback, from, to ) => {
-	return (dispatch) => {
+
+export const getUserWorkData = (companyId, userId, from, to ) => {
+	return new Promise((resolve, reject)=>{
 		let workData = [];
 		if(!from || !to ){
-			db.collection('workData').where('uid', '==', userId).get()
+			db.collection('companies').doc(companyId).collection('workData').where('uid', '==', userId).get()
 				.then(snapshot=>{
 					console.log(snapshot);
 					snapshot.forEach(log=>{
@@ -83,10 +70,23 @@ export const getUserWorkData = (companyId, userId, callback, from, to ) => {
 						logData.id = log.id;
 						workData.push(logData);
 					});
-					callback(workData);
-				});
+					resolve(workData);
+				}).catch(error=>{
+					reject({error});
+			});
 		} else {
 			///get from to times.
 		}
-	};
+	});
+};
+
+
+export const saveContractorObject = (object) =>{
+	return new Promise((resolve, reject)=>{
+		db.collection('users').doc(object.uid).update(object).then(res=>{
+			resolve({details: object});
+		}).catch(error=>{
+			reject({error});
+		});
+	});
 };

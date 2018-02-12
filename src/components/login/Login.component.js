@@ -31,8 +31,13 @@ import Loader from '../loading-animation/Loader.component';
 
 class Login extends Component {
 
+		constructor(props){
+			super(props);
+		}
+
 		componentWillMount(){
 			this.props.dispatch(loginError(null));
+			this.props.location.pathname !== '/login' ? window.location.pathname = '/login': '';
 
 		}
 
@@ -55,9 +60,10 @@ class Login extends Component {
 		}
 
 		handleLogin(){
-				console.log(this.props);
 				this.props.dispatch(handleLogin(this.props.formData.email.value, this.props.formData.password.value));
-			}
+				console.log(this.props);
+
+		}
 
     render(){
 
@@ -71,7 +77,7 @@ class Login extends Component {
                   </div>
                   <Input name="email" className="email-input" placeholder="email" onChange={this.bindInputValue.bind(this, 'email', 'email')} />
                   <Input name="password" className="password-input" placeholder="password" onChange={this.bindInputValue.bind(this, 'password', 'password')} type="password"/>
-									{ this.props.formValid ? <Button className="form-control btn-primary" text="Login" onClick={()=>this.handleLogin()}/> : <Button className="form-control btn-primary" text="Login" onClick={()=>this.handleLogin()} disabled={true} /> }
+									{ this.props.formValid ? <Button className="form-control btn-success" text="Login" onClick={()=>this.handleLogin()}/> : <Button className="form-control btn-success" text="Login" onClick={()=>this.handleLogin()} disabled={true} /> }
                   <div className="loginErrorMsg">{this.props.error ? this.props.error.message : ''}</div>
 									<div className="small-link">
 										<small>

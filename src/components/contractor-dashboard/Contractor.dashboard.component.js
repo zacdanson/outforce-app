@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { checkAuth } from '../../actions/auth-actions/auth_actions';
 import { connect } from 'react-redux';
+import {
+	Button,
+	Input,
+	Card
+} from '../elements';
 
 @connect((store)=>{
 	return {
@@ -21,7 +26,30 @@ export class ContractorDashboard extends Component {
     render() {
         return (
             <div className={this.props.sidebar === 'max' ? 'home-content home-content-max' : 'home-content home-content-min' }>
-                <h1>Contractor Dashboard</h1>
+							<div className="row">
+								<div className="col">
+									<Card cardHeader="Logged Work">
+									</Card>
+								</div>
+								<div className="col">
+									<Card>
+
+									</Card>
+								</div>
+								<div className="col">
+									<Card>
+
+									</Card>
+								</div>
+							</div>
+							<div className="row">
+								<div className="col">
+
+								</div>
+								<div className="col">
+
+								</div>
+							</div>
             </div>
         );
     }

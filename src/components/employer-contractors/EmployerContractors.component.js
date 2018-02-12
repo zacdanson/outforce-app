@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { db } from '../../../firebase-config.js'
-import ContractorListItem from './ContractorListItem.component';
 import {
 	Input,
 	Button,
 	Modal,
+	Card
 } from '../elements';
 import { NavLink } from 'react-router-dom';
 import Loader from '../loading-animation/Loader.component';
@@ -20,15 +20,15 @@ import {
 	clearSelectedUsers
 } from '../../actions/user-contractors-actions/handle-contractors';
 import { loadingAnimation } from '../../actions/main_actions';
-
+import { EmployerContractorsList } from '../employer-contractors-list/EmployerContractorsList.component';
 
 @connect((store)=>{
 	return {
 		user: store.user.userData,
 		sidebar: store.main.sidebar,
-		contractors: store.contractor.contractors,
-		formData: store.contractor.formData,
-		selectedUsers: store.contractor.selectedUsers,
+		contractors: store.employer.contractors,
+		formData: store.employer.formData,
+		selectedUsers: store.employer.selectedUsers,
 		loadingAnimation: store.main.loadingAnimation
 	}
 })
@@ -45,6 +45,7 @@ export class EmployerContractors extends Component {
 
 	clearFormData(){
 		this.props.dispatch(clearFormData());
+
 	}
 
 	componentWillMount(){
@@ -56,8 +57,12 @@ export class EmployerContractors extends Component {
 		this.contractorListener = db.collection("companies").doc(companyId).collection('contractors')
 			.onSnapshot((querySnapshot) => {
 				this.props.dispatch(getContractors(uid, companyId));
-		});
+			});
 
+	}
+
+	goToContractor(user){
+		this.props.history.push('/index/employer/employer-contractors/'+user.uid);
 	}
 
 	componentWillUnmount() {
@@ -99,55 +104,35 @@ export class EmployerContractors extends Component {
 
 		return (
 			<div id="employer-contractors" className={this.props.sidebar === 'max' ? 'home-content home-content-max' : 'home-content home-content-min' }>
-				<Button
-					name=' Delete'
-					icon={<i className="fa fa-trash" style={{marginRight:10}}></i>  }
-					className="btn-danger delete-contractor-btn"
-					onClick={this.deleteContractor.bind(this)}
+
+				<Card cardHeader={'All Contractors'}
+					headerTools={[
+						<Button
+							name=' Delete'
+							icon={<i className="fa fa-trash" style={{marginRight:10}}></i>  }
+							className="btn-secondary delete-contractor-btn"
+							onClick={this.deleteContractor.bind(this)}
+						>
+							Delete
+						</Button>,
+						<Button
+						name=' Add'
+						icon={<i className="fa fa-user-plus" style={{marginRight:10}}></i>  }
+						openModal="true"
+						className="btn-success add-contractor-btn"
+						modalName="addContractorModal"
+						>
+						Add
+						</Button>]}
 				>
-					Delete
-				</Button>
-				<Button
-					name=' Add'
-					icon={<i className="fa fa-user-plus" style={{marginRight:10}}></i>  }
-					openModal="true"
-					className="btn-secondary add-contractor-btn"
-					modalName="addContractorModal"
-				>
-					Add
-				</Button>
-				<h1 className="home-content-header">Contractors
-				</h1>
-
-				{ this.props.loadingAnimation ? <Loader size="small" /> : ''}
-
-				{ this.props.contractors.length > 0 ?
-					<table className="table">
-					<thead>
-						<tr>
-							<th scope="col"><input id="select-all-users" onClick={this.selectAllUsers.bind(this)} type="checkbox"/></th>
-							<th scope="col">Name</th>
-							<th scope="col">Email</th>
-							<th scope="col">Phone Number</th>
-							<th scope="col">Registered</th>
-						</tr>
-					</thead>
-					<tbody className="panel-body">
-					{this.props.contractors.map((user)=>{
-						return <ContractorListItem
-										key={user.uid}
-										uid={user.uid}
-										name={user.fullName || user.name}
-										email={user.email}
-										phoneNumber={user.phoneNumber}
-										registered={user.linkActive}
-										onClick={()=>this.selectUser(user)}
-										onDblClick={()=>this.props.history.push('/index/employer/employer-contractors/'+user.uid)}
-						/>})}
-					</tbody>
-				</table> : <div style={{textAlign:'center'}}> No Contractors </div> }
-
-
+					<EmployerContractorsList
+						user={this.props.user}
+						contractors={this.props.contractors}
+						onSelectUser={this.selectUser.bind(this)}
+						onDoubleClick={this.goToContractor.bind(this)}
+						selectAllUsers={this.selectAllUsers.bind(this)}
+					/>
+				</Card>
 
 				<Modal
 					name="addContractorModal"

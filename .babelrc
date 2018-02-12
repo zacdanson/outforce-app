@@ -1,7 +1,14 @@
 {
   "presets": [
-    "es2017", "react"
+    "env", "react"
   ],
-  "plugins": ["transform-decorators-legacy", "transform-object-rest-spread"]
-
+  "plugins": ["transform-decorators-legacy", "transform-object-rest-spread"],
+  "env" : {
+    "test" :{
+      "presets": [
+        "env", "react"
+      ],
+      "plugins": ["transform-decorators-legacy", "transform-object-rest-spread"]
+    }
+  }
 }

@@ -17,7 +17,7 @@ class Button extends Component {
             <button
 							type="button"
 							name={this.props.name}
-						  className={"btn " + this.props.className}
+						  className={this.props.size === 'small' ? "btn-sm " + this.props.className : "btn " + this.props.className}
 						  id={this.props.id}
 						  onClick={this.props.openModal ? this.openModal.bind(this) : this.props.onClick}
 							disabled={this.props.disabled}

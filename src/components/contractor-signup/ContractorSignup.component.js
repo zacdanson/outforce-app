@@ -34,10 +34,12 @@ export default class ContractorSignup extends Component {
 
 	constructor(props){
 		super(props);
+
 	}
 
 	componentWillMount(){
-		this.props.dispatch(checkInviteLink());
+		let {cid, id, type } = this.props.match.params;
+		this.props.dispatch(checkInviteLink(id, cid, type));
 	}
 
 	bindInputValue(property, valType, element){

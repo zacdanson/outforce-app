@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 
 import {
 	HeaderLeft,
-	HeaderRight
+	HeaderRight,
+	HeaderCenter
 } from '../components';
 
 @connect((store)=>{
@@ -24,6 +25,7 @@ class Header extends Component{
 		return (
 			<div className="headerStyle">
 				<HeaderLeft/>
+				<HeaderCenter/>
 				<HeaderRight user={this.props.user}/>
 			</div>
 		);

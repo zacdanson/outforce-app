@@ -1,0 +1,34 @@
+@import '../../scss/mainStyles.scss';
+.tabs{
+
+  .tabs-menu-container{
+
+    padding-left:0 !important;
+
+    .tabs-menu-item{
+      padding: 10px;
+      border-bottom: 3px solid #ebebeb;
+      margin-left:8px;
+      text-align: center;
+      cursor:pointer;
+      width:195px;
+      font-size:13px;
+
+    }
+
+    .active{
+      border-bottom: 3px solid $successColor;
+      font-size:14px;
+    }
+
+  }
+
+  .horizontal{
+    display: inline-flex;
+    width:100%;
+    border-bottom: 1px solid #ebebeb;
+    margin-bottom:30px;
+  }
+
+
+}

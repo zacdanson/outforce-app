@@ -1,0 +1,39 @@
+.dashboard-list .dashboard-list-header-container {
+  display: flex; }
+  .dashboard-list .dashboard-list-header-container .dashboard-list-header-text {
+    display: flex;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #575962;
+    padding-bottom: 2rem; }
+  .dashboard-list .dashboard-list-header-container .dashboard-list-header-ext {
+    display: flex;
+    color: #716aca;
+    flex: 1;
+    justify-content: flex-end; }
+
+.dashboard-list .dashboard-list-item-container {
+  display: table;
+  padding-top: 1.15rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 0.07rem dashed #ebedf2; }
+  .dashboard-list .dashboard-list-item-container .dashboard-list-item {
+    display: table-cell;
+    vertical-align: middle; }
+  .dashboard-list .dashboard-list-item-container .dashboard-list-item-pic {
+    width: 4rem;
+    border-radius: 50%; }
+  .dashboard-list .dashboard-list-item-container .dashboard-list-item-ext {
+    color: #716aca; }
+  .dashboard-list .dashboard-list-item-container .dashboard-list-item-info {
+    display: table-cell;
+    width: 100%;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    font-size: 1.25rem;
+    vertical-align: middle; }
+    .dashboard-list .dashboard-list-item-container .dashboard-list-item-info .dashboard-list-item-name {
+      color: #575962; }
+    .dashboard-list .dashboard-list-item-container .dashboard-list-item-info .dashboard-list-item-sub {
+      font-size: 1rem;
+      color: #7b7e8a; }

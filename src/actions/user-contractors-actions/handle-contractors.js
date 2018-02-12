@@ -5,7 +5,9 @@ import axios  from 'axios';
 import swal from 'sweetalert';
 const BASE_URL = 'http://localhost:3001';
 import { loadingAnimation } from '../main_actions';
-import { getAllContractors, getContractor } from '../../helpers/ContractorData';
+import { getContractorObject, saveContractorObject} from '../../helpers/ContractorData';
+import { getAllContractors } from '../../helpers/EmployerData';
+
 import moment from 'moment';
 
 
@@ -20,19 +22,22 @@ export const addContractor = (userId, phoneNumber, email, name, employerName, co
 					title: 'Error',
 					text: 'all contractors details required.',
 					buttons:false,
-					timer: 2000
+					timer: 2000,
+					className: 'swal-custom-padding'
+
 				});
 				return;
 			}
 
-			db.collection('pendingInvites').add({
+			db.collection('users').add({
 				linkActive: true,
 				registered: false,
 				phoneNumber,
 				email,
 				name,
 				userRole: 'contractor',
-				companyId
+				companyId,
+				dateAdded: moment().format('x')
 			}).then(data=>{
 
 				let id = data.id;
@@ -47,7 +52,9 @@ export const addContractor = (userId, phoneNumber, email, name, employerName, co
 						text: 'an invitation has been send to join Outforce',
 						icon: "success",
 						buttons:false,
-						timer:2000
+						timer:2000,
+						className: 'swal-custom-padding'
+
 					});
 					axios.post(BASE_URL+'/contractors/contractor/invite/'+id,{
 						contractorName: name,
@@ -68,7 +75,9 @@ export const addContractor = (userId, phoneNumber, email, name, employerName, co
 				text: error,
 				icon: "error",
 				buttons:false,
-				timer:2000
+				timer:2000,
+				className: 'swal-custom-padding'
+
 			});
 		}
 	};
@@ -76,11 +85,11 @@ export const addContractor = (userId, phoneNumber, email, name, employerName, co
 
 
 export const getContractors = (uid, companyId) => {
-	return async (dispatch) => {
-		dispatch(getAllContractors(uid, companyId, (contractors)=>{
-			dispatch(loadingAnimation(false));
-			dispatch(updateContractorsList(contractors));
-		}));
+	return (dispatch) => {
+			getAllContractors(uid, companyId).then(contractors=>{
+				dispatch(loadingAnimation(false));
+				dispatch(updateContractorsList(contractors));
+			});
 	};
 };
 
@@ -88,22 +97,23 @@ export const deleteContractors = (users, contractors) =>{
 	return (dispatch) => {
 		dispatch(loadingAnimation(true));
 		users.map(userId=>{
-			db.collection('users').doc(userId).delete();
-			db.collection('pendingInvites').doc(userId).delete()
-			.then(()=>{
-				contractors.map((con, index)=>{
-					let compId;
-					if(con.uid === userId){
-						compId = con.companyId;
-						db.collection('companies').doc(compId + '/contractors/'+ userId).delete();
-						swal({
-							title: 'Removed Contractor',
-							text:'the contractor will no longer have access to OutForce.',
-							timer: 2000,
-							buttons: false,
-							icon: 'success'
-						});
-					}
+			db.collection('users').doc(userId).delete()
+				.then(()=>{
+					contractors.map((con, index)=>{
+						let compId;
+						if(con.uid === userId){
+							compId = con.companyId;
+							db.collection('companies').doc(compId + '/contractors/'+ userId).delete();
+							swal({
+								title: 'Removed Contractor',
+								text:'the contractor will no longer have access to OutForce.',
+								timer: 2000,
+								buttons: false,
+								icon: 'success',
+								className: 'swal-custom-padding'
+
+							});
+						}
 				})
 			});
 			dispatch(loadingAnimation(false));
@@ -130,7 +140,6 @@ export const selectUser = (users, user) => {
 		$('#'+user.uid).addClass('selected-user');
 		$('#'+user.uid+'row').addClass('selected-user-row');
 	}
-
 	return {
 		type: 'SELECT_USER',
 		payload: users
@@ -138,62 +147,46 @@ export const selectUser = (users, user) => {
 };
 
 
-export const setContractor = (id) => {
+export const getContractor = (id, callback) => {
 	return (dispatch) => {
-		dispatch(getContractor(id, (contractor)=>{
-			console.log(contractor);
-			contractor.uid = id;
-			dispatch({
-				type:'SET_CONTRACTOR',
-				payload: contractor
-			});
-			dispatch(loadingAnimation(false));
-		}));
+		console.log('here');
+			getContractorObject(id).then(obj=>{
+				console.log(obj);
+				dispatch(updateContractorObject('workLogs', obj.logs));
+				dispatch(updateContractorObject('details', obj.details));
+				dispatch(loadingAnimation(false));
+				callback();
+		});
 	}
 };
 
 
-export const updateWorkType = (workType) => {
-	return {
-		type: 'UPDATE_WORK_TYPE',
-		payload: workType
-	};
-};
 
+export const addWorkData = (companyId, total, start, end, workType, contractorId, notRegistered) => {
+	console.log(companyId, total, start, end, workType, contractorId, notRegistered);
 
-
-
-
-export const addWorkData = (companyId,date, total, start, end, workType, contractorId, notRegistered) => {
-
-	let formatDate = moment(date).format('ll');
 	return (dispatch) => {
-		db.collection('workData')
+		db.collection('companies').doc(companyId).collection('workData')
 			.add({
 				uid:contractorId,
 				workType,
-				date:formatDate,
+				companyId,
 				total,
 				start,
 				end
 		}).then(docRef=>{
-			let workDataRef;
 
-			if(!notRegistered){
-				workDataRef = db.collection('users');
-			} else {
-				workDataRef = db.collection('pendingInvites');
-			}
-			workDataRef.doc(contractorId).collection('workData').doc(docRef.id).set({logId: docRef.id});
+			db.collection('users').doc(contractorId).collection('workData').doc(docRef.id).set({logId: docRef.id});
 			swal({
 				title: 'Added Work Data.',
 				text:'',
 				icon: "success",
 				buttons:false,
-				timer: 3500
+				timer: 3500,
+				className: 'swal-custom-padding'
 			});
 			dispatch(loadingAnimation(false));
-			dispatch(clearWorkData());
+			dispatch(clearWorkDataForm());
 
 		}).catch(error=>{
 			console.log(error);
@@ -202,7 +195,8 @@ export const addWorkData = (companyId,date, total, start, end, workType, contrac
 				text: error,
 				icon: "error",
 				buttons:false,
-				timer:2000
+				timer:2000,
+				className: 'swal-custom-padding'
 			});
 			dispatch(loadingAnimation(false));
 		});
@@ -210,31 +204,42 @@ export const addWorkData = (companyId,date, total, start, end, workType, contrac
 	};
 };
 
-export const clearWorkData = () => {
+export const saveContractor = (object) =>{
+	let contractor = {...object};
+	contractor['fullName'] = contractor.firstName + ' ' + contractor.secondName;
+	return dispatch => {
+		saveContractorObject(contractor).then(res=> {
+			if(!res.error){
+				dispatch(updateContractorObject('details',res.details));
+			}
+		});
+	};
+};
+
+
+export const updateContractorObject = (property, value) =>{
 	return {
-		type:'CLEAR_WORK_DATA',
+		type:'UPDATE_CONTRACTOR_OBJECT',
+		payload: { property, value}
+	}
+};
+
+export const clearWorkDataForm = () => {
+	return {
+		type:'CLEAR_WORKDATA_FORM',
 		payload: {}
 	};
 };
 
-export const updateWorkLogs = (logs) => {
-	return {
-		type:'UPDATE_WORK_LOGS',
-		payload: logs
-	};
-};
 
-
-export const updateSelectedDate = (date) =>{
-	console.log('date---', date);
+export const updateWorkDataForm = (property, value) => {
 	return {
-		type: 'UPDATE_SELECTED_DATE',
-		payload: date
+		type: 'UPDATE_WORKDATA_FORM',
+		payload: { property, value }
 	};
 };
 
 export const updateSelectedDuration = (time, type) =>{
-	console.log(time);
 	return {
 		type: 'UPDATE_SELECTED_DURATION',
 		payload: { time, type }

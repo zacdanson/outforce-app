@@ -1,6 +1,13 @@
 const path = require('path');
-
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+var webpack = require('webpack');
+
+const ProvidePlugins =  new webpack.ProvidePlugin({
+	_:'lodash',
+	React: 'react',
+	moment: 'moment'
+});
+
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 	template: './src/index.html',
 	filename: 'index.html',
@@ -8,7 +15,7 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 });
 
 module.exports = {
-	entry: './src/app.js',
+	entry: ['babel-polyfill', './src/index.js'],
 	output: {
 		path: path.resolve('dist'),
 		publicPath: '/',
@@ -39,6 +46,9 @@ module.exports = {
     devServer: {
         historyApiFallback: true
     },
-	plugins: [HtmlWebpackPluginConfig],
+	plugins: [
+		HtmlWebpackPluginConfig,
+		ProvidePlugins
+	],
 
 };

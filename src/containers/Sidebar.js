@@ -1,31 +1,14 @@
 import React, { Component } from 'react';
-import { SideNav } from '../components';
-import { connect } from 'react-redux';
+import { SideNav, SideNavExt } from '../components';
 
-@connect((store)=>{
-	return {
-		selectedTab: store.main.selectedTab,
-		sidebar: store.main.sidebar
-	}
-})
+const Sidebar = (props) => {
 
-class Sidebar extends Component{
-
-	constructor(props){
-		super(props);
-		console.log(this.props);
-	}
-
-
-    render(){
         return(
-					<div className={this.props.sidebar === 'max' ? 'sidebar sidebar-max' : 'sidebar minimised sidebar-min' }>
-							<SideNav />
+					<div className={props.sidebar === 'max' ? 'sidebar sidebar-max' : 'sidebar minimised sidebar-min' }>
+							<SideNav  user={props.user} sidebar={props.sidebar} selectedTab={props.selectedTab} location={props.location}/>
 					</div>
-   		  );
-
-    }
-}
+				);
+};
 
 
 export default Sidebar;

@@ -26,6 +26,7 @@ export const loadingAnimation = (status) =>{
 
 
 export const selectTab = (tab) => {
+	console.log(tab);
 	return{
 		type:'SELECTED_TAB',
 		payload: tab

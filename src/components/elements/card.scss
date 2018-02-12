@@ -1,0 +1,53 @@
+@import '../../scss/mainStyles.scss';
+
+
+.o-card-container{
+  color:#575962;
+  box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.08);
+  background-color: #fff;
+
+  .o-card-border-1{
+    border-bottom: 3px solid #f4516c;
+  }
+  .o-card-border-2{
+    border-bottom: 3px solid #00c5dc;
+  }
+  .o-card-border-3{
+    border-bottom: 3px solid #34bfa3;
+  }
+  .o-card-border-4{
+    border-bottom: 3px solid $successColor;
+  }
+
+  .o-card-header {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 2rem 2.2rem !important;
+    height: 5rem;
+    display: table;
+    border-bottom: 1px solid #ebedf2;
+    width:100%;
+
+    .o-card-header-caption{
+      display: table-cell;
+      vertical-align: middle;
+      text-align: left;
+    }
+    .o-card-header-tools{
+      text-align: -webkit-right;
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+  }
+
+  .o-card-content{
+    padding:2.2rem !important;
+    margin-bottom:30px;
+    color:#9699a2;
+  }
+
+
+}
+
+

@@ -54,13 +54,9 @@ export const handleSignup = ( email, password ) => {
 };
 
 
-export const checkInviteLink = () => {
+export const checkInviteLink = (id, cid, type) => {
 	return (dispatch) => {
 		dispatch(loading(true));
-
-		let id = getUrlParameter('id');
-		let cid = getUrlParameter('cid');
-		let type = getUrlParameter('type');
 
 		console.log(id);
 		if(!id || !cid  ||!type){
@@ -68,7 +64,7 @@ export const checkInviteLink = () => {
 			dispatch(loading(false));
 		}
 
-		db.collection('pendingInvites').doc(id).get()
+		db.collection('users').doc(id).get()
 			.then(docRef=>{
 				/// if there isn't an active link or the link is === false.
 				if(docRef.exists){
@@ -103,6 +99,7 @@ export const handleContractorSignup = (email, password, companyId) => {
 
 	};
 };
+
 
 
 

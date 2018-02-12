@@ -12,10 +12,13 @@ import {
 	getContractor
 } from '../../helpers/ContractorData';
 const vm = this;
+const uuid = require('uuid4');
 
 export const handleLogin = (email, password) => {
+
     return async (dispatch) => {
         if(!email || !password){
+						console.log('must provide email and password.');
             dispatch(loginError('must provide email and password.'));
             return;
         }
@@ -23,12 +26,14 @@ export const handleLogin = (email, password) => {
         try {
             firebase.auth().signInWithEmailAndPassword(email, password)
 							.then(data=>{
-								console.log('logging in..');
+								console.log('logging in..', data);
 							}).catch(error=>{
 								dispatch(loginError(error));
 								dispatch(loading(false));
+								console.log('error logging in .', error);
             });
         } catch(err){
+					console.log('here 2 ');
             console.log('error logging in - ', err);
 						dispatch(loginError(err));
             dispatch(loading(false));
@@ -71,23 +76,86 @@ const clearFormData = () => {
 	};
 };
 
-
-const exportWorkData = (id, newId) => {
+const signupEmployer = (uid, props, userData) =>{
 	return (dispatch)=>{
-		let batchRef = db.collection("workData");
-		db.collection("pendingInvites").doc(id).collection('workData').get()
-			.then(snapshot=>{
-				snapshot.forEach(log=>{
-					console.log(log);
-					batchRef.doc(log.id).update({"uid":newId});
-					db.collection('users').doc(newId).collection('workData').doc(log.id).set({logId:log.id});
-				});
-				db.collection('pendingInvites').doc(id).delete();
-			}).catch(error=>{
-			console.log(error);
-		});
+
+		console.log(userData);
+		console.log('user doesnt exist and is employer.');
+		userData.userRole = 'employer';
+
+		db.collection('users').doc(uid)
+			.set(userData).then(()=>{
+			db.collection('companies').add({
+				name: props.formData.companyName.value,
+			}).then(docRef=> {
+				let uid = userData.uid;
+				let apiKey = uuid();
+				db.collection('companies').doc(docRef.id+'/users/'+uid).set({uid});
+				db.collection('companies').doc(docRef.id+'/apiKeys/'+apiKey).set({uid, enabled: true});
+				db.collection('users').doc(uid).update({companyId: docRef.id, apiKey});
+				userData.companyId = docRef.id;
+				userData.companyName = props.formData.companyName.value;
+				dispatch(updateUser(userData));
+				goToDashboard(dispatch, 'employer');
+			});
+	});
+
 	};
-}
+};
+
+const signupContractor = (uid, props, userData) =>{
+	return (dispatch) =>{
+
+		let id = getUrlParameter('id');
+		let cid = getUrlParameter('cid');
+		let usersRef = db.collection('users');
+		let workData = [];
+		console.log(userData);
+		console.log('user doesnt exist and is contractor.');
+//// get tempoorary data from old user id.
+		usersRef.doc(id).get().then(docRef=>{
+			if(docRef.exists){
+				let tempData = docRef.data();
+				userData.userRole = 'contractor';
+				userData.companyId = tempData.companyId;
+				userData.registered = true;
+				userData.linkActive = false;
+				userData.dateAdded = tempData.dateAdded;
+				//// get all of the contractor work data if any has been added.
+				db.collection('companies').doc(userData.companyId).collection('workData').where('uid', '==', id).get()
+					.then(snapshot=>{
+						//// loop through the workdata and change the old ID to the new user ID.
+						snapshot.forEach(log=>{
+							console.log('log-id ', log.id, 'uid -', uid, 'company id -', userData.companyId);
+							db.collection('companies').doc(userData.companyId).collection('workData').doc(log.id).update({uid}).catch(error=>{ console.log(error)});
+							workData.push(log.id);
+						});
+						//// create the new user and delete all of the temporary data.
+						usersRef.doc(uid).set(userData).then(userRef=>{
+							usersRef.doc(id).delete();
+							db.collection('companies').doc(userData.companyId).collection('contractors').doc(id).delete();
+							db.collection('companies').doc(userData.companyId).collection('contractors').doc(uid).set({uid: uid});
+							console.log('wdata- ', workData);
+							workData.forEach(logId=>{
+								usersRef.doc(uid).collection('workData').doc(logId).set({logId});
+							});
+							console.log('created user & deleted temporary data.');
+							//// log the user in and update the user prop.
+							dispatch(updateUser(userData));
+							goToDashboard(dispatch, 'contractor');
+						}).catch(error=>{
+							console.log(error);
+						})
+					});
+			} else {
+				console.log('no invite registered for this user.');
+				dispatch(loading(false));
+			}
+		})
+
+	};
+
+};
 
 const getUserData = (uid, props) => {
 	return (dispatch) => {
@@ -95,17 +163,16 @@ const getUserData = (uid, props) => {
 		dispatch(loading(true));
 		db.collection('users').doc(uid).get().then(
 			user => {
-
 				if(user.exists){
 					console.log('user exists.');
-					vm.userData = user.data();
+					let userData = user.data();
 					/// user exists in DB so set user state.
-					dispatch(updateUser(user.data()));
-					goToDashboard(dispatch);
+					dispatch(updateUser(userData));
+					goToDashboard(dispatch, userData.userRole);
 				} else {
 
-					vm.userData =
-						{
+					console.log(window.location.pathname);
+					let userData = {
 							uid: uid,
 							email: props.formData.email.value,
 							firstName: props.formData.firstName.value,
@@ -113,65 +180,11 @@ const getUserData = (uid, props) => {
 							companyName: props.formData.companyName.value,
 							fullName: props.formData.firstName.value + ' ' + props.formData.secondName.value,
 						};
-
-					console.log(vm.userData);
-
-					let id = getUrlParameter('id');
-
-					if(id){
-
-						let pendingRef = db.collection('pendingInvites').doc(id);
-						pendingRef.get().then(
-							(docRef)=>{
-								if(docRef.exists) {
-
-									let docData = docRef.data();
-
-									console.log('user doesnt exist and is contractor.');
-
-									vm.userData.phoneNumber = props.formData.phoneNumber.value;
-									vm.userData.companyId = props.formData.companyId.value;
-									vm.userData.companyName = props.formData.companyName.value;
-									vm.userData.userRole = 'contractor';
-
-
-									db.collection('users').doc(uid).set(vm.userData)
-										.then(() => {
-											dispatch(exportWorkData(id, uid));
-											db.collection('companies').doc(vm.userData.companyId +'/contractors/'+id).delete();
-											dispatch(updateUser(vm.userData));
-											db.collection('companies').doc(vm.userData.companyId).collection('contractors').doc(uid).set({
-												uid
-											}).catch(error => {
-												console.log('error adding userdata to company. - ', error);
-											});
-											goToDashboard(dispatch);
-										}).catch(error => {
-										console.log('error adding user to users table. - ', error);
-									});
-								}
-
-						});
-					} else {
-
-						vm.userData.userRole = 'employer';
-
-						console.log('user doesnt exist and is employer.');
-						db.collection('users').doc(uid)
-							.set(vm.userData).then(()=>{
-							db.collection('companies').add({
-								name: props.formData.companyName.value,
-							}).then(docRef=> {
-								let uid = vm.userData.uid;
-								db.collection('companies').doc(docRef.id+'/users/'+uid).set({uid});
-								db.collection('users').doc(uid).update({companyId: docRef.id});
-								vm.userData.companyId = docRef.id;
-								vm.userData.companyName = props.formData.companyName.value;
-								dispatch(updateUser(vm.userData));
-								goToDashboard(dispatch);
-							});
-						});
-
+					if(window.location.pathname ==='/contractor/contractor-signup'){
+							dispatch(signupContractor(uid, props, userData));
+					}
+					else if(window.location.pathname === '/employer/employer-signup') {
+						dispatch(signupEmployer(uid, props, userData ));
 					}
 
 				}
@@ -180,11 +193,12 @@ const getUserData = (uid, props) => {
 	}
 };
 
-const goToDashboard = (dispatch) => {
+const goToDashboard = (dispatch, userRole) => {
 	console.log('go to dash');
 	if(!window.location.pathname.includes('index')){
 		console.log('sending to homepage.');
-		if(vm.userData.userRole === 'employer'){
+
+		if(userRole === 'employer'){
 			window.location.pathname = '/index/employer/employer-dashboard';
 		} else {
 			window.location.pathname = '/index/contractor/contractor-dashboard';
@@ -212,7 +226,7 @@ export const checkAuth = (props) =>{
 			unsubscribe =	firebase.auth().onAuthStateChanged(data=>{
 			console.log('auth status - ', data);
 			if(data){
-				console.log(props);
+				console.log(data.uid);
 				dispatch(getUserData(data.uid, props));
 
 			} else {
@@ -223,10 +237,11 @@ export const checkAuth = (props) =>{
 				if(window.location.pathname.includes('index')){
 					window.location.pathname = '/login';
 				}
+
 				dispatch(loading(false));
 			}
-		 });
-
+			});
+			dispatch(loading(false));
 		} catch(error) {
 			dispatch(loginError(error));
 		}
