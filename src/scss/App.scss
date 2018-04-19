@@ -10,12 +10,20 @@
 @import '../components/elements/card.scss';
 @import '../components/user-profile/user-profile.scss';
 @import '../components/employer-contractors/employer-contractors.scss';
-@import '../components/employer-dashboard/employer-dashboard.scss';
 @import '../components/employer-admin/work-information/WorkInformation.scss';
 @import '../components/dashboard-list/dashboard-list.scss';
+@import '../components/date-widget/date-widget.scss';
+@import '../components/invoice/invoice.scss';
+@import '../components/employer-admin/company-details/companydetails.scss';
+@import '../components/contractor-invoices/all-pay-periods.scss';
+
+//pages//
+@import '../pages/employer-dashboard/employer-dashboard.scss';
+
+
+//global changes//
 @import './includes/panel.scss';
 @import './includes/table.scss';
-
 
 //////   INCLUDES   //////
 @import '../../node_modules/react-infinite-calendar/styles.css';

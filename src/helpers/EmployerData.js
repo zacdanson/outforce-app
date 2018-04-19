@@ -94,6 +94,19 @@ export const updateEmployerWorkTypes = (userId, companyId, workTypes) => {
 	});
 };
 
+export const updateEmployerWorkType = (companyId, workTypeId, workType) => {
+	return new Promise((resolve, reject)=>{
+		db.collection('companies').doc(companyId).collection('workTypes').doc(workTypeId).set({
+		workType
+		}).then(result=>{
+			resolve({success:true});
+		}).catch(error=>{
+			reject({error});
+		});
+	});
+};
+
+
 export const updateEmployerGlobalWorkName = (companyId, workName) => {
 	return new Promise((resolve,reject)=>{
 		db.collection("companies").doc(companyId).update({globalWorkName: workName}).then(result=>{
@@ -107,11 +120,12 @@ export const updateEmployerGlobalWorkName = (companyId, workName) => {
 export const getEmployerGlobalWorkName = (companyId) => {
 	return new Promise((resolve, reject)=>{
 		db.collection('companies').doc(companyId).get().then(result=>{
-			if(result.exists){
-				let res = result.data();
-				resolve({globalWorkName: res.globalWorkName ? res.globalWorkName : ''});
+			if(!result.exists){
+				resolve();
+				return;
 			}
-			resolve({globalWorkName: ''});
+			let res = result.data();
+			resolve(res.globalWorkName);
 		}).catch(error=>{
 			reject({error});
 		});
@@ -126,6 +140,7 @@ export const getEmployerWorkTypes = (userId, companyId) =>{
 				let workTypes = [];
 				snapshot.forEach(doc=>{
 					if(!doc.exists) {
+
 						return;
 					}
 
@@ -147,8 +162,7 @@ const getEmployerContractors = () => {
 };
 
 
-export const deleteLog = (contractorId, companyId, logId) =>{
-
+export const deleteLog = (contractorId, logId, companyId) =>{
 	return new Promise((resolve, reject)=>{
 
 		db.collection('companies').doc(companyId).collection('workData').doc(logId).delete().then(res=>{
@@ -263,8 +277,95 @@ export const sixMonthsWorkLogs = (companyId) => {
 			});
 			console.log(' months - ', months );
 			///resolve months.
-
+			resolve({sixMonthLogs: months});
 		});
 
+	});
+};
+
+
+export const addWorkType = (companyId, workTypeId, workType) => {
+	return new Promise((resolve, reject)=>{
+			db.collection('companies').doc(companyId).collection('workTypes').doc(workTypeId).set({workType}).then(res=>{
+				resolve({res});
+			}).catch(error=>{
+				reject({error});
+			});
+	});
+};
+
+
+export const saveEmployerJobRole = (id, name, hourlyRate, assign, roleRequirements, companyId) => {
+	return new Promise((resolve, reject)=>{
+		db.collection('companies').doc(companyId).collection('jobRoles').doc(id).update({
+			name,
+			hourlyRate,
+			assign,
+			roleRequirements
+		}).then(result=>{
+			resolve({success:true});
+		}).catch(error=>{
+			reject({error});
+		});
+	});
+};
+
+
+export const addEmployerJobRole = (name, hourlyRate, companyId, assign) => {
+	return new Promise((resolve, reject)=>{
+		db.collection('companies').doc(companyId).collection('jobRoles').add({
+			companyId,
+			assign,
+			hourlyRate,
+			name
+		}).then(result=>{
+			db.collection('companies').doc(companyId).collection('jobRoles').doc(result.id).update({
+				id: result.id
+			}).then(res=>{
+				resolve({success:true});
+			}).catch(error=>{
+				reject({error});
+			});
+		}).catch(error=>{
+			reject({error});
+		});
+	});
+}
+
+export const deleteEmployerJobRole = (jobRoleId, companyId)=> {
+	return new Promise((resolve, reject)=>{
+		db.collection('companies').doc(companyId).collection('jobRoles').doc(jobRoleId).delete().then(result=>{
+			resolve({success:true});
+		}).catch(error=>{
+			reject({error});
+		});
+	});
+};
+
+export const updateEmployerAssignCondition = (companyId, assignCondition)=>{
+	return new Promise((resolve, reject)=>{
+		db.collection('companies').doc(companyId).update({
+			assignCondition
+		}).then(res=>{
+			resolve({success:true});
+		}).catch(error=>{
+			reject({error});
+		});
+	});
+};
+
+export const getEmployerAssignCondition = (companyId) => {
+	return new Promise((resolve, reject)=>{
+		db.collection('companies').doc(companyId).get().then(data=>{
+			if(!data.exists){
+				resolve({});
+				return;
+			}
+			let companyData = data.data();
+			console.log(companyData);
+			resolve({assignCondition:companyData.assignCondition});
+		}).catch(error=>{
+			reject({error});
+		});
 	});
 };

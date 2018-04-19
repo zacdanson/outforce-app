@@ -2,17 +2,8 @@ import React, { Component } from 'react';
 import { Input } from '../elements';
 import { Select } from 'grommet';
 import { WorkLogListItem } from './WorkLogListItem.component';
-import {  removeLog, updateLogWorkType} from '../../actions/employer-data-actions/employer-data';
 
-const deleteLog = (props,log)=>{
-	props.dispatch(removeLog(log.uid, log.companyId, log.id));
-};
-
-const updateLog = (props, log, workTypeId)=>{
-	props.dispatch(updateLogWorkType(log.id, workTypeId, log.companyId));
-};
-
-export const WorkLogs = (props) => {
+const WorkLogs = (props) => {
 	console.log(props);
 	let types = [];
 	_.each(props.workTypes, (type, index)=>{
@@ -21,9 +12,10 @@ export const WorkLogs = (props) => {
 			value: type.workTypeId
 		};
 	});
+	let logs = _.orderBy(props.logs, ['start'],['desc']);
 	return (
 		<div>
-			{ props.logs.length > 0 ?
+			{ logs.length > 0 ?
 				<table className="table">
 					<thead>
 					<tr>
@@ -35,21 +27,14 @@ export const WorkLogs = (props) => {
 					</tr>
 					</thead>
 					<tbody className="panel-body">
-					{props.logs.map((log, index)=>{
+					{logs.map((log, index)=>{
 						return <WorkLogListItem
-							key={log.id}
+							key={index}
 							index={index}
-							duration={log.total}
-							start={log.start}
-							end={log.end}
-							removeLog={()=>deleteLog(props, log)}
-							workType={
-								<Select placeHolder={props.selectPlaceholder ? props.selectPlaceholder : 'None'}
-												multiple={false}
-												options={types}
-												value={{value:log.workTypeId, label: log.workType }}
-												onChange={(e)=>updateLog(props, log, e.target.value)}
-								/>}
+							log={log}
+							types={types}
+							removeLog={(contractorId, logId)=>props.removeLog(contractorId, logId)}
+							updateLog={(logId, workTypeId)=>props.updateLog(logId, workTypeId)}
 					/> })}
 					</tbody>
 				</table> : <div style={{textAlign:'center'}}> No Logs </div> }
@@ -57,3 +42,5 @@ export const WorkLogs = (props) => {
 	);
 
 };
+
+export default WorkLogs;

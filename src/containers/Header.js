@@ -9,7 +9,7 @@ import {
 
 @connect((store)=>{
 	return {
-		user: store.user.userData,
+		user: store.firebaseData.userData,
 		loading: store.main.loading
 	}
 })

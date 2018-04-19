@@ -7,19 +7,6 @@ export const handleError = (error) => {
 	};
 };
 
-export const updateUser = (user) => {
-	return async (dispatch) => {
-		console.log(user);
-		await dispatch({
-			type: 'UPDATE_USER',
-			payload: user
-		});
-		console.log('ere');
-		await dispatch(loading(false));
-	}
-};
-
-
 export const getUrlParameter = (name) => {
 	name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
 	const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');

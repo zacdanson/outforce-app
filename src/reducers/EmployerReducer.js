@@ -20,33 +20,25 @@ const INITIAL_STATE = {
 		end: ''
 	},
 	workDataObject: {
+		dates: { from: moment().format('x'), to: moment().add(1, 'days').format('x') },
 		workLogs: [],
 		workTypes: [],
 		globalWorkName: ''
 	},
 	dashboardData:{
+		range:{ label:'daily', value:0 },
 		ranges:[
 			{label:'daily', value:0 }, {label:'weekly', value:1 }, { label:'monthly', value:2 }
 		],
-		loggedWork:{
-			range:{ label:'daily', value:0 },
-			dates: { from: moment().format('x'), to: moment().add(1, 'days').format('x') },
-			workLogs:[],
-			totalDuration:0
-		},
-		contractors:{
-			contractorCount: 0,
-			topContractor: '',
-			newestContractor: '',
-			contractorList: [],
-			topPerformer:''
-		},
-		earned:''
+		workLogs:[]
+
 	}
+
 };
 
 export default (state = INITIAL_STATE, action) => {
 	switch (action.type) {
+		//employer - contractors.
 		case 'CLEAR_WORKDATA_FORM':
 			return { ...state, selectedDuration: {start:'', end:''}, workDataForm: { workType: '', dateWorked: '' } };
 		case 'SELECT_USER':
@@ -63,32 +55,28 @@ export default (state = INITIAL_STATE, action) => {
 			return {...state, error: action.payload};
 		case 'UPDATE_CONTRACTORS_LIST':
 			return { ...state, contractors: action.payload };
-
-
-		case 'UPDATE_DASHBOARD_DATA':
-			let dashboard = { ...state.dashboardData };
-			console.log('dash - ', dashboard);
-			dashboard[action.payload.dashboardItem] = action.payload.value;
-			return {...state, dashboardData: dashboard };
-
 		case 'UPDATE_WORKDATA_FORM':
 			let workDataForm = {...state.workDataForm };
 			workDataForm[action.payload.property] = action.payload.value;
 			return {...state, workDataForm: workDataForm };
-
 		case 'UPDATE_WORKDATA_OBJECT':
-			let workDataObject = {...state.workDataObject};
-			workDataObject[action.payload.property] = action.payload.value;
-		  return {...state, workDataObject: workDataObject };
+			return {...state, workDataObject: action.payload};
 		case 'BIND_ADD_CONTRACTOR_INPUT':
 			let formData = {...state.formData};
 			formData[action.payload.property] = action.payload.value;
 			return {...state, formData: formData};
-
 		case 'UPDATE_SELECTED_DURATION':
 			let selectedDuration = {...state.selectedDuration};
 			selectedDuration[action.payload.type] = action.payload.time;
 			return {...state, selectedDuration: selectedDuration};
+
+		// employer dashboard
+		case 'UPDATE_DASHBOARD_DATA':
+			return {...state, dashboardData: action.payload};
+		case 'UPDATE_DASHBOARRD_DATA_PROPERTY':
+			let newDashState = {...state.dashboardData};
+			newDashState[action.property] = action.payload;
+			return {...state, acti};
 
 		default:
 			return state;

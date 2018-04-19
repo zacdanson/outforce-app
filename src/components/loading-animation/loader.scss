@@ -1,19 +1,20 @@
 @import '../../scss/mainStyles.scss';
 
 .loaderContainer{
-  position: absolute;
+  position: fixed;
   top:0;
   left:0;
   z-index:1;
   width:100%;
   height:100%;
-  background: rgba(159,159,159,0.6);
+  background: rgba(15, 15, 15, 0.64);
 
   .loader-container-small{
-    position: absolute;
+    position: relative;
     left: 0;
     width: 100% !important;
-    height: 0 important;
+    height: 100%;
+    z-index:1;
     background:transparent !important;
   }
 
@@ -147,4 +148,94 @@
   }
 
 }
+.loading-animation-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: calc(-14px);
+
+  .lds-facebook {
+    display: inline-block;
+    position: relative;
+    width: 64px;
+    height: 64px;
+  }
+  .lds-facebook div {
+    display: inline-block;
+    position: absolute;
+    left: 6px;
+    width: 15px;
+    animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+  }
+  .lds-facebook-sm {
+    display: inline-block;
+    position: relative;
+    width: 34px;
+    height: 34px;
+  }
+  .lds-facebook-sm div{
+    display: inline-block;
+    position: absolute;
+    left: 6px;
+    width: 14px;
+    animation: lds-facebook-sm 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+
+  }
+  .lds-facebook-sm div:nth-child(1) {
+    left: 6px;
+    animation-delay: -0.24s;
+    background: $successColor;
+  }
+  .lds-facebook-sm div:nth-child(2) {
+    left: 26px;
+    animation-delay: -0.12s;
+    background: $successColor;
+  }
+  .lds-facebook-sm div:nth-child(3) {
+    left: 45px;
+    animation-delay: 0;
+    background: $successColor;
+  }
+  .lds-facebook div:nth-child(1) {
+    left: 6px;
+    animation-delay: -0.24s;
+    background: $successColor;
+  }
+  .lds-facebook div:nth-child(2) {
+    left: 26px;
+    animation-delay: -0.12s;
+    background: $successColor;
+  }
+  .lds-facebook div:nth-child(3) {
+    left: 45px;
+    animation-delay: 0;
+    background: $successColor;
+  }
+
+  @keyframes lds-facebook {
+    0% {
+      top: 6px;
+      height: 51px;
+    }
+    50%, 100% {
+      top: 19px;
+      height: 26px;
+    }
+  }
+
+  @keyframes lds-facebook-sm {
+    0% {
+      top: 6px;
+      height: 25px;
+    }
+    50%, 100% {
+      top: 19px;
+      height: 12px;
+    }
+  }
+}
+
 

@@ -4,6 +4,7 @@ import {
 	Button
 } from '../elements';
 import {Select} from 'grommet';
+import LoadingAnimation from '../loading-animation/LoadingAnimation.component';
 
 
 const DashboardCard = (props) => {
@@ -11,11 +12,10 @@ const DashboardCard = (props) => {
 		return(
 		<Card
 			cardHeader={props.header}
+			contentClass="o-card-content-no-padding"
 			headerIcon={props.headerIcon ? props.headerIcon : ''}
 			headerTools={[
-				props.toolsType === 'button' ?
-					<Button name={props.btnName} className={props.btnClass} icon={props.btnIcon}
-									onClick={props.btnOnClick}>{props.btnName}</Button> :
+				props.headerTools ? props.headerTools :
 					<Select placeHolder={props.selectPlaceholder ? props.selectPlaceholder : 'None'}
 									multiple={false}
 									options={props.selectOptions}
@@ -24,6 +24,8 @@ const DashboardCard = (props) => {
 					/>
 			]}
 		>
+			<div className="dashboard-card-summary-container">
+				{props.content ? props.content : ''}
 			{
 				props.items.map((item, $index) => {
 					$index += 1;
@@ -48,6 +50,7 @@ const DashboardCard = (props) => {
 
 				})
 			}
+			</div>
 			{props.children}
 		</Card>
 	);
@@ -55,7 +58,7 @@ const DashboardCard = (props) => {
 		return (
 			<Card
 				noHeader={true}
-				contentClass={'o-card-border-'+props.color}
+				contentClass={'o-card-border-'+props.color+props.contentClassName}
 			>
 				{props.children}
 			</Card>
@@ -73,10 +76,15 @@ const DashboardCard = (props) => {
 		return (
 			<Card
 				noHeader={true}
-				contentClass={'o-card-border-'+props.color}
+				className={props.className}
+				contentClass={'o-card-border-'+props.color+' '+props.contentClassName}
 			>
-				<div className="dashboard-card-number">{props.figure}</div>
-				<div>{props.name}</div>
+				{props.loading ?  <LoadingAnimation size="small"/> :
+				<div>
+					<div className="dashboard-card-number">{props.figure}</div>
+					<div>{props.name}</div>
+					{props.children}
+				</div> }
 			</Card>
 		);
 	}

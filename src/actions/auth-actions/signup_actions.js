@@ -71,9 +71,7 @@ export const checkInviteLink = (id, cid, type) => {
 					let data  = docRef.data();
 					console.log(data);
 					if(data.linkActive){
-						console.log('link active so contiue');
-						dispatch(bindInputValue(cid, 'companyId', true));
-						dispatch(bindInputValue(id, 'userId', true));
+						console.log('link active so continue');
 						dispatch(loading(false));
 						return;
 					}
@@ -86,29 +84,20 @@ export const checkInviteLink = (id, cid, type) => {
 };
 
 
-export const handleContractorSignup = (email, password, companyId) => {
+export const handleContractorSignup = (contractor) => {
 	return (dispatch) => {
 	console.log('contractor signup! ');
-		dispatch(loading(true));
-		firebase.auth().createUserWithEmailAndPassword(email, password).catch(error=>{
-			if(error){
-				console.log('error with contractor signup - ', error );
-				dispatch(signupError(error.code));
-			}
-		});
+	dispatch(loading(true));
+	firebase.auth().createUserWithEmailAndPassword(contractor.email, contractor.password).catch(error=>{
+		if(error){
+			console.log('error with contractor signup - ', error );
+			dispatch(signupError(error.code));
+		}
+	});
 
 	};
 };
 
-
-
-
-const signupFailed = (error) => {
-	return {
-		type: 'SIGNUP_FAILED',
-		payload: error
-	};
-};
 
 const loading = (status) => {
 	return {

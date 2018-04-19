@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import { NavLink } from 'react-router-dom';
 
 
 class Tabs extends Component {
@@ -10,13 +10,6 @@ class Tabs extends Component {
 
 	}
 
-	changeTab(key){
-		let tabs = this.state.tabs;
-		tabs.map(tab=>{
-			tab.name === key ? tab.active = true : tab.active = false;
-		});
-		this.setState({ tabs });
-	}
 
 	render(){
 		return(
@@ -24,22 +17,14 @@ class Tabs extends Component {
 				<div className={this.props.horizontal ? 'tabs-menu-container horizontal' : 'tabs-menu-container'}>
 					{ this.state.tabs.map(tab=>{
 						return(
-								<div key={tab.name}
-										 className={tab.active ? 'tabs-menu-item active' : 'tabs-menu-item'}
-										 onClick={()=>this.changeTab(tab.name)}>{tab.name}
-							  </div>
+							<NavLink to={this.props.baseUrl + tab.url} key={tab.name} className="tabs-menu-item" >
+									{tab.name}
+							</NavLink>
 							);
 						})
 					}
 				</div>
-				<div className="col">
-					{ this.props.children.map((component, index )=>{
-							return (
-								this.state.tabs[index].active ? component : ''
-							)
-						})
-					}
-				</div>
+				{this.props.children}
 			</div>
 		);
 

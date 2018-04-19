@@ -1,0 +1,58 @@
+.date-widget-container{
+  width:100%;
+  text-align: center;
+
+  .date-widget-arrow-container{
+
+    display: inline-block;
+    margin-right:10px;
+
+    .date-widget-arrow{
+      display: inline;
+      background: #f4f5f8;
+      border: 0;
+      text-shadow: none !important;
+      outline: none !important;
+      height: 2.75rem;
+      padding: 0 1.25rem;
+      font-size: 1rem;
+    }
+
+    .date-widget-arrow:hover{
+      background: #e2e5ec;
+      cursor: pointer;
+    }
+
+  }
+
+  .date-widget-button-container{
+    float:right;
+    display:inline-block;
+    width:115px;
+
+    .date-widget-button{
+      display: inline;
+      background: #f4f5f8;
+      border: 0;
+      text-shadow: none !important;
+      outline: none !important;
+      height: 2.75rem;
+      padding: 1.25rem;
+      font-size: 1rem;
+    }
+
+  }
+
+  .date-widget-select{
+    float: right;
+  }
+
+  .date-widget-date{
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-top: 0.75rem;
+    display: inline-block;
+  }
+
+}

@@ -18,7 +18,7 @@ import {   BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 @connect((store)=>{
 	return {
-		user: store.user.userData,
+		user: store.firebaseData.userData,
 		loading: store.main.loading,
 		formData: store.auth.formData
 	}

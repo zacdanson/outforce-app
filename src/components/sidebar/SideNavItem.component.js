@@ -34,8 +34,7 @@ class SideNavItem extends Component {
 		let toggleSelected = this.props.sidebar === 'max' ? 'side-nav-item selected-side-nav-item sidebar-max' : 'side-nav-item selected-side-nav-item minimised sidebar-min' ;
 		let toggleNotSelected = this.props.sidebar === 'max' ? 'side-nav-item sidebar-max' : 'side-nav-item minimised sidebar-min';
 		let toggleClassName = this.props.sidebar === 'max' ?  'side-nav-name side-nav-show' : 'side-nav-name side-nav-hide';
-		let selectedTab =  this.props.selectedTab.location === this.props.href;
-
+		let selectedTab =  this.props.location === this.props.href;
 		return (
 
 			<div onClick={this.switchTab.bind(this)}>

@@ -1,6 +1,9 @@
-a, a:hover {
-  color: inherit;
-  text-decoration: none; }
+a, a:hover, a:focus {
+  color: inherit !important;
+  text-decoration: none !important; }
+
+#tooltip-right {
+  opacity: 0; }
 
 .btn {
   display: block; }
@@ -9,14 +12,22 @@ a, a:hover {
   cursor: pointer !important; }
 
 .btn-primary {
-  background-color: #f4516c !important;
-  border-color: #01a597 !important;
-  color: #fff !important;
-  font-weight: 300 !important;
-  font-size: 13px; }
+  color: #9699a2;
+  display: inline;
+  font-size: 1.25rem;
+  outline: none !important;
+  height: 2.75rem;
+  padding: .5rem 1.25rem;
+  margin: 0px;
+  font-size: 1rem;
+  background: #f4f5f8;
+  border: 0;
+  text-shadow: none !important; }
 
 .btn-primary:hover {
-  background-color: #01a597 !important; }
+  border: 0;
+  background: #e2e5ec;
+  cursor: pointer; }
 
 .btn-yellow {
   background-color: #FBA502 !important;
@@ -74,6 +85,12 @@ a, a:hover {
 .btn-secondary:hover {
   background-color: #04355b !important; }
 
+.btn-default {
+  background-color: #f4f5f8 !important; }
+
+.btn-default:hover {
+  background-color: #ebebeb !important; }
+
 .btn-success {
   background-color: #716aca !important;
   border-color: #625CB0 !important;
@@ -102,7 +119,8 @@ a, a:hover {
 
 .home-content {
   pointer-events: auto;
-  padding: 100px 20px 0 20px; }
+  padding: 100px 20px 0 20px;
+  height: 100%; }
 
 .home-content-header {
   border-bottom: 1px solid #ebebeb;
@@ -270,11 +288,18 @@ a, a:hover {
 .classic_time:hover, .light:hover {
   background: #3960AE !important; }
 
+.middle-align {
+  vertical-align: middle !important; }
+
 .grommet {
-  pointer-events: all !important; }
+  pointer-events: all !important;
+  z-index: 2000000 !important; }
 
 .grommetux-select__control {
   width: 25px !important; }
+
+.grommetux-select__control svg {
+  background-color: transparent !important; }
 
 .grommetux-control-icon {
   width: 13px !important; }
@@ -286,20 +311,25 @@ a, a:hover {
 .grommetux-button__icon, polygon {
   stroke: #716aca !important; }
 
-.grommetux-select {
-  width: 115px !important;
-  border-radius: 100px; }
-
 .grommetux-select__input {
-  border-radius: 100px;
   padding-right: 0px !important;
-  font-size: 15px !important;
-  width: 115px !important;
-  height: 35px !important;
+  font-size: 12px !important;
   color: #716aca !important; }
 
 .grommetux-select__input:hover {
   border: 1px solid #716aca !important; }
+
+.grommetux-color-index-graph-2 {
+  stroke: #00c5dc !important; }
+
+.grommetux-color-index-graph-1 {
+  stroke: #f4516c !important; }
+
+.grommetux-box {
+  align-items: center !important; }
+
+.grommetux-drop {
+  z-index: 300000 !important; }
 
 .login-page-container {
   pointer-events: auto;

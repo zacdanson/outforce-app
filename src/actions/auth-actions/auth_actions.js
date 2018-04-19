@@ -15,7 +15,6 @@ const vm = this;
 const uuid = require('uuid4');
 
 export const handleLogin = (email, password) => {
-
     return async (dispatch) => {
         if(!email || !password){
 						console.log('must provide email and password.');
@@ -76,6 +75,8 @@ const clearFormData = () => {
 	};
 };
 
+
+
 const signupEmployer = (uid, props, userData) =>{
 	return (dispatch)=>{
 
@@ -95,7 +96,11 @@ const signupEmployer = (uid, props, userData) =>{
 				db.collection('users').doc(uid).update({companyId: docRef.id, apiKey});
 				userData.companyId = docRef.id;
 				userData.companyName = props.formData.companyName.value;
-				dispatch(updateUser(userData));
+				dispatch({
+					type:'UPDATE_USER_DATA',
+					payload: userData
+				});
+				dispatch(loading(false));
 				goToDashboard(dispatch, 'employer');
 			});
 	});
@@ -103,61 +108,70 @@ const signupEmployer = (uid, props, userData) =>{
 	};
 };
 
-const signupContractor = (uid, props, userData) =>{
+export const signupContractor = (contractor, id, cid) =>{
 	return (dispatch) =>{
+		dispatch(loading(true));
+		firebase.auth().createUserWithEmailAndPassword(contractor.email, contractor.password).then(user=>{
+			let userData = firebase.auth().currentUser;
+			console.log('userdataaaa-', userData);
+			let uid = userData.uid;
+			let usersRef = db.collection('users');
+			let workData = [];
 
-		let id = getUrlParameter('id');
-		let cid = getUrlParameter('cid');
-		let usersRef = db.collection('users');
-		let workData = [];
-		console.log(userData);
-		console.log('user doesnt exist and is contractor.');
-//// get tempoorary data from old user id.
-		usersRef.doc(id).get().then(docRef=>{
-			if(docRef.exists){
-				let tempData = docRef.data();
-				userData.userRole = 'contractor';
-				userData.companyId = tempData.companyId;
-				userData.registered = true;
-				userData.linkActive = false;
-				userData.dateAdded = tempData.dateAdded;
-				//// get all of the contractor work data if any has been added.
-				db.collection('companies').doc(userData.companyId).collection('workData').where('uid', '==', id).get()
-					.then(snapshot=>{
-						//// loop through the workdata and change the old ID to the new user ID.
-						snapshot.forEach(log=>{
-							console.log('log-id ', log.id, 'uid -', uid, 'company id -', userData.companyId);
-							db.collection('companies').doc(userData.companyId).collection('workData').doc(log.id).update({uid}).catch(error=>{ console.log(error)});
-							workData.push(log.id);
-						});
-						//// create the new user and delete all of the temporary data.
-						usersRef.doc(uid).set(userData).then(userRef=>{
-							usersRef.doc(id).delete();
-							db.collection('companies').doc(userData.companyId).collection('contractors').doc(id).delete();
-							db.collection('companies').doc(userData.companyId).collection('contractors').doc(uid).set({uid: uid});
-							console.log('wdata- ', workData);
-							workData.forEach(logId=>{
-								usersRef.doc(uid).collection('workData').doc(logId).set({logId});
+			//// get tempoorary data from old user id.
+			usersRef.doc(id).get().then(docRef=>{
+				if(docRef.exists){
+					let tempData = docRef.data();
+					let contractorData = {...contractor};
+					contractorData.uid = uid;
+					contractorData.userRole='contractor';
+					contractorData.companyId= tempData.companyId;
+					contractorData.registered = true;
+					contractorData.linkActive= false;
+					contractorData.dateAdded= tempData.dateAdded;
+					contractorData.fullName = contractorData.firstName + ' ' + contractorData
+					//// get all of the contractor work data if any has been added.
+					db.collection('companies').doc(contractorData.companyId).collection('workData').where('uid', '==', id).get()
+						.then(snapshot=>{
+							//// loop through the workdata and change the old ID to the new user ID.
+							snapshot.forEach(log=>{
+								console.log('log-id ', log.id, 'uid -', uid, 'company id -', contractorData.companyId);
+								db.collection('companies').doc(contractorData.companyId).collection('workData').doc(log.id).update({uid}).catch(error=>{ console.log(error)});
+								workData.push(log.id);
 							});
-							console.log('created user & deleted temporary data.');
-							//// log the user in and update the user prop.
-							dispatch(updateUser(userData));
-							goToDashboard(dispatch, 'contractor');
-						}).catch(error=>{
-							console.log(error);
-						})
-					});
-			} else {
-				console.log('no invite registered for this user.');
-				dispatch(loading(false));
-			}
-		})
+							//// create the new user and delete all of the temporary data.
+							usersRef.doc(uid).set(contractorData).then(userRef=>{
+								usersRef.doc(id).delete();
+								db.collection('companies').doc(contractorData.companyId).collection('contractors').doc(id).delete();
+								db.collection('companies').doc(contractorData.companyId).collection('contractors').doc(uid).set({uid: uid});
+								console.log('wdata- ', workData);
+								workData.forEach(logId=>{
+									usersRef.doc(uid).collection('workData').doc(logId).set({logId});
+								});
+								console.log('created user & deleted temporary data.');
+								//// log the user in and update the user prop.
+								dispatch({
+									type: 'UPDATE_USER_DATA',
+									payload: contractorData
+								});
 
+								dispatch(loading(false));
+								goToDashboard(dispatch, 'contractor');
+							}).catch(error=>{
+								console.log(error);
+							})
+						});
+				} else {
+					console.log('no invite registered for this user.');
+					dispatch(loading(false));
+				}
+			})
+		});
 	};
 
 };
 
-const getUserData = (uid, props) => {
+export const getUserData = (uid, props) => {
 	return (dispatch) => {
 		console.log('get usa data ');
 		dispatch(loading(true));
@@ -167,28 +181,13 @@ const getUserData = (uid, props) => {
 					console.log('user exists.');
 					let userData = user.data();
 					/// user exists in DB so set user state.
-					dispatch(updateUser(userData));
-					goToDashboard(dispatch, userData.userRole);
-				} else {
+					dispatch({
+						type:'UPDATE_USER_DATA',
+						payload: userData
+					});
 
-					console.log(window.location.pathname);
-					let userData = {
-							uid: uid,
-							email: props.formData.email.value,
-							firstName: props.formData.firstName.value,
-							secondName: props.formData.secondName.value,
-							companyName: props.formData.companyName.value,
-							fullName: props.formData.firstName.value + ' ' + props.formData.secondName.value,
-						};
-					if(window.location.pathname ==='/contractor/contractor-signup'){
-							dispatch(signupContractor(uid, props, userData));
-					}
-					else if(window.location.pathname === '/employer/employer-signup') {
-						dispatch(signupEmployer(uid, props, userData ));
-					}
-
+				goToDashboard(dispatch, userData.userRole);
 				}
-
 			});
 	}
 };
@@ -228,22 +227,20 @@ export const checkAuth = (props) =>{
 			if(data){
 				console.log(data.uid);
 				dispatch(getUserData(data.uid, props));
-
 			} else {
 				localStorage.clear();
 				console.log('not signed in.');
 				dispatch(clearUserData());
-
-				if(window.location.pathname.includes('index')){
+				dispatch(loading(false));
+			if(window.location.pathname.includes('index')){
 					window.location.pathname = '/login';
 				}
 
-				dispatch(loading(false));
 			}
 			});
-			dispatch(loading(false));
 		} catch(error) {
 			dispatch(loginError(error));
+			dispatch(loading(false));
 		}
 	};
 

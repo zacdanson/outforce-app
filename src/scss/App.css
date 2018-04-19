@@ -4,9 +4,12 @@
 @import url(../../node_modules/animate.css/animate.min.css);
 @import url(../../node_modules/muicss/dist/css/mui.min.css);
 @import url(../../node_modules/grommet/grommet.min.css);
-a, a:hover {
-  color: inherit;
-  text-decoration: none; }
+a, a:hover, a:focus {
+  color: inherit !important;
+  text-decoration: none !important; }
+
+#tooltip-right {
+  opacity: 0; }
 
 .btn {
   display: block; }
@@ -15,14 +18,22 @@ a, a:hover {
   cursor: pointer !important; }
 
 .btn-primary {
-  background-color: #f4516c !important;
-  border-color: #01a597 !important;
-  color: #fff !important;
-  font-weight: 300 !important;
-  font-size: 13px; }
+  color: #9699a2;
+  display: inline;
+  font-size: 1.25rem;
+  outline: none !important;
+  height: 2.75rem;
+  padding: .5rem 1.25rem;
+  margin: 0px;
+  font-size: 1rem;
+  background: #f4f5f8;
+  border: 0;
+  text-shadow: none !important; }
 
 .btn-primary:hover {
-  background-color: #01a597 !important; }
+  border: 0;
+  background: #e2e5ec;
+  cursor: pointer; }
 
 .btn-yellow {
   background-color: #FBA502 !important;
@@ -80,6 +91,12 @@ a, a:hover {
 .btn-secondary:hover {
   background-color: #04355b !important; }
 
+.btn-default {
+  background-color: #f4f5f8 !important; }
+
+.btn-default:hover {
+  background-color: #ebebeb !important; }
+
 .btn-success {
   background-color: #716aca !important;
   border-color: #625CB0 !important;
@@ -108,7 +125,8 @@ a, a:hover {
 
 .home-content {
   pointer-events: auto;
-  padding: 100px 20px 0 20px; }
+  padding: 100px 20px 0 20px;
+  height: 100%; }
 
 .home-content-header {
   border-bottom: 1px solid #ebebeb;
@@ -276,11 +294,18 @@ a, a:hover {
 .classic_time:hover, .light:hover {
   background: #3960AE !important; }
 
+.middle-align {
+  vertical-align: middle !important; }
+
 .grommet {
-  pointer-events: all !important; }
+  pointer-events: all !important;
+  z-index: 2000000 !important; }
 
 .grommetux-select__control {
   width: 25px !important; }
+
+.grommetux-select__control svg {
+  background-color: transparent !important; }
 
 .grommetux-control-icon {
   width: 13px !important; }
@@ -292,20 +317,25 @@ a, a:hover {
 .grommetux-button__icon, polygon {
   stroke: #716aca !important; }
 
-.grommetux-select {
-  width: 115px !important;
-  border-radius: 100px; }
-
 .grommetux-select__input {
-  border-radius: 100px;
   padding-right: 0px !important;
-  font-size: 15px !important;
-  width: 115px !important;
-  height: 35px !important;
+  font-size: 12px !important;
   color: #716aca !important; }
 
 .grommetux-select__input:hover {
   border: 1px solid #716aca !important; }
+
+.grommetux-color-index-graph-2 {
+  stroke: #00c5dc !important; }
+
+.grommetux-color-index-graph-1 {
+  stroke: #f4516c !important; }
+
+.grommetux-box {
+  align-items: center !important; }
+
+.grommetux-drop {
+  z-index: 300000 !important; }
 
 .sidebar {
   position: fixed;
@@ -375,9 +405,12 @@ a, a:hover {
   .side-nav-name {
     display: none !important; } }
 
-a, a:hover {
-  color: inherit;
-  text-decoration: none; }
+a, a:hover, a:focus {
+  color: inherit !important;
+  text-decoration: none !important; }
+
+#tooltip-right {
+  opacity: 0; }
 
 .btn {
   display: block; }
@@ -386,14 +419,22 @@ a, a:hover {
   cursor: pointer !important; }
 
 .btn-primary {
-  background-color: #f4516c !important;
-  border-color: #01a597 !important;
-  color: #fff !important;
-  font-weight: 300 !important;
-  font-size: 13px; }
+  color: #9699a2;
+  display: inline;
+  font-size: 1.25rem;
+  outline: none !important;
+  height: 2.75rem;
+  padding: .5rem 1.25rem;
+  margin: 0px;
+  font-size: 1rem;
+  background: #f4f5f8;
+  border: 0;
+  text-shadow: none !important; }
 
 .btn-primary:hover {
-  background-color: #01a597 !important; }
+  border: 0;
+  background: #e2e5ec;
+  cursor: pointer; }
 
 .btn-yellow {
   background-color: #FBA502 !important;
@@ -451,6 +492,12 @@ a, a:hover {
 .btn-secondary:hover {
   background-color: #04355b !important; }
 
+.btn-default {
+  background-color: #f4f5f8 !important; }
+
+.btn-default:hover {
+  background-color: #ebebeb !important; }
+
 .btn-success {
   background-color: #716aca !important;
   border-color: #625CB0 !important;
@@ -479,7 +526,8 @@ a, a:hover {
 
 .home-content {
   pointer-events: auto;
-  padding: 100px 20px 0 20px; }
+  padding: 100px 20px 0 20px;
+  height: 100%; }
 
 .home-content-header {
   border-bottom: 1px solid #ebebeb;
@@ -647,11 +695,18 @@ a, a:hover {
 .classic_time:hover, .light:hover {
   background: #3960AE !important; }
 
+.middle-align {
+  vertical-align: middle !important; }
+
 .grommet {
-  pointer-events: all !important; }
+  pointer-events: all !important;
+  z-index: 2000000 !important; }
 
 .grommetux-select__control {
   width: 25px !important; }
+
+.grommetux-select__control svg {
+  background-color: transparent !important; }
 
 .grommetux-control-icon {
   width: 13px !important; }
@@ -663,22 +718,28 @@ a, a:hover {
 .grommetux-button__icon, polygon {
   stroke: #716aca !important; }
 
-.grommetux-select {
-  width: 115px !important;
-  border-radius: 100px; }
-
 .grommetux-select__input {
-  border-radius: 100px;
   padding-right: 0px !important;
-  font-size: 15px !important;
-  width: 115px !important;
-  height: 35px !important;
+  font-size: 12px !important;
   color: #716aca !important; }
 
 .grommetux-select__input:hover {
   border: 1px solid #716aca !important; }
 
+.grommetux-color-index-graph-2 {
+  stroke: #00c5dc !important; }
+
+.grommetux-color-index-graph-1 {
+  stroke: #f4516c !important; }
+
+.grommetux-box {
+  align-items: center !important; }
+
+.grommetux-drop {
+  z-index: 300000 !important; }
+
 .headerStyle {
+  font-family: Poppins;
   pointer-events: auto;
   background: white;
   height: 75px;
@@ -713,9 +774,13 @@ a, a:hover {
     margin-right: 20px;
     width: auto;
     min-width: 160px; }
+    .headerStyle .headerRightStyle .profile-name {
+      margin-left: 10px;
+      margin-right: 10px; }
   .headerStyle .header-profile-picture {
     border-radius: 50%;
-    width: 30px; }
+    width: 40px;
+    border: 2px #716aca outset; }
   .headerStyle #profile-menu {
     border-radius: 6px;
     height: 0;
@@ -727,7 +792,6 @@ a, a:hover {
     background-color: white;
     transition: transform 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, opacity 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
     box-sizing: border-box;
-    font-family: Roboto, sans-serif;
     -webkit-tap-highlight-color: transparent;
     box-shadow: rgba(0, 0, 0, 0.12) 0 1px 6px, rgba(0, 0, 0, 0.12) 0 1px 4px;
     position: fixed;
@@ -786,9 +850,12 @@ a, a:hover {
   #menuIcon {
     display: none; } }
 
-a, a:hover {
-  color: inherit;
-  text-decoration: none; }
+a, a:hover, a:focus {
+  color: inherit !important;
+  text-decoration: none !important; }
+
+#tooltip-right {
+  opacity: 0; }
 
 .btn {
   display: block; }
@@ -797,14 +864,22 @@ a, a:hover {
   cursor: pointer !important; }
 
 .btn-primary {
-  background-color: #f4516c !important;
-  border-color: #01a597 !important;
-  color: #fff !important;
-  font-weight: 300 !important;
-  font-size: 13px; }
+  color: #9699a2;
+  display: inline;
+  font-size: 1.25rem;
+  outline: none !important;
+  height: 2.75rem;
+  padding: .5rem 1.25rem;
+  margin: 0px;
+  font-size: 1rem;
+  background: #f4f5f8;
+  border: 0;
+  text-shadow: none !important; }
 
 .btn-primary:hover {
-  background-color: #01a597 !important; }
+  border: 0;
+  background: #e2e5ec;
+  cursor: pointer; }
 
 .btn-yellow {
   background-color: #FBA502 !important;
@@ -862,6 +937,12 @@ a, a:hover {
 .btn-secondary:hover {
   background-color: #04355b !important; }
 
+.btn-default {
+  background-color: #f4f5f8 !important; }
+
+.btn-default:hover {
+  background-color: #ebebeb !important; }
+
 .btn-success {
   background-color: #716aca !important;
   border-color: #625CB0 !important;
@@ -890,7 +971,8 @@ a, a:hover {
 
 .home-content {
   pointer-events: auto;
-  padding: 100px 20px 0 20px; }
+  padding: 100px 20px 0 20px;
+  height: 100%; }
 
 .home-content-header {
   border-bottom: 1px solid #ebebeb;
@@ -1058,11 +1140,18 @@ a, a:hover {
 .classic_time:hover, .light:hover {
   background: #3960AE !important; }
 
+.middle-align {
+  vertical-align: middle !important; }
+
 .grommet {
-  pointer-events: all !important; }
+  pointer-events: all !important;
+  z-index: 2000000 !important; }
 
 .grommetux-select__control {
   width: 25px !important; }
+
+.grommetux-select__control svg {
+  background-color: transparent !important; }
 
 .grommetux-control-icon {
   width: 13px !important; }
@@ -1074,20 +1163,25 @@ a, a:hover {
 .grommetux-button__icon, polygon {
   stroke: #716aca !important; }
 
-.grommetux-select {
-  width: 115px !important;
-  border-radius: 100px; }
-
 .grommetux-select__input {
-  border-radius: 100px;
   padding-right: 0px !important;
-  font-size: 15px !important;
-  width: 115px !important;
-  height: 35px !important;
+  font-size: 12px !important;
   color: #716aca !important; }
 
 .grommetux-select__input:hover {
   border: 1px solid #716aca !important; }
+
+.grommetux-color-index-graph-2 {
+  stroke: #00c5dc !important; }
+
+.grommetux-color-index-graph-1 {
+  stroke: #f4516c !important; }
+
+.grommetux-box {
+  align-items: center !important; }
+
+.grommetux-drop {
+  z-index: 300000 !important; }
 
 .login-page-container {
   pointer-events: auto;
@@ -1120,9 +1214,12 @@ a, a:hover {
     text-align: center;
     padding-top: 5px; }
 
-a, a:hover {
-  color: inherit;
-  text-decoration: none; }
+a, a:hover, a:focus {
+  color: inherit !important;
+  text-decoration: none !important; }
+
+#tooltip-right {
+  opacity: 0; }
 
 .btn {
   display: block; }
@@ -1131,14 +1228,22 @@ a, a:hover {
   cursor: pointer !important; }
 
 .btn-primary {
-  background-color: #f4516c !important;
-  border-color: #01a597 !important;
-  color: #fff !important;
-  font-weight: 300 !important;
-  font-size: 13px; }
+  color: #9699a2;
+  display: inline;
+  font-size: 1.25rem;
+  outline: none !important;
+  height: 2.75rem;
+  padding: .5rem 1.25rem;
+  margin: 0px;
+  font-size: 1rem;
+  background: #f4f5f8;
+  border: 0;
+  text-shadow: none !important; }
 
 .btn-primary:hover {
-  background-color: #01a597 !important; }
+  border: 0;
+  background: #e2e5ec;
+  cursor: pointer; }
 
 .btn-yellow {
   background-color: #FBA502 !important;
@@ -1196,6 +1301,12 @@ a, a:hover {
 .btn-secondary:hover {
   background-color: #04355b !important; }
 
+.btn-default {
+  background-color: #f4f5f8 !important; }
+
+.btn-default:hover {
+  background-color: #ebebeb !important; }
+
 .btn-success {
   background-color: #716aca !important;
   border-color: #625CB0 !important;
@@ -1224,7 +1335,8 @@ a, a:hover {
 
 .home-content {
   pointer-events: auto;
-  padding: 100px 20px 0 20px; }
+  padding: 100px 20px 0 20px;
+  height: 100%; }
 
 .home-content-header {
   border-bottom: 1px solid #ebebeb;
@@ -1392,11 +1504,18 @@ a, a:hover {
 .classic_time:hover, .light:hover {
   background: #3960AE !important; }
 
+.middle-align {
+  vertical-align: middle !important; }
+
 .grommet {
-  pointer-events: all !important; }
+  pointer-events: all !important;
+  z-index: 2000000 !important; }
 
 .grommetux-select__control {
   width: 25px !important; }
+
+.grommetux-select__control svg {
+  background-color: transparent !important; }
 
 .grommetux-control-icon {
   width: 13px !important; }
@@ -1408,34 +1527,40 @@ a, a:hover {
 .grommetux-button__icon, polygon {
   stroke: #716aca !important; }
 
-.grommetux-select {
-  width: 115px !important;
-  border-radius: 100px; }
-
 .grommetux-select__input {
-  border-radius: 100px;
   padding-right: 0px !important;
-  font-size: 15px !important;
-  width: 115px !important;
-  height: 35px !important;
+  font-size: 12px !important;
   color: #716aca !important; }
 
 .grommetux-select__input:hover {
   border: 1px solid #716aca !important; }
 
+.grommetux-color-index-graph-2 {
+  stroke: #00c5dc !important; }
+
+.grommetux-color-index-graph-1 {
+  stroke: #f4516c !important; }
+
+.grommetux-box {
+  align-items: center !important; }
+
+.grommetux-drop {
+  z-index: 300000 !important; }
+
 .loaderContainer {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 1;
   width: 100%;
   height: 100%;
-  background: rgba(159, 159, 159, 0.6); }
+  background: rgba(15, 15, 15, 0.64); }
   .loaderContainer .loader-container-small {
-    position: absolute;
+    position: relative;
     left: 0;
     width: 100% !important;
-    height: 0 important;
+    height: 100%;
+    z-index: 1;
     background: transparent !important; }
   .loaderContainer .loader {
     top: 50%;
@@ -1540,9 +1665,83 @@ a, a:hover {
     width: 200px;
     height: 200px; }
 
-a, a:hover {
-  color: inherit;
-  text-decoration: none; }
+.loading-animation-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: calc(-14px); }
+  .loading-animation-container .lds-facebook {
+    display: inline-block;
+    position: relative;
+    width: 64px;
+    height: 64px; }
+  .loading-animation-container .lds-facebook div {
+    display: inline-block;
+    position: absolute;
+    left: 6px;
+    width: 15px;
+    animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite; }
+  .loading-animation-container .lds-facebook-sm {
+    display: inline-block;
+    position: relative;
+    width: 34px;
+    height: 34px; }
+  .loading-animation-container .lds-facebook-sm div {
+    display: inline-block;
+    position: absolute;
+    left: 6px;
+    width: 14px;
+    animation: lds-facebook-sm 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite; }
+  .loading-animation-container .lds-facebook-sm div:nth-child(1) {
+    left: 6px;
+    animation-delay: -0.24s;
+    background: #716aca; }
+  .loading-animation-container .lds-facebook-sm div:nth-child(2) {
+    left: 26px;
+    animation-delay: -0.12s;
+    background: #716aca; }
+  .loading-animation-container .lds-facebook-sm div:nth-child(3) {
+    left: 45px;
+    animation-delay: 0;
+    background: #716aca; }
+  .loading-animation-container .lds-facebook div:nth-child(1) {
+    left: 6px;
+    animation-delay: -0.24s;
+    background: #716aca; }
+  .loading-animation-container .lds-facebook div:nth-child(2) {
+    left: 26px;
+    animation-delay: -0.12s;
+    background: #716aca; }
+  .loading-animation-container .lds-facebook div:nth-child(3) {
+    left: 45px;
+    animation-delay: 0;
+    background: #716aca; }
+
+@keyframes lds-facebook {
+  0% {
+    top: 6px;
+    height: 51px; }
+  50%, 100% {
+    top: 19px;
+    height: 26px; } }
+
+@keyframes lds-facebook-sm {
+  0% {
+    top: 6px;
+    height: 25px; }
+  50%, 100% {
+    top: 19px;
+    height: 12px; } }
+
+a, a:hover, a:focus {
+  color: inherit !important;
+  text-decoration: none !important; }
+
+#tooltip-right {
+  opacity: 0; }
 
 .btn {
   display: block; }
@@ -1551,14 +1750,22 @@ a, a:hover {
   cursor: pointer !important; }
 
 .btn-primary {
-  background-color: #f4516c !important;
-  border-color: #01a597 !important;
-  color: #fff !important;
-  font-weight: 300 !important;
-  font-size: 13px; }
+  color: #9699a2;
+  display: inline;
+  font-size: 1.25rem;
+  outline: none !important;
+  height: 2.75rem;
+  padding: .5rem 1.25rem;
+  margin: 0px;
+  font-size: 1rem;
+  background: #f4f5f8;
+  border: 0;
+  text-shadow: none !important; }
 
 .btn-primary:hover {
-  background-color: #01a597 !important; }
+  border: 0;
+  background: #e2e5ec;
+  cursor: pointer; }
 
 .btn-yellow {
   background-color: #FBA502 !important;
@@ -1616,6 +1823,12 @@ a, a:hover {
 .btn-secondary:hover {
   background-color: #04355b !important; }
 
+.btn-default {
+  background-color: #f4f5f8 !important; }
+
+.btn-default:hover {
+  background-color: #ebebeb !important; }
+
 .btn-success {
   background-color: #716aca !important;
   border-color: #625CB0 !important;
@@ -1644,7 +1857,8 @@ a, a:hover {
 
 .home-content {
   pointer-events: auto;
-  padding: 100px 20px 0 20px; }
+  padding: 100px 20px 0 20px;
+  height: 100%; }
 
 .home-content-header {
   border-bottom: 1px solid #ebebeb;
@@ -1812,11 +2026,18 @@ a, a:hover {
 .classic_time:hover, .light:hover {
   background: #3960AE !important; }
 
+.middle-align {
+  vertical-align: middle !important; }
+
 .grommet {
-  pointer-events: all !important; }
+  pointer-events: all !important;
+  z-index: 2000000 !important; }
 
 .grommetux-select__control {
   width: 25px !important; }
+
+.grommetux-select__control svg {
+  background-color: transparent !important; }
 
 .grommetux-control-icon {
   width: 13px !important; }
@@ -1828,20 +2049,25 @@ a, a:hover {
 .grommetux-button__icon, polygon {
   stroke: #716aca !important; }
 
-.grommetux-select {
-  width: 115px !important;
-  border-radius: 100px; }
-
 .grommetux-select__input {
-  border-radius: 100px;
   padding-right: 0px !important;
-  font-size: 15px !important;
-  width: 115px !important;
-  height: 35px !important;
+  font-size: 12px !important;
   color: #716aca !important; }
 
 .grommetux-select__input:hover {
   border: 1px solid #716aca !important; }
+
+.grommetux-color-index-graph-2 {
+  stroke: #00c5dc !important; }
+
+.grommetux-color-index-graph-1 {
+  stroke: #f4516c !important; }
+
+.grommetux-box {
+  align-items: center !important; }
+
+.grommetux-drop {
+  z-index: 300000 !important; }
 
 .signup-page-container {
   height: 100%;
@@ -1876,9 +2102,12 @@ a, a:hover {
     text-align: center;
     padding-top: 5px; }
 
-a, a:hover {
-  color: inherit;
-  text-decoration: none; }
+a, a:hover, a:focus {
+  color: inherit !important;
+  text-decoration: none !important; }
+
+#tooltip-right {
+  opacity: 0; }
 
 .btn {
   display: block; }
@@ -1887,14 +2116,22 @@ a, a:hover {
   cursor: pointer !important; }
 
 .btn-primary {
-  background-color: #f4516c !important;
-  border-color: #01a597 !important;
-  color: #fff !important;
-  font-weight: 300 !important;
-  font-size: 13px; }
+  color: #9699a2;
+  display: inline;
+  font-size: 1.25rem;
+  outline: none !important;
+  height: 2.75rem;
+  padding: .5rem 1.25rem;
+  margin: 0px;
+  font-size: 1rem;
+  background: #f4f5f8;
+  border: 0;
+  text-shadow: none !important; }
 
 .btn-primary:hover {
-  background-color: #01a597 !important; }
+  border: 0;
+  background: #e2e5ec;
+  cursor: pointer; }
 
 .btn-yellow {
   background-color: #FBA502 !important;
@@ -1952,6 +2189,12 @@ a, a:hover {
 .btn-secondary:hover {
   background-color: #04355b !important; }
 
+.btn-default {
+  background-color: #f4f5f8 !important; }
+
+.btn-default:hover {
+  background-color: #ebebeb !important; }
+
 .btn-success {
   background-color: #716aca !important;
   border-color: #625CB0 !important;
@@ -1980,7 +2223,8 @@ a, a:hover {
 
 .home-content {
   pointer-events: auto;
-  padding: 100px 20px 0 20px; }
+  padding: 100px 20px 0 20px;
+  height: 100%; }
 
 .home-content-header {
   border-bottom: 1px solid #ebebeb;
@@ -2148,11 +2392,18 @@ a, a:hover {
 .classic_time:hover, .light:hover {
   background: #3960AE !important; }
 
+.middle-align {
+  vertical-align: middle !important; }
+
 .grommet {
-  pointer-events: all !important; }
+  pointer-events: all !important;
+  z-index: 2000000 !important; }
 
 .grommetux-select__control {
   width: 25px !important; }
+
+.grommetux-select__control svg {
+  background-color: transparent !important; }
 
 .grommetux-control-icon {
   width: 13px !important; }
@@ -2164,20 +2415,25 @@ a, a:hover {
 .grommetux-button__icon, polygon {
   stroke: #716aca !important; }
 
-.grommetux-select {
-  width: 115px !important;
-  border-radius: 100px; }
-
 .grommetux-select__input {
-  border-radius: 100px;
   padding-right: 0px !important;
-  font-size: 15px !important;
-  width: 115px !important;
-  height: 35px !important;
+  font-size: 12px !important;
   color: #716aca !important; }
 
 .grommetux-select__input:hover {
   border: 1px solid #716aca !important; }
+
+.grommetux-color-index-graph-2 {
+  stroke: #00c5dc !important; }
+
+.grommetux-color-index-graph-1 {
+  stroke: #f4516c !important; }
+
+.grommetux-box {
+  align-items: center !important; }
+
+.grommetux-drop {
+  z-index: 300000 !important; }
 
 .tabs .tabs-menu-container {
   padding-left: 0 !important; }
@@ -2190,7 +2446,7 @@ a, a:hover {
     width: 195px;
     font-size: 13px; }
   .tabs .tabs-menu-container .active {
-    border-bottom: 3px solid #716aca;
+    border-bottom: 3px solid #716aca !important;
     font-size: 14px; }
 
 .tabs .horizontal {
@@ -2199,9 +2455,12 @@ a, a:hover {
   border-bottom: 1px solid #ebebeb;
   margin-bottom: 30px; }
 
-a, a:hover {
-  color: inherit;
-  text-decoration: none; }
+a, a:hover, a:focus {
+  color: inherit !important;
+  text-decoration: none !important; }
+
+#tooltip-right {
+  opacity: 0; }
 
 .btn {
   display: block; }
@@ -2210,14 +2469,22 @@ a, a:hover {
   cursor: pointer !important; }
 
 .btn-primary {
-  background-color: #f4516c !important;
-  border-color: #01a597 !important;
-  color: #fff !important;
-  font-weight: 300 !important;
-  font-size: 13px; }
+  color: #9699a2;
+  display: inline;
+  font-size: 1.25rem;
+  outline: none !important;
+  height: 2.75rem;
+  padding: .5rem 1.25rem;
+  margin: 0px;
+  font-size: 1rem;
+  background: #f4f5f8;
+  border: 0;
+  text-shadow: none !important; }
 
 .btn-primary:hover {
-  background-color: #01a597 !important; }
+  border: 0;
+  background: #e2e5ec;
+  cursor: pointer; }
 
 .btn-yellow {
   background-color: #FBA502 !important;
@@ -2275,6 +2542,12 @@ a, a:hover {
 .btn-secondary:hover {
   background-color: #04355b !important; }
 
+.btn-default {
+  background-color: #f4f5f8 !important; }
+
+.btn-default:hover {
+  background-color: #ebebeb !important; }
+
 .btn-success {
   background-color: #716aca !important;
   border-color: #625CB0 !important;
@@ -2303,7 +2576,8 @@ a, a:hover {
 
 .home-content {
   pointer-events: auto;
-  padding: 100px 20px 0 20px; }
+  padding: 100px 20px 0 20px;
+  height: 100%; }
 
 .home-content-header {
   border-bottom: 1px solid #ebebeb;
@@ -2471,11 +2745,18 @@ a, a:hover {
 .classic_time:hover, .light:hover {
   background: #3960AE !important; }
 
+.middle-align {
+  vertical-align: middle !important; }
+
 .grommet {
-  pointer-events: all !important; }
+  pointer-events: all !important;
+  z-index: 2000000 !important; }
 
 .grommetux-select__control {
   width: 25px !important; }
+
+.grommetux-select__control svg {
+  background-color: transparent !important; }
 
 .grommetux-control-icon {
   width: 13px !important; }
@@ -2487,25 +2768,36 @@ a, a:hover {
 .grommetux-button__icon, polygon {
   stroke: #716aca !important; }
 
-.grommetux-select {
-  width: 115px !important;
-  border-radius: 100px; }
-
 .grommetux-select__input {
-  border-radius: 100px;
   padding-right: 0px !important;
-  font-size: 15px !important;
-  width: 115px !important;
-  height: 35px !important;
+  font-size: 12px !important;
   color: #716aca !important; }
 
 .grommetux-select__input:hover {
   border: 1px solid #716aca !important; }
 
+.grommetux-color-index-graph-2 {
+  stroke: #00c5dc !important; }
+
+.grommetux-color-index-graph-1 {
+  stroke: #f4516c !important; }
+
+.grommetux-box {
+  align-items: center !important; }
+
+.grommetux-drop {
+  z-index: 300000 !important; }
+
+.full-height {
+  height: 100% !important; }
+
 .o-card-container {
   color: #575962;
   box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.08);
   background-color: #fff; }
+  .o-card-container .card-header-color {
+    background-color: #f4516c;
+    color: #fff; }
   .o-card-container .o-card-border-1 {
     border-bottom: 3px solid #f4516c; }
   .o-card-container .o-card-border-2 {
@@ -2534,10 +2826,42 @@ a, a:hover {
     padding: 2.2rem !important;
     margin-bottom: 30px;
     color: #9699a2; }
+  .o-card-container .o-card-content-no-padding {
+    color: #9699a2;
+    padding: 0 !important; }
+    .o-card-container .o-card-content-no-padding .dashboard-card-summary-container {
+      padding: 2.2rem !important; }
+      .o-card-container .o-card-content-no-padding .dashboard-card-summary-container .card-ranges-buttons {
+        display: inline-block;
+        margin-bottom: 20px;
+        margin-left: 9px; }
+        .o-card-container .o-card-content-no-padding .dashboard-card-summary-container .card-ranges-buttons .card-ranges-button {
+          display: inline;
+          font-size: 1.25rem;
+          outline: none !important;
+          height: 2.75rem;
+          padding: .5rem 1.25rem;
+          margin: 0px;
+          font-size: 1rem;
+          background: #f4f5f8;
+          border: 0;
+          text-shadow: none !important; }
+        .o-card-container .o-card-content-no-padding .dashboard-card-summary-container .card-ranges-buttons .card-ranges-button:hover {
+          border: 0;
+          background: #e2e5ec;
+          cursor: pointer; }
+        .o-card-container .o-card-content-no-padding .dashboard-card-summary-container .card-ranges-buttons .selected {
+          background-color: #716aca;
+          color: #fff; }
+      .o-card-container .o-card-content-no-padding .dashboard-card-summary-container .dashboard-card-summary-row {
+        padding: 1rem !important; }
 
-a, a:hover {
-  color: inherit;
-  text-decoration: none; }
+a, a:hover, a:focus {
+  color: inherit !important;
+  text-decoration: none !important; }
+
+#tooltip-right {
+  opacity: 0; }
 
 .btn {
   display: block; }
@@ -2546,14 +2870,22 @@ a, a:hover {
   cursor: pointer !important; }
 
 .btn-primary {
-  background-color: #f4516c !important;
-  border-color: #01a597 !important;
-  color: #fff !important;
-  font-weight: 300 !important;
-  font-size: 13px; }
+  color: #9699a2;
+  display: inline;
+  font-size: 1.25rem;
+  outline: none !important;
+  height: 2.75rem;
+  padding: .5rem 1.25rem;
+  margin: 0px;
+  font-size: 1rem;
+  background: #f4f5f8;
+  border: 0;
+  text-shadow: none !important; }
 
 .btn-primary:hover {
-  background-color: #01a597 !important; }
+  border: 0;
+  background: #e2e5ec;
+  cursor: pointer; }
 
 .btn-yellow {
   background-color: #FBA502 !important;
@@ -2611,6 +2943,12 @@ a, a:hover {
 .btn-secondary:hover {
   background-color: #04355b !important; }
 
+.btn-default {
+  background-color: #f4f5f8 !important; }
+
+.btn-default:hover {
+  background-color: #ebebeb !important; }
+
 .btn-success {
   background-color: #716aca !important;
   border-color: #625CB0 !important;
@@ -2639,7 +2977,8 @@ a, a:hover {
 
 .home-content {
   pointer-events: auto;
-  padding: 100px 20px 0 20px; }
+  padding: 100px 20px 0 20px;
+  height: 100%; }
 
 .home-content-header {
   border-bottom: 1px solid #ebebeb;
@@ -2807,11 +3146,18 @@ a, a:hover {
 .classic_time:hover, .light:hover {
   background: #3960AE !important; }
 
+.middle-align {
+  vertical-align: middle !important; }
+
 .grommet {
-  pointer-events: all !important; }
+  pointer-events: all !important;
+  z-index: 2000000 !important; }
 
 .grommetux-select__control {
   width: 25px !important; }
+
+.grommetux-select__control svg {
+  background-color: transparent !important; }
 
 .grommetux-control-icon {
   width: 13px !important; }
@@ -2823,20 +3169,25 @@ a, a:hover {
 .grommetux-button__icon, polygon {
   stroke: #716aca !important; }
 
-.grommetux-select {
-  width: 115px !important;
-  border-radius: 100px; }
-
 .grommetux-select__input {
-  border-radius: 100px;
   padding-right: 0px !important;
-  font-size: 15px !important;
-  width: 115px !important;
-  height: 35px !important;
+  font-size: 12px !important;
   color: #716aca !important; }
 
 .grommetux-select__input:hover {
   border: 1px solid #716aca !important; }
+
+.grommetux-color-index-graph-2 {
+  stroke: #00c5dc !important; }
+
+.grommetux-color-index-graph-1 {
+  stroke: #f4516c !important; }
+
+.grommetux-box {
+  align-items: center !important; }
+
+.grommetux-drop {
+  z-index: 300000 !important; }
 
 .user-profile-container .save-profile-button {
   width: 150px; }
@@ -2858,9 +3209,12 @@ a, a:hover {
     top: 0;
     left: 0; }
 
-a, a:hover {
-  color: inherit;
-  text-decoration: none; }
+a, a:hover, a:focus {
+  color: inherit !important;
+  text-decoration: none !important; }
+
+#tooltip-right {
+  opacity: 0; }
 
 .btn {
   display: block; }
@@ -2869,14 +3223,22 @@ a, a:hover {
   cursor: pointer !important; }
 
 .btn-primary {
-  background-color: #f4516c !important;
-  border-color: #01a597 !important;
-  color: #fff !important;
-  font-weight: 300 !important;
-  font-size: 13px; }
+  color: #9699a2;
+  display: inline;
+  font-size: 1.25rem;
+  outline: none !important;
+  height: 2.75rem;
+  padding: .5rem 1.25rem;
+  margin: 0px;
+  font-size: 1rem;
+  background: #f4f5f8;
+  border: 0;
+  text-shadow: none !important; }
 
 .btn-primary:hover {
-  background-color: #01a597 !important; }
+  border: 0;
+  background: #e2e5ec;
+  cursor: pointer; }
 
 .btn-yellow {
   background-color: #FBA502 !important;
@@ -2934,6 +3296,12 @@ a, a:hover {
 .btn-secondary:hover {
   background-color: #04355b !important; }
 
+.btn-default {
+  background-color: #f4f5f8 !important; }
+
+.btn-default:hover {
+  background-color: #ebebeb !important; }
+
 .btn-success {
   background-color: #716aca !important;
   border-color: #625CB0 !important;
@@ -2962,7 +3330,8 @@ a, a:hover {
 
 .home-content {
   pointer-events: auto;
-  padding: 100px 20px 0 20px; }
+  padding: 100px 20px 0 20px;
+  height: 100%; }
 
 .home-content-header {
   border-bottom: 1px solid #ebebeb;
@@ -3130,11 +3499,18 @@ a, a:hover {
 .classic_time:hover, .light:hover {
   background: #3960AE !important; }
 
+.middle-align {
+  vertical-align: middle !important; }
+
 .grommet {
-  pointer-events: all !important; }
+  pointer-events: all !important;
+  z-index: 2000000 !important; }
 
 .grommetux-select__control {
   width: 25px !important; }
+
+.grommetux-select__control svg {
+  background-color: transparent !important; }
 
 .grommetux-control-icon {
   width: 13px !important; }
@@ -3146,20 +3522,25 @@ a, a:hover {
 .grommetux-button__icon, polygon {
   stroke: #716aca !important; }
 
-.grommetux-select {
-  width: 115px !important;
-  border-radius: 100px; }
-
 .grommetux-select__input {
-  border-radius: 100px;
   padding-right: 0px !important;
-  font-size: 15px !important;
-  width: 115px !important;
-  height: 35px !important;
+  font-size: 12px !important;
   color: #716aca !important; }
 
 .grommetux-select__input:hover {
   border: 1px solid #716aca !important; }
+
+.grommetux-color-index-graph-2 {
+  stroke: #00c5dc !important; }
+
+.grommetux-color-index-graph-1 {
+  stroke: #f4516c !important; }
+
+.grommetux-box {
+  align-items: center !important; }
+
+.grommetux-drop {
+  z-index: 300000 !important; }
 
 #employer-contractors {
   pointer-events: auto; }
@@ -3211,23 +3592,6 @@ a, a:hover {
 .add-work-data-btn {
   float: right; }
 
-.employer-dashboard .dashboard-card-summary-row {
-  display: table;
-  width: 100%;
-  margin-bottom: 2.85rem; }
-  .employer-dashboard .dashboard-card-summary-row .dashboard-card-summary-item {
-    display: table-cell;
-    padding-right: 0.36rem; }
-  .employer-dashboard .dashboard-card-summary-row .dashboard-card-summary-number {
-    color: #575962;
-    font-size: 1.5rem;
-    font-weight: 600; }
-
-.employer-dashboard .dashboard-card-number {
-  color: #575962;
-  font-size: 2.5rem;
-  font-weight: 600; }
-
 .dashboard-list .dashboard-list-header-container {
   display: flex; }
   .dashboard-list .dashboard-list-header-container .dashboard-list-header-text {
@@ -3267,6 +3631,110 @@ a, a:hover {
     .dashboard-list .dashboard-list-item-container .dashboard-list-item-info .dashboard-list-item-sub {
       font-size: 1rem;
       color: #7b7e8a; }
+
+.date-widget-container {
+  width: 100%;
+  text-align: center; }
+  .date-widget-container .date-widget-arrow-container {
+    display: inline-block;
+    margin-right: 10px; }
+    .date-widget-container .date-widget-arrow-container .date-widget-arrow {
+      display: inline;
+      background: #f4f5f8;
+      border: 0;
+      text-shadow: none !important;
+      outline: none !important;
+      height: 2.75rem;
+      padding: 0 1.25rem;
+      font-size: 1rem; }
+    .date-widget-container .date-widget-arrow-container .date-widget-arrow:hover {
+      background: #e2e5ec;
+      cursor: pointer; }
+  .date-widget-container .date-widget-button-container {
+    float: right;
+    display: inline-block;
+    width: 115px; }
+    .date-widget-container .date-widget-button-container .date-widget-button {
+      display: inline;
+      background: #f4f5f8;
+      border: 0;
+      text-shadow: none !important;
+      outline: none !important;
+      height: 2.75rem;
+      padding: 1.25rem;
+      font-size: 1rem; }
+  .date-widget-container .date-widget-select {
+    float: right; }
+  .date-widget-container .date-widget-date {
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-top: 0.75rem;
+    display: inline-block; }
+
+.invoice-container {
+  height: 100%; }
+  .invoice-container #myCanvas {
+    border: 1px solid;
+    background: #fff; }
+
+.company-details-form #input-container {
+  width: 200px; }
+
+.company-details-form .company-logo {
+  margin-bottom: 10px !important;
+  width: 165px; }
+
+.company-details-form .company-logo-container {
+  width: 165px !important; }
+
+.company-details-form .company-logo-input {
+  opacity: 0;
+  height: 25px;
+  margin-top: -25px; }
+
+.company-details-form #company-profile-picture {
+  width: 165px;
+  opacity: 0;
+  height: 38px;
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+.all-pay-periods-item {
+  padding: 20px;
+  border-bottom: 0.07rem dashed #ebedf2; }
+  .all-pay-periods-item .all-pay-periods-icon {
+    margin-right: 15px; }
+
+.selected-invoice {
+  background-color: #f7f7f7; }
+
+.all-pay-periods-item:hover {
+  cursor: pointer;
+  background-color: #f7f7f7; }
+
+.employer-dashboard .dashboard-card-summary-row {
+  display: table;
+  width: 100%;
+  margin-bottom: 2.85rem; }
+  .employer-dashboard .dashboard-card-summary-row .dashboard-card-summary-item {
+    display: table-cell;
+    padding-right: 0.36rem; }
+  .employer-dashboard .dashboard-card-summary-row .dashboard-card-summary-number {
+    color: #575962;
+    font-size: 1.5rem;
+    font-weight: 600; }
+
+.employer-dashboard .dashboard-card-number {
+  color: #575962;
+  font-size: 2.5rem;
+  font-weight: 600; }
+
+.dashboard-card-number {
+  color: #575962;
+  font-size: 2.5rem;
+  font-weight: 600; }
 
 .readmin-panel {
   position: relative;

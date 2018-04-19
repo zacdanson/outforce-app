@@ -1,0 +1,5 @@
+.invoice-container {
+  height: 100%; }
+  .invoice-container #myCanvas {
+    border: 1px solid;
+    background: #fff; }

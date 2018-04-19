@@ -25,7 +25,7 @@ import Loader from '../loading-animation/Loader.component';
         error: store.auth.error,
         loading: store.main.loading,
 				formValid: store.auth.formValid,
-				user: store.user.userData
+				user: store.firebaseData.userData
     }
 })
 

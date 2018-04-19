@@ -82,7 +82,7 @@ class EmployerSignup extends Component{
 										<Input name="firstname" className="signup-password-input" placeholder="first name" onChange={this.bindInputValue.bind(this, 'firstName', 'required')} />
 										<Input name="secondname" className="signup-password-input" placeholder="second name" onChange={this.bindInputValue.bind(this, 'secondName', 'required')}/>
 										<Input name="company" className="signup-password-input" placeholder="company name" onChange={this.bindInputValue.bind(this, 'companyName', 'required')}/>
-										{ this.props.formValid ? <Button className="form-control btn-primary" text="Signup" id="signupBtn" onClick={this.handleSignup.bind(this)}/> : <Button className="form-control btn-primary" text="Signup" id="signupBtn" disabled={true}/>}
+										{ this.props.formValid ? <Button className="form-control btn-success" text="Signup" id="signupBtn" onClick={this.handleSignup.bind(this)}/> : <Button className="form-control btn-success" text="Signup" id="signupBtn" disabled={true}/>}
                     <div className="signupErrorMsg">{this.props.error ? this.props.error.message  : ''}</div>
 										<div className="small-link">
 											<small>

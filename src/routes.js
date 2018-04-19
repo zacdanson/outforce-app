@@ -7,19 +7,23 @@ import Home from './containers/Home.js';
 
 import {
 	EmployerSignup,
-	EmployerContractors,
-	EmployerDashboard,
-	EmployerAdmin,
 	EmployerForecasts,
-	ContractorDashboard,
-	ContractorSignup,
-	DisabledInvite,
-	ManageContractor,
 	LogoutUser,
 	Loader,
 	UserProfile,
-	Login,
+	Login
 } from './components';
+
+import {
+	EmployerDashboard,
+	EmployerAdmin,
+	EmployerContractors,
+	ManageContractor,
+	ContractorSignup,
+	ContractorDashboard,
+	DisabledInvite,
+	ContractorInvoices
+} from './pages';
 
 
 const Routes = (props) => {
@@ -41,7 +45,7 @@ const Routes = (props) => {
 										 exact
 										 render={props => <Home><EmployerContractors {...props}/></Home>}
 							/>
-							<Route path="/index/employer/employer-contractors/:id"
+							<Route path="/index/employer/employer-contractors/:id/:tab"
 										 exact
 										 render={props => <Home><ManageContractor {...props}/></Home>}
 							/>
@@ -49,9 +53,17 @@ const Routes = (props) => {
 										 exact
 										 render={props => <Home><EmployerAdmin {...props}/></Home>}
 							/>
+							<Route path="/index/employer/employer-admin/:tab"
+										 exact
+										 render={props => <Home><EmployerAdmin {...props}/></Home>}
+							/>
 							<Route path="/index/employer/employer-forecasts"
 										 exact
 										 render={props => <Home><EmployerForecasts {...props}/></Home>}
+							/>
+							<Route path="/index/contractor/contractor-invoices"
+										 exact
+										 render={props => <Home><ContractorInvoices {...props}/></Home>}
 							/>
 
 							<Route path="/login" component={Login}/>

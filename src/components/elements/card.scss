@@ -1,10 +1,18 @@
 @import '../../scss/mainStyles.scss';
 
+.full-height{
+  height:100% !important;
+}
 
 .o-card-container{
   color:#575962;
   box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.08);
   background-color: #fff;
+
+  .card-header-color{
+    background-color: #f4516c;
+    color:#fff;
+  }
 
   .o-card-border-1{
     border-bottom: 3px solid #f4516c;
@@ -45,7 +53,55 @@
     padding:2.2rem !important;
     margin-bottom:30px;
     color:#9699a2;
+
+
   }
+
+  .o-card-content-no-padding{
+    color:#9699a2;
+    padding:0 !important;
+
+    .dashboard-card-summary-container{
+      padding:2.2rem !important;
+
+      .card-ranges-buttons{
+        display: inline-block;
+        margin-bottom: 20px;
+        margin-left: 9px;
+
+        .card-ranges-button{
+          display: inline;
+          font-size: 1.25rem;
+          outline: none !important;
+          height: 2.75rem;
+          padding: .5rem 1.25rem;
+          margin: 0px;
+          font-size: 1rem;
+          background: #f4f5f8;
+          border: 0;
+          text-shadow: none !important;
+        }
+        .card-ranges-button:hover{
+          border: 0;
+          background: #e2e5ec;
+          cursor: pointer;
+        }
+
+        .selected{
+          background-color: $successColor;
+          color:#fff;
+        }
+
+      }
+
+      .dashboard-card-summary-row{
+        padding:1rem !important;
+      }
+
+    }
+
+  }
+
 
 
 }

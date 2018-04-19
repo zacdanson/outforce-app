@@ -3,23 +3,26 @@ import ContractorListItem from './ContractorListItem.component';
 
 
 
-export const EmployerContractorsList = (props) => {
+const EmployerContractorsList = (props) => {
+			console.log(props);
 			return (
 				<div>
 					{ props.contractors && props.contractors.length > 0  ?
 					<table className="table">
 						<thead>
 						<tr >
-							{props.hideCheckbox ? '' : <th scope="col"><input id="select-all-users" onClick={props.selectAllUsers()} type="checkbox" className="check-box"/></th> }
+							{props.hideCheckbox ? '' : <th scope="col"><input id="select-all-users" onClick={()=>props.onSelectUser('', true)} type="checkbox" className="check-box"/></th> }
 							<th className="table_cell" scope="col">Name</th>
 							<th className="table_cell" scope="col">Email</th>
 							<th className="table_cell" scope="col">Phone Number</th>
 							<th className="table_cell" scope="col">Registered</th>
+							{props.showOpen ? <th className="table_cell" scope="col"></th> : ''}
 						</tr>
 						</thead>
 							<tbody className="panel-body">
 							{	props.contractors.map((user, index) => {
 									return <ContractorListItem
+									history={props.history}
 									key={user.uid}
 									index={index}
 									uid={user.uid}
@@ -27,8 +30,9 @@ export const EmployerContractorsList = (props) => {
 									email={user.email}
 									phoneNumber={user.phoneNumber}
 									registered={user.registered}
-									onClick={() => props.onSelectUser(user)}
-									onDblClick={() => props.onDoubleClick(user)}
+									onClick={() => props.onSelectUser(user.uid, false)}
+									showOpen={props.showOpen}
+									selected={props.selectedUsers.indexOf(user.uid) >= 0}
 									/>
 								}) }
 							</tbody>
@@ -37,3 +41,6 @@ export const EmployerContractorsList = (props) => {
 				</div>
 			);
 };
+
+
+export default EmployerContractorsList;

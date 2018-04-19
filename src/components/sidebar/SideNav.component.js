@@ -39,11 +39,20 @@ const SideNav = (props)=>{
 						location={props.location}
 					/>
 					<SideNavItem
-						href="/index/employer/employer-admin"
+						href="/index/employer/employer-admin/work-info"
 						icon='fa-lock'
 						strict='employer'
 						name='Admin'
 						route="employer-admin"
+						userRole={props.user.userRole}
+						location={props.location}
+					/>
+					<SideNavItem
+						href="/index/contractor/contractor-invoices"
+						icon='fa-file'
+						strict='contractor'
+						name='Invoices'
+						route="contractor-invoices"
 						userRole={props.user.userRole}
 						location={props.location}
 					/>

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 @connect((store)=>{
 	return {
-		user: store.user.userData
+		user: store.firebaseData.userData
 	}
 })
 

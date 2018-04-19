@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Card, Input, Button} from '../../elements';
 import swal from 'sweetalert';
 import DashboardCard from '../../dashboard-card/DashboardCard.component';
-
+import PayPeriods from '../../pay-periods/PayPeriods.component';
 
 export class WorkInformation extends Component {
 
@@ -10,9 +10,12 @@ export class WorkInformation extends Component {
 		super(props);
 		this.state = {};
 
-		this.state = { workTypes : this.props.workDataObject.workTypes, newWorkType: {value:'', valid: ''} , newWorkTypeId: { value: '', valid: '' } };
-
-		console.log(this.state);
+		this.state = {
+			workTypes : this.props.workTypes,
+			newWorkType: {value:'', valid: ''},
+			newWorkTypeId: { value: '', valid: '' },
+			globalWorkName: this.props.globalWorkName
+		};
 	}
 
 	editWorkTypeDescription(index){
@@ -20,18 +23,10 @@ export class WorkInformation extends Component {
 		let workTypes = this.state.workTypes;
 		workTypes[index].edit = true;
 		this.setState({workTypes});
-		console.log(workTypes);
 	}
 
-	updateWorkTypes(index){
-		let workTypes = this.state.workTypes;
-		if(workTypes[index].valid === false){
-			return;
-		}
-		delete workTypes[index].edit;
-		delete workTypes[index].valid;
-		this.setState({workTypes});
-		this.props.updateWorkTypes(this.state.workTypes);
+	updateWorkType(workTypeId, workType){
+		this.props.updateWorkType(workTypeId, workType);
 	}
 
 	changeWorkTypeName(index, e){
@@ -49,7 +44,7 @@ export class WorkInformation extends Component {
 		}
 		workTypes.push({workTypeId: newWorkTypeId.value, workType: newWorkType.value });
 		this.setState({workTypes, newWorkTypeId: { valid: '', value:''}, newWorkType: { valid: '', value:''}});
-		this.props.updateWorkTypes(this.state.workTypes);
+		this.props.createWorkType( newWorkTypeId.value, newWorkType.value);
 	}
 
 	changeNewWorkType(e){
@@ -70,8 +65,7 @@ export class WorkInformation extends Component {
 
 	}
 
-	removeWorkType(index){
-		let workTypes = this.state.workTypes;
+	removeWorkType(workTypeId, index){
 		swal({
 			title: "Are you sure?",
 			text: "Are you sure that you want to remove this workType?",
@@ -80,16 +74,26 @@ export class WorkInformation extends Component {
 			dangerMode: true,
 		}).then(willDelete => {
 			if (willDelete) {
-				let id = workTypes[index].workTypeId;
-				delete workTypes[index];
-				this.props.deleteWorkType(id);
+				delete this.state.workTypes[index];
+				this.props.deleteWorkType(workTypeId);
 			}
 		});
 	}
 
+	updateWorkName(value){
+		this.setState({
+			globalWorkName: value
+		});
+	}
+
+	saveGlobalWorkName(){
+		this.props.updateGlobalWorkName(this.state.globalWorkName);
+
+	}
+
 
 	render() {
-		let { workTypes, newWorkType, newWorkTypeId} = this.state;
+
 		return (
 			<div className="work-information-container">
 
@@ -101,22 +105,22 @@ export class WorkInformation extends Component {
 							<div>
 								<Input
 									name="globalWorkName"
-									value={this.props.workDataObject.globalWorkName ? this.props.workDataObject.globalWorkName : ''}
+									value={this.state.globalWorkName ? this.state.globalWorkName : ''}
 									placeholder="No Global Name Set"
-									onChange={(e)=>this.props.updateWorkDataObject(e)}
+									onChange={(e)=>this.updateWorkName(e.target.value)}
 								/>
 								<br></br>
 								<Button
 									name="UpdateGlobalWorkName"
 									text="Update Global Work Name"
 									className="btn-success"
-									onClick={()=>this.props.saveGlobalWorkName()}
+									onClick={()=>this.props.updateGlobalWorkName(this.state.globalWorkName)}
 								/>
 								<i className="fa fa-info-circle pull-right"></i>
 							</div>
 						</Card>
-						<Card cardHeader={this.props.workName +' Types'} color="blue" >
-							{ workTypes.length < 1 ? <p style={{width:'100%'}}> Not yet added any work types. </p> :
+						<Card cardHeader={this.state.globalWorkName +' Types'} color="blue" >
+							{ this.state.workTypes.length < 1 ? <p style={{width:'100%'}}> Not yet added any work types. </p> :
 								<table className="table">
 									<thead>
 									<tr>
@@ -127,13 +131,13 @@ export class WorkInformation extends Component {
 									</thead>
 									<tbody>
 									{
-										workTypes.map((type, index)=>{
+										this.state.workTypes.map((type, index)=>{
 											if(type.edit){
 												return(
 													<tr key={index} className={index %2 == 0 ? 'table_row_dark' : ''}>
 														<td className="table_cell" scope="row">{type.workTypeId}</td>
 														<td className="table_cell" ><Input value={type.workType} onChange={(e)=>this.changeWorkTypeName(index, e)} className={type.valid === false ? ' invalid' : ''}/></td>
-														<td className="table_cell" ><i className="fa fa-save" onClick={()=>this.updateWorkTypes(index)} style={{color:'#FF6E00'}}></i><i className="fa fa-trash" style={{color:'red'}} onClick={()=>this.removeWorkType(index)}></i></td>
+														<td className="table_cell" ><i className="fa fa-save" onClick={()=>this.updateWorkType(type.workTypeId, type.workType)} style={{color:'#FF6E00'}}></i><i className="fa fa-trash" style={{color:'red'}} onClick={()=>this.removeWorkType(type.workTypeId, index)}></i></td>
 													</tr>
 												);
 											} else {
@@ -152,21 +156,25 @@ export class WorkInformation extends Component {
 						</Card>
 					</div>
 					<div className="col" >
-						<Card cardHeader={'Add '+ this.props.workName +' Type'} color="blue">
-								<small> Work Types can be attatched to logged work, to describe the type of work completed.</small>
+						<Card cardHeader={'Add '+ this.state.globalWorkName +' Type'} color="blue">
+								<small> Work Types can be attached to logged work, to describe the type of work completed.</small>
 								<div className="row" style={{paddingTop:'20px'}}>
 									<div className="col">
-										<Input value={newWorkTypeId.value} placeholder="ID" onChange={(e)=>this.changeNewWorkTypeId(e)} className={newWorkTypeId.valid === false ? ' invalid' : '' }/>
-										
+										<Input value={this.state.newWorkTypeId.value} placeholder="ID" onChange={(e)=>this.changeNewWorkTypeId(e)} className={this.state.newWorkTypeId.valid === false ? ' invalid' : '' }/>
 										<small>ID must be unique.</small>
 									</div>
 									<div className="col">
-										<Input value={newWorkType.value} placeholder="name" onChange={(e)=>this.changeNewWorkType(e)} className={newWorkType.valid === false ? ' invalid' :  ''} />
+										<Input value={this.state.newWorkType.value} placeholder="name" onChange={(e)=>this.changeNewWorkType(e)} className={this.state.newWorkType.valid === false ? ' invalid' :  ''} />
 										<br></br>
 										<Button  text='Save Work Type'  className='btn-success pull-right' onClick={()=>this.addWorkType()}/>
 									</div>
 								</div>
 						</Card>
+						<PayPeriods
+							payPeriod={this.props.payPeriod}
+							selectedPayFrequency={this.props.company.selectedPayFrequency}
+							updatePayPeriodDetails={(selectedPayFrequency)=>this.props.updatePayPeriodDetails(selectedPayFrequency)}
+						/>
 					</div>
 				</div>
 			</div>

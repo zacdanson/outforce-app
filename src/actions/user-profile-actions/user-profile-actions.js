@@ -6,6 +6,7 @@ import {
 	updateUser
 } from '../helper-actions/helper-actions';
 import { loading } from '../main_actions';
+import { getUserData } from '../auth-actions/auth_actions'
 
 export const bindInputValue = (value, property) => {
 	return {
@@ -23,6 +24,7 @@ export const bindProfilePicture = (uid, fileRef) => {
 					type: 'BIND_INPUT_VALUE',
 					payload: { value: url, property: 'profilePicture'}
 			});
+				dispatch(getUserData(uid));
 			db.collection("users").doc(uid).update({
 				profilePicture: url
 			});
@@ -38,16 +40,16 @@ export const bindProfilePicture = (uid, fileRef) => {
 export const saveProfile = (userData) => {
 	return (dispatch) => {
 		dispatch(loading(true));
+		console.log(userData);
 		try{
-			db.collection('users').doc(userData.uid).update({
-				firstName: userData.firstName,
-				secondName: userData.secondName,
-				email: userData.email,
-				fullName: userData.firstName + ' ' + userData.secondName,
-				companyName: userData.companyName
-			}).then(data=>{
+			db.collection('users').doc(userData.uid).update(
+				userData
+			).then(data=>{
 				console.log('successfully updated profile.');
-				dispatch(updateUser(userData));
+				dispatch({
+					type: 'UPDATE_USER_DATA',
+					payload: userData
+				});
 				dispatch(loading(false));
 			});
 		}	catch (error){

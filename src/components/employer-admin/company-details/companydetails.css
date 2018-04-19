@@ -1,0 +1,22 @@
+.company-details-form #input-container {
+  width: 200px; }
+
+.company-details-form .company-logo {
+  margin-bottom: 10px !important;
+  width: 165px; }
+
+.company-details-form .company-logo-container {
+  width: 165px !important; }
+
+.company-details-form .company-logo-input {
+  opacity: 0;
+  height: 25px;
+  margin-top: -25px; }
+
+.company-details-form #company-profile-picture {
+  width: 165px;
+  opacity: 0;
+  height: 38px;
+  position: absolute;
+  top: 0;
+  left: 0; }
