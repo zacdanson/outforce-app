@@ -4,7 +4,7 @@ import ContractorListItem from './ContractorListItem.component';
 
 
 const EmployerContractorsList = (props) => {
-			console.log(props);
+
 			return (
 				<div>
 					{ props.contractors && props.contractors.length > 0  ?

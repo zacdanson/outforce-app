@@ -22,7 +22,7 @@ class UserProfileForm extends Component{
 	}
 
 	componentWillReceiveProps(nextProps){
-		console.log('prooooops ', nextProps);
+
 		this.setState({
 			details: nextProps.user
 		});

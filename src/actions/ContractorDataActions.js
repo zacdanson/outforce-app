@@ -16,7 +16,6 @@ import {
 
 const updateContractorDetails = (contractor) => {
 	return dispatch=>{
-		console.log('heeeeeeerreeee');
 		saveContractorObject(contractor).then(res=>{
 			if(!res.error){
 				dispatch(getContractorData(contractor.uid));
@@ -58,7 +57,7 @@ const getContractorData = (userId) => {
 	return dispatch=> {
 		getContractorObject(userId).then(res=>{
 			if(!res) {
-				console.log('no contractor');
+
 				return;
 			}
 			dispatch({
@@ -113,7 +112,7 @@ const getWorkLogsBetween = (uid, jobRoles, workLogs, start, end, callback) => {
 				});
 
 				_.each(jobRoles, role=>{
-					console.log('rooole = ', role);
+
 					if(role.id === jobRole.id){
 						return;
 					}
@@ -139,18 +138,18 @@ const getPayPeriodStats = (contractorObject, jobRoles, start, end) => {
 		return dispatch=>{
 			let totalEarned = 0;
 			if(!contractorObject.workLogs){
-				console.log('no contractor work logs.');
+
 				return;
 			}
 
 			let hourlyRate = parseFloat(contractorObject.hourlyRate);
 			if(!hourlyRate){
-				console.log('user not been provided an hourly rate yet.');
+
 				return;
 			}
 
 			getWorkLogsBetween(contractorObject.uid, jobRoles, contractorObject.workLogs, start, end, (workLogs)=>{
-				console.log(workLogs);
+
 				let earned = 0;
 				_.each(workLogs, log=>{
 					earned+=parseFloat(log.total)/60*hourlyRate;

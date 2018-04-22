@@ -18,10 +18,9 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
 	switch(action.type){
 		case 'SET_USER_ROLE':
-			console.log('set_user_role');
+
 			let form = {...state.formData};
 			form.userRole = action.payload;
-			console.log(form.userRole);
 			return { ...state, formData: form };
 		case 'SIGNUP_ERROR':
 			return { ...state, error: action.payload };

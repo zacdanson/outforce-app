@@ -89,7 +89,7 @@ export const getCompanyJobRoles = (companyId) => {
 			let jobRoles = [];
 			snapshot.forEach(doc=>{
 				if(!doc.exists){
-					console.log('no job roles for this company.');
+
 				}
 				jobRoles.push(doc.data());
 			});
@@ -102,6 +102,7 @@ export const getCompanyJobRoles = (companyId) => {
 
 export const saveCompanyDetails = (companyDetails) =>{
 	return new Promise((resolve, reject)=>{
+
 		db.collection('companies').doc(companyDetails.companyId).update(companyDetails).then(res=>{
 			resolve({success:true});
 		}).catch(error=>{
@@ -115,10 +116,10 @@ export const saveCompanyLogo = (companyId, file, fileName) => {
 		let imgRef = storage.ref().child('companies/'+companyId+'/logo/'+fileName);
 		imgRef.put(file)
 			.then(snap=>{
-				console.log('uploaded file successfully.');
+
 				imgRef.getDownloadURL()
 					.then(function(url) {
-						console.log('url - ', url);
+
 						db.collection('companies').doc(companyId).update({
 							logoUrl: url
 						}).then(res=>{

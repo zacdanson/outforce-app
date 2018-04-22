@@ -54,7 +54,7 @@ class WorkLogsSummary extends Component {
 
 		_.each(logs, (log, index)=>{
 			if(log.start >= from && log.end <= to){
-				totalDuration+= parseFloat(log.total);
+				totalDuration+= parseFloat(log.duration);
 				workLogs.push(log);
 			}
 		});

@@ -44,7 +44,7 @@ export const getPendingContractor = (uid) => {
 export const getContractorObject = (uid) => {
 	return new Promise((resolve, reject)=>{
 		getContractorDetails(uid).then(data=>{
-				getUserWorkData(data.companyId, data.uid).then(logs=>{
+				getUserWorkData(data.companyId, uid).then(logs=>{
 					let contractor = data;
 					contractor.workLogs = logs;
 					getContractorJobRole(uid).then(result=>{
@@ -114,6 +114,13 @@ export const getUserWorkData = (companyId, userId, from, to ) => {
 
 export const saveContractorObject = (object) =>{
 	return new Promise((resolve, reject)=>{
+		_.each(object, (val, prop)=>{
+
+			if(!val){
+				object[prop] = '';
+			}
+		});
+		object.fullName = object.firstName + ' ' + object.secondName;
 		db.collection('users').doc(object.uid).update(object).then(res=>{
 			resolve(object);
 		}).catch(error=>{
@@ -127,22 +134,30 @@ export const saveContractorObject = (object) =>{
 export const addContractor = (user, employerName, companyId, companyName) => {
 	return new Promise((resolve, reject)=>{
 		try{
-			let { email, name, phoneNumber} = user;
-			if(!email || !name || !phoneNumber){
-				reject({error});
+			let { email, firstName, secondName, phoneNumber} = user;
+			if(!email || !firstName ||!secondName || !phoneNumber){
+				resolve({error: 'must include email, name and phone number'});
 			}
 			db.collection('users').add({
 				linkActive: true,
 				registered: false,
 				phoneNumber,
 				email,
-				name,
+				firstName,
+				secondName,
+				fullName: firstName+' '+secondName,
 				userRole: 'contractor',
 				companyId,
 				dateAdded: moment().format('x')
 			}).then(data=>{
 				let id = data.id;
-				console.log('invited contractor.', id);
+
+				db.collection('users').doc(id).update({
+					uid: id
+				}).catch(error=>{
+					console.log(' error ');
+					resolve({error});
+				});
 				db.collection('companies').doc(companyId+'/contractors/'+id).set({
 					uid: id
 				}).then(data=>{
@@ -155,14 +170,14 @@ export const addContractor = (user, employerName, companyId, companyName) => {
 						companyId
 					});
 				}).catch(error=>{
-					reject({error});
+					resolve({error});
 				});
 			}).catch(error=>{
-				reject({error});
+				resolve({error});
 			});
 
 		} catch(error){
-			reject({error});
+			resolve({error});
 		}
 	});
 };
@@ -171,7 +186,7 @@ export const addContractor = (user, employerName, companyId, companyName) => {
 export const deleteContractors = (users, companyId) =>{
 	return new Promise((resolve, reject)=> {
 		let promises = [];
-		console.log(users);
+
 		users.map(userId=>{
 			promises.push(db.collection('users').doc(userId).delete());
 			promises.push(db.collection('companies').doc(companyId + '/contractors/'+ userId).delete());
@@ -190,19 +205,17 @@ export const deleteContractors = (users, companyId) =>{
 export const addWorkData = (workData, contractorData) => {
 	return new Promise((resolve, reject)=>{
 		let { uid, companyId, fullName, hourlyRate } = contractorData;
-		let { workType, workTypeId, total, start, end } = workData
-		let price = parseFloat(total)/60*parseFloat(hourlyRate);
+		let { workType, workTypeId, duration, start, end } = workData;
 		db.collection('companies').doc(companyId).collection('workData')
 			.add({
 				uid,
 				workType,
 				workTypeId,
 				companyId,
-				total,
+				duration,
 				start,
 				end,
-				contractorName: fullName,
-				price
+				contractorName: fullName
 			}).then(docRef=>{
 			db.collection('users').doc(uid).collection('workData').doc(docRef.id).set({logId: docRef.id}).then(res=>{
 				resolve({success:true});
@@ -219,7 +232,7 @@ export const getInvoices = (uid) => {
 		db.collection('users').doc(uid).collection('invoices').orderBy('start','desc').get().then(snap=>{
 			let invoices = [];
 			snap.forEach(snapshot=>{
-				console.log('invoice - ', snapshot.data());
+
 				invoices.push({
 					invoice: snapshot.data(),
 					id: snapshot.id

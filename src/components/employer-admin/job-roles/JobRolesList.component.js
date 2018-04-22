@@ -16,7 +16,7 @@ class JobRolesList extends Component{
 			assignOptions: [{label:'auto', value:'auto'},{label:'manual', value: 'manual'}],
 			selectedRole: {}
 		});
-		console.log('prooops-', props);
+
 	}
 
 	editJobRoleName(value, index){
@@ -46,7 +46,7 @@ class JobRolesList extends Component{
 		let jobRoles = this.state.jobRoles;
 		jobRoles[index].assign = value;
 		this.setState({jobRoles});
-		console.log(this.state);
+
 		this.saveJobRole(jobRoles[index]);
 	}
 
@@ -76,7 +76,7 @@ class JobRolesList extends Component{
 	}
 
 	render(){
-		console.log(this.state);
+
 		let display = '';
 		if(this.props.assignCondition === 'numLogs'){
 			display = this.props.globalWorkName + '\'s';

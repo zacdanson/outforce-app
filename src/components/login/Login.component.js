@@ -50,7 +50,7 @@ class Login extends Component {
 		}
 
 		bindInputValue(property, valType, element){
-			console.log(element, valType, property);
+
 			let valid = ValidateInput({
 				element: element.target,
 				type: valType
@@ -61,7 +61,7 @@ class Login extends Component {
 
 		handleLogin(){
 				this.props.dispatch(handleLogin(this.props.formData.email.value, this.props.formData.password.value));
-				console.log(this.props);
+
 
 		}
 

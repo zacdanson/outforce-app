@@ -7,7 +7,8 @@ class AddContractor extends Component{
 		super(props);
 		this.state = ({
 			contractorDetails:{
-				name:'',
+				firstName:'',
+				secondName:'',
 				email: '',
 				phoneNumber: ''
 			}
@@ -34,8 +35,12 @@ class AddContractor extends Component{
 				<div>
 					<small className="add-contractor-modal-info">By adding a contractor, they will also be invited to signup to OutForce.</small>
 					<div className="form-group">
-						<div> Name </div>
-						<Input name="contractorName" className="contractor-name" onChange={(e)=>this.updateContractorDetails('name', e.target.value)} value={this.state.contractorDetails.name} />
+						<div> First Name </div>
+						<Input name="contractorFirstName" className="contractor-first-name" onChange={(e)=>this.updateContractorDetails('firstName', e.target.value)} value={this.state.contractorDetails.firstName} />
+					</div>
+					<div className="form-group">
+						<div> Second Name </div>
+						<Input name="contractorSecondName" className="contractor-second-name" onChange={(e)=>this.updateContractorDetails('secondName', e.target.value)} value={this.state.contractorDetails.secondName} />
 					</div>
 					<div className="form-group">
 						<div> Email </div>

@@ -5,7 +5,11 @@ import {
 	deleteEmployerJobRole,
 	getEmployerAssignCondition,
 	updateEmployerAssignCondition,
-	updateEmployerAutoSendInvoices
+	updateEmployerAutoSendInvoices,
+	getAllContractorsInvoiceTotal,
+	getJobRoles,
+	getEmployerFinanceTotals,
+	getProfits
 } from  '../helpers/EmployerData';
 
 import {
@@ -16,7 +20,7 @@ import {
 
 const getContractors = (userId, companyId) => {
 	return dispatch => {
-		console.log('herr');
+
 		getAllContractors(userId, companyId).then(result=>{
 			dispatch({
 				type:'UPDATE_CONTRACTORS_LIST',
@@ -40,9 +44,10 @@ const addEmployerContractor = (user, employerName, companyId, companyName) => {
 				});
 				return;
 			}
+
 			swal({
 				title: 'error',
-				text: res.error,
+				text: res.error.message,
 				icon: "error",
 				buttons:false,
 				timer:2000,
@@ -82,7 +87,7 @@ const deleteEmployerContractors = (users, companyId) => {
 
 const saveJobRole = (id, name, hourlyRate, assign, roleRequirements, companyId) => {
 	return dispatch => {
-		console.log(id, name, hourlyRate, assign, roleRequirements);
+
 		saveEmployerJobRole(id, name, hourlyRate, assign, roleRequirements, companyId).then(res=>{
 			if(!res.error){
 				dispatch(getJobRoles(companyId));
@@ -139,6 +144,44 @@ const updateAssignCondition = (companyId, assignCondition) => {
 	};
 };
 
+const calculateTotalInvoices = (companyId, start, end) => {
+	return dispatch => {
+		getAllContractorsInvoiceTotal(companyId, start, end).then((res)=>{
+
+			dispatch({
+				type:'UPDATE_TOTAL_INVOICES',
+				payload: res
+			});
+
+		});
+	};
+};
+
+export const calculateProfit = (companyId, start, end) => {
+	return dispatch => {
+		getProfits(companyId, start, end).then((res)=>{
+
+
+		});
+	};
+};
+
+const getFinanceTotals = (companyId, range) => {
+
+	return dispatch => {
+		getEmployerFinanceTotals(companyId, range).then(res=>{
+			dispatch({
+				type:'UPDATE_FINANCE_OVERVIEW',
+				payload:res
+			});
+		});
+	}
+
+};
+
+
+
+
 
 const EmployerDataActions = {
 	deleteEmployerContractors,
@@ -148,7 +191,10 @@ const EmployerDataActions = {
 	addJobRole,
 	deleteJobRole,
 	getAssignCondition,
-	updateAssignCondition
+	updateAssignCondition,
+	calculateTotalInvoices,
+	calculateProfit,
+	getFinanceTotals
 };
 
 export default EmployerDataActions;

@@ -54,7 +54,6 @@ class WorkLogs extends Component{
 
 			let monthsOrdered = _.orderBy(months, ['start'], ['asc']);
 
-			console.log(months);
 
 			this.setState({
 				monthlyChartValues: monthsOrdered

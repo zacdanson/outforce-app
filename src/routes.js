@@ -27,7 +27,7 @@ import {
 
 
 const Routes = (props) => {
-		console.log(props);
+
 		return (
 					<Switch>
 							<Route path="/index/employer/employer-dashboard"
@@ -56,10 +56,6 @@ const Routes = (props) => {
 							<Route path="/index/employer/employer-admin/:tab"
 										 exact
 										 render={props => <Home><EmployerAdmin {...props}/></Home>}
-							/>
-							<Route path="/index/employer/employer-forecasts"
-										 exact
-										 render={props => <Home><EmployerForecasts {...props}/></Home>}
 							/>
 							<Route path="/index/contractor/contractor-invoices"
 										 exact

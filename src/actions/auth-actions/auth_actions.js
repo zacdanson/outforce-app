@@ -17,7 +17,7 @@ const uuid = require('uuid4');
 export const handleLogin = (email, password) => {
     return async (dispatch) => {
         if(!email || !password){
-						console.log('must provide email and password.');
+
             dispatch(loginError('must provide email and password.'));
             return;
         }
@@ -25,15 +25,15 @@ export const handleLogin = (email, password) => {
         try {
             firebase.auth().signInWithEmailAndPassword(email, password)
 							.then(data=>{
-								console.log('logging in..', data);
+
 							}).catch(error=>{
 								dispatch(loginError(error));
 								dispatch(loading(false));
-								console.log('error logging in .', error);
+
             });
         } catch(err){
-					console.log('here 2 ');
-            console.log('error logging in - ', err);
+
+
 						dispatch(loginError(err));
             dispatch(loading(false));
         }
@@ -77,25 +77,35 @@ const clearFormData = () => {
 
 
 
-const signupEmployer = (uid, props, userData) =>{
+const signupEmployer = (uid, props, formData) =>{
 	return (dispatch)=>{
 
-		console.log(userData);
-		console.log('user doesnt exist and is employer.');
-		userData.userRole = 'employer';
+		let userData = {
+			companyName: formData.companyName.value,
+			email: formData.email.value,
+			firstName: formData.firstName.value,
+			secondName: formData.secondName.value,
+			phoneNumber: formData.phoneNumber.value,
+			userRole: 'employer',
+			uid: uid
+		};
+
 
 		db.collection('users').doc(uid)
 			.set(userData).then(()=>{
 			db.collection('companies').add({
-				name: props.formData.companyName.value,
+				name: userData.companyName
 			}).then(docRef=> {
 				let uid = userData.uid;
 				let apiKey = uuid();
 				db.collection('companies').doc(docRef.id+'/users/'+uid).set({uid});
+				db.collection('companies').doc(docRef.id).update({companyId: docRef.id}).catch(error=>{
+
+				});
 				db.collection('companies').doc(docRef.id+'/apiKeys/'+apiKey).set({uid, enabled: true});
 				db.collection('users').doc(uid).update({companyId: docRef.id, apiKey});
 				userData.companyId = docRef.id;
-				userData.companyName = props.formData.companyName.value;
+				userData.apiKey = apiKey;
 				dispatch({
 					type:'UPDATE_USER_DATA',
 					payload: userData
@@ -113,7 +123,7 @@ export const signupContractor = (contractor, id, cid) =>{
 		dispatch(loading(true));
 		firebase.auth().createUserWithEmailAndPassword(contractor.email, contractor.password).then(user=>{
 			let userData = firebase.auth().currentUser;
-			console.log('userdataaaa-', userData);
+
 			let uid = userData.uid;
 			let usersRef = db.collection('users');
 			let workData = [];
@@ -135,7 +145,7 @@ export const signupContractor = (contractor, id, cid) =>{
 						.then(snapshot=>{
 							//// loop through the workdata and change the old ID to the new user ID.
 							snapshot.forEach(log=>{
-								console.log('log-id ', log.id, 'uid -', uid, 'company id -', contractorData.companyId);
+
 								db.collection('companies').doc(contractorData.companyId).collection('workData').doc(log.id).update({uid}).catch(error=>{ console.log(error)});
 								workData.push(log.id);
 							});
@@ -144,11 +154,11 @@ export const signupContractor = (contractor, id, cid) =>{
 								usersRef.doc(id).delete();
 								db.collection('companies').doc(contractorData.companyId).collection('contractors').doc(id).delete();
 								db.collection('companies').doc(contractorData.companyId).collection('contractors').doc(uid).set({uid: uid});
-								console.log('wdata- ', workData);
+
 								workData.forEach(logId=>{
 									usersRef.doc(uid).collection('workData').doc(logId).set({logId});
 								});
-								console.log('created user & deleted temporary data.');
+
 								//// log the user in and update the user prop.
 								dispatch({
 									type: 'UPDATE_USER_DATA',
@@ -178,7 +188,7 @@ export const getUserData = (uid, props) => {
 		db.collection('users').doc(uid).get().then(
 			user => {
 				if(user.exists){
-					console.log('user exists.');
+
 					let userData = user.data();
 					/// user exists in DB so set user state.
 					dispatch({
@@ -187,16 +197,19 @@ export const getUserData = (uid, props) => {
 					});
 
 				goToDashboard(dispatch, userData.userRole);
+				dispatch(loading(false));
+				} else {
+					console.log(' user does not exist..');
+					dispatch(signupEmployer(uid, props, props.formData));
 				}
 			});
 	}
 };
 
 const goToDashboard = (dispatch, userRole) => {
-	console.log('go to dash');
+
 	if(!window.location.pathname.includes('index')){
 		console.log('sending to homepage.');
-
 		if(userRole === 'employer'){
 			window.location.pathname = '/index/employer/employer-dashboard';
 		} else {
@@ -225,17 +238,16 @@ export const checkAuth = (props) =>{
 			unsubscribe =	firebase.auth().onAuthStateChanged(data=>{
 			console.log('auth status - ', data);
 			if(data){
-				console.log(data.uid);
+
 				dispatch(getUserData(data.uid, props));
 			} else {
 				localStorage.clear();
-				console.log('not signed in.');
+
 				dispatch(clearUserData());
 				dispatch(loading(false));
-			if(window.location.pathname.includes('index')){
-					window.location.pathname = '/login';
-				}
-
+				if(window.location.pathname.includes('index')){
+						window.location.pathname = '/login';
+					}
 			}
 			});
 		} catch(error) {

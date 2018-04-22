@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 
 
 const Select = (props) => {
-	console.log(props);
+	
 		return(
 			<div className="select-container">
 				<select

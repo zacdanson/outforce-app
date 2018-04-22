@@ -30,15 +30,6 @@ const SideNav = (props)=>{
 						location={props.location}
 					/>
 					<SideNavItem
-						href="/index/employer/employer-forecasts"
-						icon='fa-area-chart'
-						name='Forecasts'
-						strict='employer'
-						route="employer-forecasts"
-						userRole={props.user.userRole}
-						location={props.location}
-					/>
-					<SideNavItem
 						href="/index/employer/employer-admin/work-info"
 						icon='fa-lock'
 						strict='employer'

@@ -29,7 +29,7 @@ export class EmployerContractors extends Component {
 					history={this.props.history}
 					contractors={this.props.contractors}
 					deleteContractors={(users)=>this.props.dispatch(EmployerDataActions.deleteEmployerContractors(users, this.props.user.companyId))}
-					addContractor={(user)=>this.props.dispatch(EmployerDataActions.addEmployerContractor(user, this.props.user.fullName, this.props.user.companyId, this.props.user.companyName))}
+					addContractor={(user)=>this.props.dispatch(EmployerDataActions.addEmployerContractor(user, this.props.user.firstName+' '+this.props.user.secondName, this.props.user.companyId, this.props.user.companyName))}
 				/>
 			</div>
 		);

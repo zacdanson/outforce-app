@@ -31,7 +31,6 @@ class CompanyDetailsForm extends Component{
 	}
 
 	componentWillReceiveProps(nextProps){
-		console.log('will recieve props ', nextProps);
 		this.setState({
 			companyDetails: nextProps.companyDetails
 		});
@@ -57,7 +56,7 @@ class CompanyDetailsForm extends Component{
 						<div className="col-md">
 							<div className="form-group">
 								<span>Company Name</span>
-								<Input name={'companyName'}  value={company.name} onChange={(e)=>this.bindInputValue('companyName', e.target.value)}  />
+								<Input name={'companyName'}  value={company.companyName} onChange={(e)=>this.bindInputValue('companyName', e.target.value)}  />
 							</div>
 							<div className="form-group">
 								<span>Address Line 1</span>

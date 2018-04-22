@@ -16,7 +16,7 @@ export class EmployerForecasts extends Component {
 		}
 
 		componentWillMount(){
-			console.log(this.props);
+
 		}
 
     render() {

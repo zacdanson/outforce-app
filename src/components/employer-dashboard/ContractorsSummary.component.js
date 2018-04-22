@@ -61,6 +61,6 @@ const getTopPerformer = (contractors) => {
 
 	let performanceArray = _.orderBy(contractors, ['dailySessions'], ['desc']);
 
-	return performanceArray[0].fullName || '';
+	return performanceArray[0] ? performanceArray[0].fullName : '';
 
 };

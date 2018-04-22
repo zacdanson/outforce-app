@@ -13,7 +13,7 @@ import storage from 'redux-persist/es/storage';
 const uuid = require('uuid4');
 import Routes from './routes';
 import {   BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
+const generateData = require('./generateData.js');
 
 
 @connect((store)=>{
@@ -38,7 +38,7 @@ class App extends Component{
 	}
 
 	componentDidMount(){
-		console.log(this.props);
+
 
 	}
 

@@ -8,7 +8,7 @@ class Sidebar extends Component{
 	}
 
 	render(){
-		console.log('location === ', this.props.location);
+
 		return(
 			<div className={this.props.sidebar === 'max' ? 'sidebar sidebar-max' : 'sidebar minimised sidebar-min' }>
 				<SideNav  user={this.props.user} sidebar={this.props.sidebar} selectedTab={this.props.selectedTab} location={this.props.location}/>

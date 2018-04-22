@@ -57,7 +57,7 @@ export const clearSelectedUsers = () => {
 
 export const getContractor = (id, callback) => {
 	return (dispatch) => {
-		console.log('here');
+
 			getContractorObject(id).then(obj=>{
 				dispatch(loadingAnimation(false));
 				callback(obj);
@@ -71,7 +71,16 @@ export const saveContractor = (object) =>{
 	return dispatch => {
 		saveContractorObject(contractor).then(res=> {
 			if(!res.error){
-				dispatch(updateContractorObject('details',res.details));
+				dispatch(updateContractorObject('details', res.details));
+				swal({
+					type:'success',
+					title: 'Successfully Updated Contractor Details!',
+					text: 'The new details of the contractor have been saved',
+					timer: 2000,
+					buttons: false,
+					icon:'success',
+					className: 'swal-custom-padding'
+				});
 			}
 		});
 	};

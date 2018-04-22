@@ -19,7 +19,7 @@ export const bindProfilePicture = (uid, fileRef) => {
 	return (dispatch)=>{
 		 fileRef.getDownloadURL()
 			.then(function(url) {
-				console.log('url - ', url);
+
 				dispatch({
 					type: 'BIND_INPUT_VALUE',
 					payload: { value: url, property: 'profilePicture'}
@@ -30,7 +30,7 @@ export const bindProfilePicture = (uid, fileRef) => {
 			});
 		}).catch(function(error) {
 			// Handle any errors
-			 console.log('error', error);
+
 			dispatch(handleError(error));
 		});
 	};
@@ -40,12 +40,12 @@ export const bindProfilePicture = (uid, fileRef) => {
 export const saveProfile = (userData) => {
 	return (dispatch) => {
 		dispatch(loading(true));
-		console.log(userData);
+
 		try{
 			db.collection('users').doc(userData.uid).update(
 				userData
 			).then(data=>{
-				console.log('successfully updated profile.');
+
 				dispatch({
 					type: 'UPDATE_USER_DATA',
 					payload: userData
@@ -66,7 +66,7 @@ export const uploadProfilePicture = (uid, file, fileName) => {
 			let imgRef = storage.ref().child('users/'+uid+'/profilePicture/'+fileName);
 			imgRef.put(file)
 				.then(snap=>{
-					console.log('uploaded file successfully.');
+
 					const url = dispatch(bindProfilePicture(uid,imgRef));
 					dispatch(loading(false));
 				});

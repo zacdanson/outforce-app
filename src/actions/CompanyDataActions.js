@@ -7,7 +7,9 @@ import {
 	saveCompanyDetails,
 	saveCompanyLogo
 } from '../helpers/CompanyData.js'
-
+import {
+	getProfits
+} from '../helpers/EmployerData.js';
 
 const updateAutoSendInvoices = (companyId, status) => {
 	return dispatch => {
@@ -65,15 +67,31 @@ const getCurrentPayPeriod = (companyId) => {
 	};
 };
 
+const getPayPeriodProfits = (companyId, payPeriods) => {
+	return new Promise((resolve, reject)=>{
+		let promises = [];
+		_.each(payPeriods, period=>{
+			promises.push(getProfits(companyId, period.start, period.end));
+		});
+		Promise.all(promises).then(results=>{
+			_.each(results, (result, index)=>{
+				payPeriods[index].profit = parseInt(result.grossProfit);
+				payPeriods[index].revenue = parseInt(result.profit);
+			});
+			resolve(payPeriods);
+		});
+	});
+};
+
 const payPeriodsToDate = (companyId) => {
 	return dispatch=> {
 		getCompanyPayPeriod(companyId).then(res=>{
 			let currentPeriod = res;
 			let firstPayPeriodStart = currentPeriod.start;
-			console.log(' current period = ', res);
+
 			let payPeriods = [];
 			for(let i = currentPeriod.numPayPeriod; i>0; i--){
-				payPeriods.push({
+				payPeriods.unshift({
 					start: firstPayPeriodStart,
 					end: moment(firstPayPeriodStart, 'x').add(2, 'weeks').subtract(1, 'days').format('x'),
 					numPayPeriod: i
@@ -81,10 +99,13 @@ const payPeriodsToDate = (companyId) => {
 				firstPayPeriodStart = moment(firstPayPeriodStart, 'x').subtract(2, 'weeks').format('x')
 			}
 
-			dispatch({
-				type:'UPDATE_COMPANY_PAY_PERIODS_TO_DATE',
-				payload: payPeriods
+			getPayPeriodProfits(companyId, payPeriods).then(result=>{
+				dispatch({
+					type:'UPDATE_COMPANY_PAY_PERIODS_TO_DATE',
+					payload: payPeriods
+				});
 			});
+
 
 		});
 	};
@@ -100,7 +121,7 @@ const getJobRoles = (companyId) => {
 					payload: res
 				});
 			} else {
-				console.log('error getting job roles -  ', res.error);
+
 			}
 		});
 	};

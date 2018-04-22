@@ -13,8 +13,8 @@ class Tabs extends Component {
 
 	render(){
 		return(
-			<div className={this.props.horizontal ? 'fluid-container tabs' : 'fluid-container tabs row '}>
-				<div className={this.props.horizontal ? 'tabs-menu-container horizontal' : 'tabs-menu-container'}>
+			<div className={this.props.horizontal ? 'fluid-container tabs' : 'fluid-container tabs row '} style={{height:'100%'}}>
+				<div className={this.props.horizontal ? 'tabs-menu-container horizontal' : 'tabs-menu-container'} >
 					{ this.state.tabs.map(tab=>{
 						return(
 							<NavLink to={this.props.baseUrl + tab.url} key={tab.name} className="tabs-menu-item" >

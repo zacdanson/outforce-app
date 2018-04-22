@@ -54,12 +54,12 @@ export class EmployerAdmin extends Component {
 
 				let tabs = [
 					{
-						name: this.props.companyData ? this.props.companyData.globalWorkName.toUpperCase() + ' INFO' : 'INFO',
+						name: this.props.companyData && this.props.companyData.globalWorkName ? this.props.companyData.globalWorkName.toUpperCase() + ' INFO' : 'INFO',
 						url: '/work-info',
 						active: this.props.match.params.tab === 'work-info'
 					},
 					{
-						name: this.props.companyData ? this.props.companyData.globalWorkName.toUpperCase() + ' LOGS' : 'LOGS',
+						name: this.props.companyData && this.props.companyData.globalWorkName ? this.props.companyData.globalWorkName.toUpperCase() + ' LOGS' : 'LOGS',
 						url: '/work-logs',
 						active: this.props.match.params.tab === 'work-logs'
 					},
@@ -94,10 +94,10 @@ export class EmployerAdmin extends Component {
 										company={this.props.companyData}
 										updatePayPeriodDetails={(selectedPayFrequency)=>this.props.dispatch(CompanyDataActions.updatePayPeriodDetails(selectedPayFrequency, this.props.user.companyId))}
 										user={this.props.user}
-										globalWorkName={this.props.companyData.globalWorkName}
+										globalWorkName={this.props.companyData.globalWorkName || 'Work ogs' }
 										workLogs={this.props.workLogs}
 										workTypes={this.props.workTypes}
-										updateWorkType={(workTypeId, workType)=>this.props.dispatch(WorkDataActions.updateWorkType(this.props.user.companyId, workTypeId, workType))}
+										updateWorkType={(workTypeId, workType, duration)=>this.props.dispatch(WorkDataActions.updateWorkType(this.props.user.companyId, workTypeId, workType, duration))}
 										createWorkType={(workTypeId, workType)=>this.props.dispatch(WorkDataActions.createWorkType(this.props.user.companyId, workTypeId, workType))}
 										updateGlobalWorkName={(globalWorkName)=>this.props.dispatch(WorkDataActions.updateGlobalWorkName(this.props.user.companyId, globalWorkName))}
 										deleteWorkType={(workTypeId)=>this.props.dispatch(WorkDataActions.deleteWorkType(this.props.user.companyId, workTypeId))}
@@ -115,7 +115,7 @@ export class EmployerAdmin extends Component {
 												<JobRoles
 													updateAssignCondition={(assignCondition)=>this.props.dispatch(EmployerDataActions.updateAssignCondition(this.props.user.companyId, assignCondition))}
 													assignCondition={this.props.assignCondition}
-													globalWorkName={this.props.companyData.globalWorkName}
+													globalWorkName={this.props.companyData.globalWorkName || ''}
 													deleteJobRole={(jobRoleId, companyId)=>this.props.dispatch(EmployerDataActions.deleteJobRole(jobRoleId, companyId))}
 													user={this.props.user}
 													jobRoles={this.props.jobRoles}

@@ -4,7 +4,6 @@ import Button from '../elements/Button.component';
 
 export const getImageString = async (props)=>{
 
-	console.log(props);
 	let profile_upload = document.getElementsByName(props.name)[0].files[0];
 	let reader = new FileReader();
 	let url = reader.readAsDataURL(profile_upload);

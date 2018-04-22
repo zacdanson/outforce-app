@@ -38,15 +38,15 @@ export const setUserRole = () => {
 export const handleSignup = ( email, password ) => {
 	return (dispatch) =>{
 		try {
-			console.log('here');
+
 		firebase.auth().createUserWithEmailAndPassword(email, password).catch(error=>{
 				if(error){
-					console.log(error);
+
 					dispatch(signupError(error));
 				}
 			});
 		} catch (error){
-			console.log(error);
+
 			dispatch(loading(false));
 			dispatch(signupError(error));
 		}
@@ -58,7 +58,7 @@ export const checkInviteLink = (id, cid, type) => {
 	return (dispatch) => {
 		dispatch(loading(true));
 
-		console.log(id);
+
 		if(!id || !cid  ||!type){
 			window.location.pathname= '/login';
 			dispatch(loading(false));
@@ -69,7 +69,7 @@ export const checkInviteLink = (id, cid, type) => {
 				/// if there isn't an active link or the link is === false.
 				if(docRef.exists){
 					let data  = docRef.data();
-					console.log(data);
+
 					if(data.linkActive){
 						console.log('link active so continue');
 						dispatch(loading(false));

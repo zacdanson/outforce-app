@@ -31,7 +31,7 @@ class JobRoleModel extends Component {
 			this.setState({
 				selectedCondition: selected
 			});
-			console.log('this state1 - ', selected);
+
 		}
 	}
 
@@ -39,7 +39,7 @@ class JobRoleModel extends Component {
 		this.setState({
 				selectedCondition: e.value
 			});
-		console.log('this state - ', e.value);
+
 	}
 
 	updateJobRoleConditions(){

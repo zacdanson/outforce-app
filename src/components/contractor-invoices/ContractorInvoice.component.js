@@ -14,7 +14,7 @@ class ContractorInvoice extends Component {
 	}
 
 	selectInvoice(id){
-		console.log(id);
+
 		_.each(this.props.invoices, (invoice)=>{
 			if(invoice.id === id){
 				this.setState({
@@ -25,9 +25,9 @@ class ContractorInvoice extends Component {
 	}
 
 	render(){
-		console.log(this.props.invoices);
+
 		return(
-			<div className="row" style={{height:'100%'}}>
+			<div className="row" style={{width:'100%'}}>
 				<div className="col-lg-3">
 					<AllPayPeriods
 						invoices={this.props.invoices}

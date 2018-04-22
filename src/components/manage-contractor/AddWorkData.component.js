@@ -21,7 +21,7 @@ class AddWorkData extends Component {
 	componentWillMount(){
 		let types = [];
 		_.each(this.props.workTypes, (type, index)=>{
-				types[index] = { value: type.workTypeId, label: type.workType };
+				types[index] = { value: type.workTypeId, label: type.workType, duration: type.duration };
 		});
 		this.setState({
 			workTypes: types,
@@ -48,9 +48,8 @@ class AddWorkData extends Component {
 		let workData = {...this.state.workData};
 		workData.workTypeId = this.state.workType.value;
 		workData.workType = this.state.workType.label;
+		workData.duration = this.state.workType.duration;
 		workData.start = moment(workData.start, 'M/D/YYYY h:mm a').format('x');
-		workData.end = moment(workData.end, 'M/D/YYYY h:mm a').format('x');
-		workData.total = moment(workData.end, 'x').diff(moment(workData.start,'x'), 'minutes');
 		this.props.addWorkData(workData);
 		$('#addWorkData').modal('toggle');
 	}
@@ -68,22 +67,13 @@ class AddWorkData extends Component {
 				<div>
 					<div className="container" style={{paddingTop:20}}>
 						<div className="form-group">
-							<label style={{width:100}}>From:</label>
+							<label style={{width:100}}>Date and Time:</label>
 								<DateTime id='id'
 													name='name'
 													step={5}
 													value={this.state.workData.start}
 													onChange={(val)=>this.updateWorkData('start', val)}
 								/>
-						</div>
-						<div className="form-group">
-							<label style={{width:100}}>to:</label>
-							<DateTime id='id'
-												name='name'
-												step={5}
-												value={this.state.workData.end}
-												onChange={(val)=>this.updateWorkData('end', val)}
-							/>
 						</div>
 						<div className="form-group">
 							<label style={{width:100}}>WorkType</label>

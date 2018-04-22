@@ -64,36 +64,6 @@
     .dashboard-card-summary-container{
       padding:2.2rem !important;
 
-      .card-ranges-buttons{
-        display: inline-block;
-        margin-bottom: 20px;
-        margin-left: 9px;
-
-        .card-ranges-button{
-          display: inline;
-          font-size: 1.25rem;
-          outline: none !important;
-          height: 2.75rem;
-          padding: .5rem 1.25rem;
-          margin: 0px;
-          font-size: 1rem;
-          background: #f4f5f8;
-          border: 0;
-          text-shadow: none !important;
-        }
-        .card-ranges-button:hover{
-          border: 0;
-          background: #e2e5ec;
-          cursor: pointer;
-        }
-
-        .selected{
-          background-color: $successColor;
-          color:#fff;
-        }
-
-      }
-
       .dashboard-card-summary-row{
         padding:1rem !important;
       }
@@ -102,8 +72,39 @@
 
   }
 
+  .card-ranges-buttons{
+    display: inline-block;
+    margin-bottom: 20px;
+    margin-left: 9px;
+
+    .card-ranges-button{
+      display: inline;
+      font-size: 1.25rem;
+      outline: none !important;
+      height: 2.75rem;
+      padding: .5rem 1.25rem;
+      margin: 0px;
+      font-size: 1rem;
+      background: #f4f5f8;
+      border: 0;
+      text-shadow: none !important;
+    }
+    .card-ranges-button:hover{
+      border: 0;
+      background: #e2e5ec;
+      cursor: pointer;
+    }
+
+    .selected{
+      background-color: $successColor;
+      color:#fff;
+    }
+
+  }
 
 
 }
+
+
 
 

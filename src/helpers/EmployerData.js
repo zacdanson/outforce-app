@@ -34,7 +34,7 @@ export const getAllWorkLogs = (companyId) => {
 };
 
 export const formatDuration = duration =>{
-	console.log(' duration - ', duration );
+
 	if(duration <= 60){
 		return duration + ' mins';
 	} else {
@@ -54,7 +54,7 @@ export const getWorkLogsRange = (companyId, startDate, endDate) => {
 				let logs = [];
 				let duration = 0;
 				result.forEach(log=>{
-					if(parseInt(log.start) >= parseInt(startDate) && parseInt(log.end) <= parseInt(endDate)){
+					if(parseInt(log.start) >= parseInt(startDate) && parseInt(log.start) <= parseInt(endDate)){
 						duration+=parseFloat(log.total);
 						logs.push(log);
 					}
@@ -81,7 +81,7 @@ export const updateEmployerWorkTypes = (userId, companyId, workTypes) => {
 	return new Promise((resolve, reject)=>{
 		let batch = db.batch();
 		workTypes.map(type=>{
-			console.log(companyId);
+
 			let ref = db.collection("companies").doc(companyId).collection('workTypes').doc(type.workTypeId);
 			batch.set(ref, {workType: type.workType});
 		});
@@ -94,10 +94,11 @@ export const updateEmployerWorkTypes = (userId, companyId, workTypes) => {
 	});
 };
 
-export const updateEmployerWorkType = (companyId, workTypeId, workType) => {
+export const updateEmployerWorkType = (companyId, workTypeId, workType, duration) => {
 	return new Promise((resolve, reject)=>{
 		db.collection('companies').doc(companyId).collection('workTypes').doc(workTypeId).set({
-		workType
+			workType,
+			duration
 		}).then(result=>{
 			resolve({success:true});
 		}).catch(error=>{
@@ -145,7 +146,7 @@ export const getEmployerWorkTypes = (userId, companyId) =>{
 					}
 
 					let workTypeData = doc.data();
-					workTypes.push({workTypeId: doc.id, workType: workTypeData.workType});
+					workTypes.push({workTypeId: doc.id, workType: workTypeData.workType, duration: workTypeData.duration});
 
 				});
 				resolve(workTypes);
@@ -216,7 +217,7 @@ export const getContractorWorkData = (userId) => {
 				let workData = [];
 				snapshot.forEach(doc=>{
 					if(!doc.exists){
-						console.log('no data for this user');
+
 					}
 					workData.push(doc.data());
 				});
@@ -275,7 +276,7 @@ export const sixMonthsWorkLogs = (companyId) => {
 				months[index].workLogs = month.logs;
 				months[index].totalDuration = month.totalDuration;
 			});
-			console.log(' months - ', months );
+
 			///resolve months.
 			resolve({sixMonthLogs: months});
 		});
@@ -362,10 +363,184 @@ export const getEmployerAssignCondition = (companyId) => {
 				return;
 			}
 			let companyData = data.data();
-			console.log(companyData);
+
 			resolve({assignCondition:companyData.assignCondition});
 		}).catch(error=>{
 			reject({error});
 		});
 	});
+};
+
+export const getAllContractorsInvoiceTotal = (companyId, start, end) => {
+	return new Promise((resolve, reject)=>{
+		let ids = [];
+		let total = 0;
+		let promises = [];
+		db.collection('companies').doc(companyId).collection('contractors').get()
+			.then(snapshot=>{
+				snapshot.forEach(contractor=>{
+					let contractorData = contractor.data();
+					promises.push(db.collection('users').doc(contractorData.uid).collection('invoices').where('start', '>=', start).where('start', '<=', end).get());
+				});
+
+				Promise.all(promises).then(results=>{
+
+					let total = 0;
+					if(!results){
+						resolve(total);
+						return;
+					}
+					_.each(results, snapshot=>{
+						_.each(snapshot.docs, snap=>{
+							let invoice = snap.data();
+							total+=parseFloat(invoice.total).toFixed(2);
+						});
+					});
+
+					resolve(parseFloat(total).toFixed(2));
+
+				});
+
+		});
+
+	});
+};
+
+export const getJobRoles = (companyId) => {
+	return new Promise((resolve, reject)=>{
+		db.collection('companies').doc(companyId).collection('jobRoles').get()
+			.then(snapshot=>{
+				let proms = [];
+				if(snapshot.exists){
+					snapshot.forEach(snap=>{
+						proms.push(snap);
+					});
+					resolve(proms);
+				}
+			})
+	});
+};
+
+
+export const getProfits = (companyId, start, end) => {
+	return new Promise((resolve, reject)=>{
+		let logs = [];
+		let profits = 0;
+		let grossProfits = 0;
+
+		getWorkLogsRange(companyId, start, end).then(workLogs =>{
+
+			_.each(workLogs.logs, log=>{
+				if(log.start >= start && log.start <=end){
+					logs.push(log);
+				}
+			});
+
+			_.each(logs, log=>{
+
+				let price = parseInt(log.price);
+				profits+=price;
+
+
+			});
+
+			getCosts(companyId, start, end ).then(contractorCosts=>{
+
+				grossProfits = parseInt(profits)- parseInt(contractorCosts);
+
+				resolve({
+					grossProfit: parseInt(grossProfits).toFixed(2),
+					costs: parseInt(contractorCosts).toFixed(2),
+					profit: parseInt(profits).toFixed(2)
+				});
+			});
+
+		});
+
+	});
+};
+
+
+export const getCosts = (companyId, start, end) => {
+	return new Promise((resolve, reject)=>{
+		getEmployerWorkTypes('', companyId).then(workTypes=>{
+			getWorkLogsRange(companyId, start, end).then(workLogs=> {
+				let logs =  workLogs.logs;
+
+				let amount = 0;
+				_.each(logs, log=>{
+
+
+						amount += (parseFloat(log.duration).toFixed(2)/60)*parseFloat(log.hourlyCost).toFixed(2);
+				});
+
+				resolve(amount);
+			});
+		});
+	});
+};
+
+
+export const getEmployerFinanceTotals = (companyId, range ) => {
+	return new Promise((resolve, reject)=>{
+		let ranges = [];
+		let promises = [];
+		let start, end;
+		if(range === 'week'){
+			start = moment().startOf('week').format('x');
+			end = moment(start, 'x').endOf('day').format('x');
+			for(let i = 0; i<=6; i++){
+				ranges.unshift({
+					start,
+					end,
+					name: moment(start,'x').format('dddd')
+				});
+				start = moment(start, 'x').add('1', 'days').format('x');
+				end = moment(end, 'x').add('1', 'days').format('x');
+			}
+		} else if( range === 'month'){
+			start = moment().startOf('month').format('x');
+			end = moment(start, 'x').endOf('week').format('x');
+			for(let i = 0; i<=4; i++){
+				ranges.unshift({
+					start,
+					end,
+					name: moment(start,'x').format('DD-MMM')
+				});
+				start = moment(start, 'x').add('1', 'week').format('x');
+				end = moment(end, 'x').add('1', 'week').format('x');
+			}
+		} else if(range === 'year'){
+			start = moment().startOf('year').format('x');
+			end = moment(start, 'x').endOf('month').format('x');
+			for(let i = 0; i<=11; i++){
+				ranges.unshift({
+					start,
+					end,
+					name: moment(start,'x').format('MMM')
+				});
+				start = moment(start, 'x').add('1', 'month').format('x');
+				end = moment(start, 'x').endOf('month').format('x');
+			}
+		}
+
+		_.each(ranges, (range, index)=>{
+			promises.unshift(getProfits(companyId, range.start, range.end));
+		});
+
+		Promise.all(promises).then(results=>{
+			let data = [];
+			_.each(results, (result, index)=>{
+				data.unshift({
+					name: ranges[index].name,
+					revenue: parseInt(result.profit),
+					costs: parseInt(result.costs),
+					profit: parseInt(result.grossProfit)
+				});
+			});
+			resolve(data);
+		});
+
+	});
+
 };

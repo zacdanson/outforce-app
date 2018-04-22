@@ -11,7 +11,7 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
-	console.log(action);
+
 	switch (action.type) {
 		case 'UPDATE_CONTRACTORS_LIST':
 			return {...state, contractors: action.payload };
@@ -26,7 +26,6 @@ export default (state = INITIAL_STATE, action) => {
 		case 'UPDATE_JOB_ROLES':
 			return {...state, jobRoles: action.payload };
 		case 'UPDATE_ASSIGN_CONDITION':
-			console.log(action.payload);
 			return {...state, assignCondition: action.payload };
 		case 'UPDATE_COMPANY_DATA':
 			return { ...state, companyData: action.payload};

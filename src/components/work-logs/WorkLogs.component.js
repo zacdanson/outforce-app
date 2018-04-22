@@ -4,7 +4,7 @@ import { Select } from 'grommet';
 import { WorkLogListItem } from './WorkLogListItem.component';
 
 const WorkLogs = (props) => {
-	console.log(props);
+
 	let types = [];
 	_.each(props.workTypes, (type, index)=>{
 		types[index] = {
@@ -20,8 +20,7 @@ const WorkLogs = (props) => {
 					<thead>
 					<tr>
 						<th scope="col">Duration</th>
-						<th scope="col">Start</th>
-						<th scope="col">End</th>
+						<th scope="col">Date</th>
 						<th scope="col">Work Type</th>
 						<th scope="col"></th>
 					</tr>

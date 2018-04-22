@@ -13,7 +13,8 @@ import {
 } from '../../actions/auth-actions/signup_actions';
 
 import {
-	checkAuth
+	checkAuth,
+	signupEmployer
 } from '../../actions/auth-actions/auth_actions';
 
 import {
@@ -37,7 +38,6 @@ class EmployerSignup extends Component{
 	}
 
 	bindInputValue(property, valType, element){
-		console.log(element, valType, property);
 		let valid = ValidateInput({
 			element: element.target,
 			type: valType

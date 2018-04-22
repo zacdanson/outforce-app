@@ -2831,30 +2831,30 @@ a, a:hover, a:focus {
     padding: 0 !important; }
     .o-card-container .o-card-content-no-padding .dashboard-card-summary-container {
       padding: 2.2rem !important; }
-      .o-card-container .o-card-content-no-padding .dashboard-card-summary-container .card-ranges-buttons {
-        display: inline-block;
-        margin-bottom: 20px;
-        margin-left: 9px; }
-        .o-card-container .o-card-content-no-padding .dashboard-card-summary-container .card-ranges-buttons .card-ranges-button {
-          display: inline;
-          font-size: 1.25rem;
-          outline: none !important;
-          height: 2.75rem;
-          padding: .5rem 1.25rem;
-          margin: 0px;
-          font-size: 1rem;
-          background: #f4f5f8;
-          border: 0;
-          text-shadow: none !important; }
-        .o-card-container .o-card-content-no-padding .dashboard-card-summary-container .card-ranges-buttons .card-ranges-button:hover {
-          border: 0;
-          background: #e2e5ec;
-          cursor: pointer; }
-        .o-card-container .o-card-content-no-padding .dashboard-card-summary-container .card-ranges-buttons .selected {
-          background-color: #716aca;
-          color: #fff; }
       .o-card-container .o-card-content-no-padding .dashboard-card-summary-container .dashboard-card-summary-row {
         padding: 1rem !important; }
+  .o-card-container .card-ranges-buttons {
+    display: inline-block;
+    margin-bottom: 20px;
+    margin-left: 9px; }
+    .o-card-container .card-ranges-buttons .card-ranges-button {
+      display: inline;
+      font-size: 1.25rem;
+      outline: none !important;
+      height: 2.75rem;
+      padding: .5rem 1.25rem;
+      margin: 0px;
+      font-size: 1rem;
+      background: #f4f5f8;
+      border: 0;
+      text-shadow: none !important; }
+    .o-card-container .card-ranges-buttons .card-ranges-button:hover {
+      border: 0;
+      background: #e2e5ec;
+      cursor: pointer; }
+    .o-card-container .card-ranges-buttons .selected {
+      background-color: #716aca;
+      color: #fff; }
 
 a, a:hover, a:focus {
   color: inherit !important;

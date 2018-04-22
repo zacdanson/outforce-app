@@ -7,7 +7,7 @@ const moment = require('moment');
 export const getWorkTypes = (userId, companyId) => {
 	return async dispatch=>{
 		getEmployerWorkTypes(userId, companyId).then(data=>{
-			console.log('here - ', data);
+
 		});
 	};
 };
@@ -60,7 +60,7 @@ export const updateWorkDataObject = (property, value, currentObject) => {
 
 export const removeLog = (contractorId, companyId, logId, currentData) => {
 	return (dispatch)=> {
-		console.log('ere');
+
 		swal({
 			title: "Are you sure?",
 			text: "Are you sure that you want to remove this log?",
@@ -71,7 +71,7 @@ export const removeLog = (contractorId, companyId, logId, currentData) => {
 			dispatch(loadingAnimation(true));
 			if (willDelete) {
 				deleteLog(contractorId, companyId, logId).then(res=>{
-					console.log(res);
+
 					dispatch(getWorkLogs(contractorId, companyId, currentData));
 				});
 			} else {
@@ -84,7 +84,6 @@ export const removeLog = (contractorId, companyId, logId, currentData) => {
 export const getWorkDataBetween = (companyId, start, end) =>{
 	return dispatch => {
 		getWorkLogsRange(companyId, start, end).then(result=>{
-				console.log(start, end);
 				dispatch(updateEmployerDashboard('loggedWork', {workLogs: result, from:start, to: end}));
 		});
 	};
@@ -109,7 +108,7 @@ const getContractorDashboardData = async (companyId) => {
 	let months = [];
 
 	await getAllContractors('', companyId).then(res=>{
-		console.log('res - ', res);
+
 		contractorCount = res.length;
 		contractorList = _.orderBy(res, ['workData'], ['desc']);
 		topPerformer = _.orderBy(res, ['dailySessions'], ['desc']);
@@ -158,7 +157,7 @@ export const updateGlobalWorkName = (companyId, workName) => {
 	return (dispatch) => {
 		updateEmployerGlobalWorkName(companyId, workName).then(res=>{
 			if(!res.error){
-				console.log('updated global work name');
+
 			}
 		});
 	};
@@ -196,7 +195,7 @@ export const workTypeSummary = async (companyId) => {
 			workLogs = result;
 		});
 
-		console.log(workTypes.length);
+
 		_.each(workTypes, type=>{
 			type.value=0;
 			type.label = type.workType;

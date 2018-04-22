@@ -21,7 +21,7 @@ class PersonalInformation extends Component{
 	updateDetails(property, value){
 		let newDetails = this.state.contractor;
 		newDetails[property] = value;
-		console.log(newDetails);
+
 		this.setState({ contractor : newDetails});
 	}
 
@@ -31,7 +31,7 @@ class PersonalInformation extends Component{
 	}
 
 	shouldComponentUpdate(nextProps, nextState){
-		console.log(nextProps, nextState);
+
 		return nextState.contractor !== '';
 	}
 

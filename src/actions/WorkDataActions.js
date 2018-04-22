@@ -49,11 +49,18 @@ const getWorkName = (companyId) => {
 	};
 };
 
-const updateWorkType = (companyId, workTypeId, workType) => {
+const updateWorkType = (companyId, workTypeId, workType, duration) => {
 	return dispatch => {
-		updateEmployerWorkType(companyId, workTypeId, workType).then(result=>{
+		updateEmployerWorkType(companyId, workTypeId, workType, duration).then(result=>{
 			if(result.success){
 				dispatch(getWorkTypes('', companyId));
+				swal({
+					icon:'success',
+					title: 'updated work type',
+					timer: 2000,
+					buttons: false,
+					className: 'swal-custom-padding'
+				});
 				return;
 			}
 			console.log('error');
@@ -85,7 +92,7 @@ const deleteWorkLog = (contractorId, logId, companyId ) => {
 };
 
 const updateWorkLog = (logId, workTypeId, companyId) => {
-	console.log(logId, workTypeId, companyId);
+
 	return dispatch => {
 		updateLog(logId, workTypeId, companyId).then(result=>{
 			if(!result.error){

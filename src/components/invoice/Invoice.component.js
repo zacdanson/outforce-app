@@ -12,7 +12,7 @@ class Invoice extends Component{
 
 		return (
 			<div className="invoice-container">
-					<object width="100%" height="100%" data={'data:application/pdf;base64, '+this.props.invoice} type="application/pdf" charSet="ascii"/> : ''
+					<object width="100%" height="100%" data={'data:application/pdf;base64, '+this.props.invoice} type="application/pdf" charSet="ascii"/>
 			</div>
 		);
 	}

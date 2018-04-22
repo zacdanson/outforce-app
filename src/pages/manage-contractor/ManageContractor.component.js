@@ -12,10 +12,11 @@ import {
 	PersonalInformation,
 	ContractorWorkData
 } from '../../components/manage-contractor';
+import ContractorInvoice from '../../components/contractor-invoices/ContractorInvoice.component';
 import ContractorDataActions from '../../actions/ContractorDataActions';
 import WorkDataActions from '../../actions/WorkDataActions';
 import {loading} from '../../actions/main_actions';
-import  Loader  from '../../components/loading-animation/Loader.component';
+import  Loader from '../../components/loading-animation/Loader.component';
 
 @connect((store)=>{
 	return {
@@ -25,7 +26,8 @@ import  Loader  from '../../components/loading-animation/Loader.component';
 		contractors: store.firebaseData.contractors,
 		loading: store.main.loading,
 		contractor:store.contractor.contractor,
-		globalWorkName: store.firebaseData.globalWorkName
+		globalWorkName: store.firebaseData.globalWorkName,
+		invoices: store.contractor.invoices
 	}
 })
 
@@ -40,6 +42,15 @@ class ManageContractor extends Component {
 		let id = this.props.match.params.id;
 		console.log('paramss - ', this.props.match.params);
 		this.props.dispatch(ContractorDataActions.getContractorData(id));
+		this.props.dispatch(ContractorDataActions.getContractorInvoices(id));
+
+	}
+
+	componentDidMount(){
+		this.props.dispatch({
+			type:'UPDATE_CONTRACTOR_OBJECT',
+			payload: ''
+		});
 	}
 
 	render(){
@@ -68,7 +79,8 @@ class ManageContractor extends Component {
 					text=" back"
 					onClick={()=>this.props.history.push('/index/employer/employer-contractors')}
 				/>
-				<Tabs
+
+				{ this.props.contractor ? <Tabs
 						horizontal={true}
 						baseUrl={"/index/employer/employer-contractors/"+this.props.match.params.id}
 						tabs={tabs}>
@@ -90,7 +102,15 @@ class ManageContractor extends Component {
 								deleteWorkLog={(contractorId, logId, companyId)=>this.props.dispatch(ContractorDataActions.deleteContractorWorkLog(contractorId, logId, companyId))}
 							/>
 						</div> : ''}
-				</Tabs>
+					{
+						tabs[2].active ?
+							<div className="row" style={{height:'100%'}}>
+								<ContractorInvoice
+									invoices={this.props.invoices}
+								/>
+							</div> : ''
+					}
+				</Tabs> : <Loader size="small" /> }
 
 			</div>
 		);

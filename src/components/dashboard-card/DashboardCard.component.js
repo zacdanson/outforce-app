@@ -32,7 +32,7 @@ const DashboardCard = (props) => {
 					let previousRow = -1;
 					if ( $index % 2 === 0) {
 						previousRow+=1;
-						console.log(_.slice(props.items, previousRow, $index), $index);
+
 						return (
 							<DashboardRow
 								key={$index}

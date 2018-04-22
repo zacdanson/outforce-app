@@ -10,10 +10,6 @@ class ContractorEarnings extends Component{
 		super(props);
 	}
 
-	componentDidMount(){
-		console.log('hereeeee');
-		console.log(this.props);
-	}
 
 	render() {
 		return (

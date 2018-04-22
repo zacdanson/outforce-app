@@ -53,12 +53,12 @@ const getSixMonthContractorCount = (contractors) => {
 	let months = [];
 
 	for(let i = 0; i<6; i++){
-		months[i] = {
+		months.unshift({
 			month: moment(start).format('MMM'),
 			start: moment(start).format('x'),
 			end: moment(end).format('x'),
 			contractors: [],
-		};
+		});
 		start = moment(start).subtract(1, 'month');
 		end = moment(start).endOf('month');
 	}

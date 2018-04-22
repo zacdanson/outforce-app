@@ -30,9 +30,8 @@ const INITIAL_STATE = {
 		ranges:[
 			{label:'daily', value:0 }, {label:'weekly', value:1 }, { label:'monthly', value:2 }
 		],
-		workLogs:[]
-
-	}
+		workLogs:[],
+	},
 
 };
 
@@ -73,6 +72,7 @@ export default (state = INITIAL_STATE, action) => {
 		// employer dashboard
 		case 'UPDATE_DASHBOARD_DATA':
 			return {...state, dashboardData: action.payload};
+
 		case 'UPDATE_DASHBOARRD_DATA_PROPERTY':
 			let newDashState = {...state.dashboardData};
 			newDashState[action.property] = action.payload;
