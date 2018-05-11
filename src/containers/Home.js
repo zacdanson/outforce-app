@@ -40,7 +40,7 @@ class Home extends Component{
 		this.props.dispatch(loading(false))
 	}
 
-	componentWillMount(){
+	componentDidMount(){
 		if(this.props.user.userRole === 'employer'){
 			this.props.dispatch(WorkDataActions.getWorkLogs(this.props.user.companyId));
 			this.props.dispatch(EmployerDataActions.getContractors(this.props.user.uid, this.props.user.companyId));
@@ -50,11 +50,13 @@ class Home extends Component{
 			this.props.dispatch(ContractorDataActions.getContractorData(this.props.user.uid));
 		}
 
-		this.props.dispatch(WorkDataActions.getWorkTypes(this.props.user.uid, this.props.user.companyId));
-		this.props.dispatch(WorkDataActions.getWorkName(this.props.user.companyId));
-		this.props.dispatch(CompanyDataActions.getCompanyData(this.props.user.companyId));
-		this.props.dispatch(CompanyDataActions.getCurrentPayPeriod(this.props.user.companyId));
-		this.props.dispatch(CompanyDataActions.getJobRoles(this.props.user.companyId));
+		if(this.props.user.uid && this.props.user.companyId){
+			this.props.dispatch(WorkDataActions.getWorkTypes(this.props.user.uid, this.props.user.companyId));
+			this.props.dispatch(WorkDataActions.getWorkName(this.props.user.companyId));
+			this.props.dispatch(CompanyDataActions.getCompanyData(this.props.user.companyId));
+			this.props.dispatch(CompanyDataActions.getCurrentPayPeriod(this.props.user.companyId));
+			this.props.dispatch(CompanyDataActions.getJobRoles(this.props.user.companyId));
+		}
 
 	}
 

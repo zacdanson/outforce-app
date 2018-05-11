@@ -25,7 +25,6 @@ export const handleLogin = (email, password) => {
         try {
             firebase.auth().signInWithEmailAndPassword(email, password)
 							.then(data=>{
-
 							}).catch(error=>{
 								dispatch(loginError(error));
 								dispatch(loading(false));
@@ -183,12 +182,11 @@ export const signupContractor = (contractor, id, cid) =>{
 
 export const getUserData = (uid, props) => {
 	return (dispatch) => {
-		console.log('get usa data ');
+		console.log(' --------- GET USER DATA ----------- ', uid);
 		dispatch(loading(true));
 		db.collection('users').doc(uid).get().then(
 			user => {
 				if(user.exists){
-
 					let userData = user.data();
 					/// user exists in DB so set user state.
 					dispatch({
@@ -235,10 +233,10 @@ export const checkAuth = (props) =>{
 			if(unsubscribe){
 				unsubscribe();
 			}
+			console.log('this. local ', window.localStorage);
 			unsubscribe =	firebase.auth().onAuthStateChanged(data=>{
-			console.log('auth status - ', data);
 			if(data){
-
+				console.log(' --------- CHECK AUTH ----------- ', data);
 				dispatch(getUserData(data.uid, props));
 			} else {
 				localStorage.clear();

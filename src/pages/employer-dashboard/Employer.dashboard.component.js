@@ -37,7 +37,9 @@ export class EmployerDashboard extends Component {
 
 		}
 
-		componentWillMount(){
+		componentDidMount(){
+
+			console.log(' --------- EMPLOYER DASH ----------- ', this.props.user);
 			this.props.dispatch(WorkDataActions.getWorkTypes(this.props.user.uid, this.props.user.companyId));
 			this.props.dispatch(WorkDataActions.getWorkLogs(this.props.user.companyId));
 			this.props.dispatch(WorkDataActions.getWorkName(this.props.user.companyId));
