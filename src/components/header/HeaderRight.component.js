@@ -44,7 +44,7 @@ class HeaderRight extends Component{
 
 	renderProfilePic(){
 		if(this.props.user){
-			return <img className="header-profile-picture" src={this.props.user.profilePicture ? this.props.user.profilePicture : "../../../assets/images/user-avatar-placeholder.png"  }/>
+			return <img className="header-profile-picture" src={this.props.user.profilePicture ? this.props.user.profilePicture : "/assets/images/user-avatar-placeholder.png"  }/>
 		}
 	}
 

@@ -8,6 +8,7 @@ import  WorkLogs from '../work-logs/WorkLogs.component';
 import { AddWorkData } from './index';
 
 const ContractorWorkData = (props) => {
+		console.log('props ', props);
 		return(
 			<Card color="blue" cardHeader={props.contractor.fullName + "'s Work Logs"}
 						headerTools={[

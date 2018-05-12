@@ -205,6 +205,7 @@ export const deleteContractors = (users, companyId) =>{
 export const addWorkData = (workData, contractorData) => {
 	return new Promise((resolve, reject)=>{
 		let { uid, companyId, fullName, hourlyRate } = contractorData;
+		console.log('user id ', uid);
 		let { workType, workTypeId, duration, start, end } = workData;
 		db.collection('companies').doc(companyId).collection('workData')
 			.add({
