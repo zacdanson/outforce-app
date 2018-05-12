@@ -61,6 +61,7 @@ class PayPeriodSummary extends Component {
 					headerIcon="fa-briefcase"
 					headerTools={
 						<DateWidget
+							key="4"
 							updateDates={(direction)=>this.updateDates(direction)}
 							from={this.state.from}
 							to={this.state.to}

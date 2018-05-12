@@ -1,6 +1,6 @@
 import { db } from '../../firebase-config';
 import axios from 'axios';
-const BASE_URL = 'http://localhost:3001';
+const BASE_URL = process.env.API_URL;
 
 export const getContractorDetails = (uid) => {
 	return new Promise((resolve, reject)=>{

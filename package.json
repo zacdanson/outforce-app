@@ -4,11 +4,15 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "npm-run-all -p watch-css start-js",
+    "start": "API_URL=http://localhost:3001 NODE_ENV=development npm-run-all -p watch-css start-js",
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
-    "start-js": "webpack-dev-server",
-    "test": "export NODE_ENV=test && jest"
+    "start-js": "webpack-dev-server --open",
+    "test": "export NODE_ENV=test && jest",
+    "compile": "API_URL=https://outforce-backend.herokuapp.com/ NODE_ENV=production webpack --config ./webpack.config.js --progress",
+    "clean": "rm -rf ./dist/app.bundle.js",
+    "build": "npm run clean && npm run compile",
+    "deploy": "npm run build && firebase deploy"
   },
   "dependencies": {
     "animate.css": "^3.5.2",

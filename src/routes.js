@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 const app = require('./scss/App.scss');
-import {   BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {  Route, Switch } from 'react-router-dom';
 import { autoRehydrate } from 'redux-persist'
 require('../firebase-config');
 import Home from './containers/Home.js';

@@ -6,7 +6,7 @@ import { Provider, connect} from 'react-redux';
 import { autoRehydrate, persistStore, persistCombineReducers } from 'redux-persist'
 const uuid = require('uuid4');
 import Routes from './routes';
-import {   BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 const generateData = require('./generateData.js');
 
 
@@ -38,9 +38,9 @@ class App extends Component{
 
 	render() {
 		return (
-			<Router history={history}>
+			<BrowserRouter history={history}>
 				<Routes />
-			</Router>
+			</BrowserRouter>
 		);
 	};
 }

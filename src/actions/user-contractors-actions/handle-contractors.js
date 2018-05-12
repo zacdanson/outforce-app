@@ -3,7 +3,7 @@ import { db } from '../../../firebase-config.js'
 const uuid = require('uuid4');
 import axios  from 'axios';
 import swal from 'sweetalert';
-const BASE_URL = 'http://localhost:3001';
+const BASE_URL = process.env.API_URL;
 import { loadingAnimation } from '../main_actions';
 import { getContractorObject, saveContractorObject} from '../../helpers/ContractorData';
 

@@ -5,21 +5,30 @@ var webpack = require('webpack');
 const ProvidePlugins =  new webpack.ProvidePlugin({
 	_:'lodash',
 	React: 'react',
-	moment: 'moment'
+	moment: 'moment',
 });
+
+const DefinePlugins = new webpack.DefinePlugin({
+	'process.env': {
+		NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+		API_URL: JSON.stringify(process.env.API_URL),
+	}
+});
+
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 	template: './src/index.html',
 	filename: 'index.html',
-	inject: 'body'
+	inject: 'false'
 });
+
 
 module.exports = {
 	entry: ['babel-polyfill', './src/index.js'],
 	output: {
-		path: path.resolve('dist'),
-		publicPath: '/',
-		filename: 'app.bundle.js'
+		path: path.resolve(__dirname, 'dist'),
+		filename: 'app.bundle.js',
+		publicPath: '/'
 	},
 	module: {
 		loaders: [
@@ -48,7 +57,8 @@ module.exports = {
     },
 	plugins: [
 		HtmlWebpackPluginConfig,
-		ProvidePlugins
+		ProvidePlugins,
+		DefinePlugins
 	],
 
 };

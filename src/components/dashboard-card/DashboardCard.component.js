@@ -24,7 +24,7 @@ const DashboardCard = (props) => {
 					/>
 			]}
 		>
-			<div className="dashboard-card-summary-container">
+			<div className="dashboard-card-summary-container" key={props.key}>
 				{props.content ? props.content : ''}
 			{
 				props.items.map((item, $index) => {

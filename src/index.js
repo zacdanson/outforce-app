@@ -16,6 +16,8 @@ import {
 
 require('../firebase-config');
 
+console.log(' ------------ env : ', process.env);
+
 const config = {
 	key: 'root',
 	storage,

@@ -24,7 +24,7 @@ class ContractorsSummary extends Component{
 				toolsType="button"
 				name="viewContractors"
 				headerTools={
-					<NavLink to='/index/employer/employer-contractors'>
+					<NavLink to='/index/employer/employer-contractors' key="0">
 						<Button name={'viewContractors'} onClick={()=>{}}>view</Button>
 					</NavLink>
 				}

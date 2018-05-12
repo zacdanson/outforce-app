@@ -2,7 +2,7 @@ import { db } from '../../firebase-config';
 import firebase from 'firebase';
 let storage = firebase.storage();
 import axios from 'axios';
-const BASE_URL = 'http://localhost:3001';
+const BASE_URL = process.env.API_URL;
 
 export const updateEmployerAutoSendInvoices = (companyId, status)=>{
 	return new Promise((resolve, reject)=>{

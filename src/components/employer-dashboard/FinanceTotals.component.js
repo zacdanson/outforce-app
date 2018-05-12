@@ -36,8 +36,9 @@ class FinanceTotals extends Component {
 		return(
 			<DashboardCard type="summary" className="col" header="Profits Overivew"
 				 items={[]}
+				 key='1'
 				 headerTools={
-					 <div className="card-ranges-buttons">
+					 <div className="card-ranges-buttons" key="1">
 						 {this.state.ranges.map((range, index) => {
 							 return(<div key={index} className={range === this.state.range ? "card-ranges-button selected" : "card-ranges-button"} onClick={()=>this.updateRange(range)}>{range}</div>);
 						 })}

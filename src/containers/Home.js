@@ -30,10 +30,10 @@ class Home extends Component{
 		let gotParams = this.props.children.props.match.params;
 		if(this.props.selectedTab.name === undefined || this.props.selectedTab.location === undefined){
 			let tab = this.props.user.userRole === 'employer' ? '/index/employer/employer-dashboard' : '/index/contractor/contractor-dashboard';
-		//	this.props.dispatch(selectTab({name: 'Dashboard', location: tab }));
+				this.props.dispatch(selectTab({name: 'Dashboard', location: tab }));
 		} else {
 			if(currentPath !== this.props.selectedTab.location && Object.keys(gotParams).length == 0){
-				//window.location = this.props.selectedTab.location;
+				window.location = this.props.selectedTab.location;
 
 			}
 		}

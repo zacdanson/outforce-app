@@ -103,6 +103,7 @@ class WorkLogsSummary extends Component {
 						updateDates={(direction)=>this.updateDates(direction)}
 						from={this.state.from}
 						to={this.state.to}
+						key="2"
 					/>
 				}
 				content={
