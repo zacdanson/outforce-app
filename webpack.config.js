@@ -11,9 +11,12 @@ const ProvidePlugins =  new webpack.ProvidePlugin({
 const DefinePlugins = new webpack.DefinePlugin({
 	'process.env': {
 		NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-		API_URL: JSON.stringify(process.env.API_URL),
+		API_URL: JSON.stringify(process.env.API_URL)
 	}
 });
+
+const Uglify = new webpack.optimize.UglifyJsPlugin();
+
 
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
@@ -57,8 +60,9 @@ module.exports = {
     },
 	plugins: [
 		HtmlWebpackPluginConfig,
+		DefinePlugins,
 		ProvidePlugins,
-		DefinePlugins
+		Uglify
 	],
 
 };

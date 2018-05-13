@@ -39,17 +39,18 @@ export interface WeekdayElementProps {
 export interface DayPickerProps {
   canChangeMonth?: boolean;
   captionElement?:
-    | React.ReactElement<Partial<CaptionElementProps>>
-    | React.ComponentClass<CaptionElementProps>
-    | React.SFC<CaptionElementProps>;
+  | React.ReactElement<Partial<CaptionElementProps>>
+  | React.ComponentClass<CaptionElementProps>
+  | React.SFC<CaptionElementProps>;
   className?: string;
   classNames?: ClassNames;
   containerProps?: React.DetailedHTMLProps<
-    React.HTMLAttributes<HTMLDivElement>,
-    HTMLDivElement
+  React.HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
   >;
   disabledDays?: Modifier | Modifier[];
   showOutsideDays?: boolean;
+  enableOutsideDaysClick?: boolean;
   firstDayOfWeek?: number;
   fixedWeeks?: boolean;
   fromMonth?: Date;
@@ -75,9 +76,9 @@ export interface DayPickerProps {
     string
   ];
   navbarElement?:
-    | React.ReactElement<Partial<NavbarElementProps>>
-    | React.ComponentClass<NavbarElementProps>
-    | React.SFC<NavbarElementProps>;
+  | React.ReactElement<Partial<NavbarElementProps>>
+  | React.ComponentClass<NavbarElementProps>
+  | React.SFC<NavbarElementProps>;
   numberOfMonths?: number;
   onBlur?(e: React.FocusEvent<HTMLDivElement>): void;
   onCaptionClick?(month: Date, e: React.MouseEvent<HTMLDivElement>): void;
@@ -144,9 +145,9 @@ export interface DayPickerProps {
   todayButton?: string;
   toMonth?: Date;
   weekdayElement?:
-    | React.ReactElement<Partial<WeekdayElementProps>>
-    | React.ComponentClass<WeekdayElementProps>
-    | React.SFC<WeekdayElementProps>;
+  | React.ReactElement<Partial<WeekdayElementProps>>
+  | React.ComponentClass<WeekdayElementProps>
+  | React.SFC<WeekdayElementProps>;
   weekdaysLong?: [string, string, string, string, string, string, string];
   weekdaysShort?: [string, string, string, string, string, string, string];
 }
@@ -165,6 +166,7 @@ export interface DayPickerInputProps {
   hideOnDayClick?: boolean;
   clickUnselectsDay?: boolean;
   showOverlay?: boolean;
+  keepFocus?: boolean;
 
   // Not sure React.ComponentClass<any> is the right type for _propTypes2.default.any
   component?: any;
@@ -172,7 +174,7 @@ export interface DayPickerInputProps {
 
   classNames?: ClassNames;
 
-  onDayChange?(e: React.FocusEvent<HTMLDivElement>): void;
+  onDayChange?(day: Date, DayModifiers: DayModifiers): void;
   onChange?(e: React.FocusEvent<HTMLDivElement>): void;
   onClick?(e: React.FocusEvent<HTMLDivElement>): void;
   onFocus?(e: React.FocusEvent<HTMLDivElement>): void;

@@ -6,15 +6,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _locales = require('react-calendar/dist/shared/locales');
 
-Object.defineProperty(exports, 'getLocale', {
+Object.defineProperty(exports, 'getDefaultLocale', {
   enumerable: true,
   get: function get() {
-    return _locales.getLocale;
-  }
-});
-Object.defineProperty(exports, 'setLocale', {
-  enumerable: true,
-  get: function get() {
-    return _locales.setLocale;
+    return _locales.getDefaultLocale;
   }
 });

@@ -15,6 +15,7 @@ exports.isFormElement = isFormElement;
 exports.generateId = generateId;
 exports.generateUUID = generateUUID;
 exports.checkDarkBackground = checkDarkBackground;
+exports.findVisibleParent = findVisibleParent;
 // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
 
 var COLOR_RGB_REGEXP = /rgb\((\d+), (\d+), (\d+)\)/;
@@ -52,7 +53,7 @@ function findScrollParents(element, horizontal) {
     }
     parent = parent.parentNode;
   }
-  // last scrollable element will be the document 
+  // last scrollable element will be the document
   // if nothing else is scrollable in the page
   if (result.length === 0) {
     result.push(document);
@@ -120,7 +121,7 @@ function isFormElement(element) {
 }
 
 function generateId(element) {
-  if (element) {
+  if (element && typeof element.getAttribute === 'function') {
     var id = void 0;
     var elementId = element.getAttribute('id');
     if (!elementId) {
@@ -207,4 +208,12 @@ function checkDarkBackground(colorIndex, element, handler) {
   return { stop: function stop() {
       return clearTimeout(timer);
     } };
+}
+
+function findVisibleParent(element) {
+  if (element) {
+    return element.offsetParent ? element : findVisibleParent(element.parentElement);
+  } else {
+    return null;
+  }
 }
