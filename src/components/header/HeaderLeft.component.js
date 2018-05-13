@@ -27,7 +27,7 @@ class HeaderLeft extends Component{
         return(
 					<div className="headerLeftStyle">
 						<NavLink to={this.props.user.userRole === 'employer' ? "/index/employer/employer-dashboard" : "/index/contractor/contractor-dashboard"}>
-							<img src={require("/assets/images/full-logo.png")} className="logoStyle"/>
+							<img src={require("../../../assets/images/full-logo.png")} className="logoStyle"/>
 						</NavLink>
 						<div className="menuStyle">
 							<i id="menuIcon" className="fa fa-bars iconStyle"  aria-hidden="true" onClick={this.handleSidebar.bind(this)}></i>

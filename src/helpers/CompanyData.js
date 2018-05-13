@@ -46,7 +46,7 @@ export const updateCompanyPayPeriod = (selectedPayFrequency, companyId) =>{
 export const getCompanyPayPeriod = (companyId) => {
 	return new Promise((resolve, reject)=>{
 		db.collection('companies').doc(companyId).get().then(snapshot=>{
-			let companyData = snapshot.data()
+			let companyData = snapshot.data();
 			let selectedPayPeriod = companyData.selectedPayFrequency;
 			let thisWeek = moment().isoWeek();
 			let end;

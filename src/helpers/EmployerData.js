@@ -482,6 +482,7 @@ export const getCosts = (companyId, start, end) => {
 
 
 export const getEmployerFinanceTotals = (companyId, range ) => {
+	console.log('--------- update finance totals -------- ', range);
 	return new Promise((resolve, reject)=>{
 		let ranges = [];
 		let promises = [];
@@ -493,7 +494,7 @@ export const getEmployerFinanceTotals = (companyId, range ) => {
 				ranges.unshift({
 					start,
 					end,
-					name: moment(start,'x').format('dddd')
+					name: moment(start,'x').format('dd')
 				});
 				start = moment(start, 'x').add('1', 'days').format('x');
 				end = moment(end, 'x').add('1', 'days').format('x');

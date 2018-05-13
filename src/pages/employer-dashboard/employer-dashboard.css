@@ -1,21 +1,21 @@
 .employer-dashboard .dashboard-card-summary-row {
   display: table;
   width: 100%;
-  margin-bottom: 2.85rem; }
+  margin-bottom: 2rem; }
   .employer-dashboard .dashboard-card-summary-row .dashboard-card-summary-item {
     display: table-cell;
     padding-right: 0.36rem; }
   .employer-dashboard .dashboard-card-summary-row .dashboard-card-summary-number {
     color: #575962;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 600; }
 
 .employer-dashboard .dashboard-card-number {
   color: #575962;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 600; }
 
 .dashboard-card-number {
   color: #575962;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 600; }

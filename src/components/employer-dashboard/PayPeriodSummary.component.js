@@ -21,7 +21,7 @@ class PayPeriodSummary extends Component {
 	}
 
 	componentWillMount(){
-
+		this.props.getPayPeriods();
 		this.props.getInvoicesTotal(this.state.from, this.state.to);
 	}
 

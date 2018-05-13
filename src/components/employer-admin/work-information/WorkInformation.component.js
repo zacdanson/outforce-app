@@ -120,10 +120,11 @@ export class WorkInformation extends Component {
 		return (
 			<div className="work-information-container">
 
-				<div className="row">
-					<div className="col-4">
+
+					<div className="custom-inline-row">
 						<Card
 							cardHeader="Global Work Name"
+							className="custom-row-item"
 						>
 							<div>
 								<Input
@@ -142,7 +143,7 @@ export class WorkInformation extends Component {
 								<i className="fa fa-info-circle pull-right"></i>
 							</div>
 						</Card>
-						<Card cardHeader={this.state.globalWorkName +' Types'} color="blue" >
+						<Card cardHeader={this.state.globalWorkName +' Types'} color="blue" className="custom-row-item">
 							{ this.state.workTypes.length < 1 ? <p style={{width:'100%'}}> Not yet added any work types. </p> :
 								<table className="table">
 									<thead>
@@ -181,8 +182,8 @@ export class WorkInformation extends Component {
 								</table> }
 						</Card>
 					</div>
-					<div className="col" >
-						<Card cardHeader={'Add '+ this.state.globalWorkName +' Type'} color="blue">
+					<div className="custom-row">
+						<Card cardHeader={'Add '+ this.state.globalWorkName +' Type'} color="blue" className="custom-row-item">
 								<small> Work Types can be attached to logged work, to describe the type of work completed.</small>
 								<div className="row" style={{paddingTop:'20px'}}>
 									<div className="col">
@@ -192,12 +193,13 @@ export class WorkInformation extends Component {
 									<div className="col">
 										<Input value={this.state.newWorkType.value} placeholder="name" onChange={(e)=>this.changeNewWorkType(e)} className={this.state.newWorkType.valid === false ? ' invalid' :  ''} />
 										<br></br>
-										<Button  text='Save Work Type'  className='btn-success pull-right' onClick={()=>this.addWorkType()}/>
+
 									</div>
 									<div className="col">
 										<Input value={this.state.duration.value} placeholder="duration" onChange={(e)=>this.changeNewWorkTypeDuration(e)} className={this.state.duration.valid === false ? ' invalid' :  ''} />
 										<small>in minutes</small>
 										<br></br>
+										<Button style={{marginTop:5}}  text='Save Work Type'  className='btn-success pull-right' onClick={()=>this.addWorkType()}/>
 									</div>
 								</div>
 						</Card>
@@ -207,7 +209,7 @@ export class WorkInformation extends Component {
 							updatePayPeriodDetails={(selectedPayFrequency)=>this.props.updatePayPeriodDetails(selectedPayFrequency)}
 						/>
 					</div>
-				</div>
+
 			</div>
 
 

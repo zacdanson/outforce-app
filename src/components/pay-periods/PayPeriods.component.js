@@ -38,8 +38,9 @@ class PayPeriods extends Component{
 	}
 
 	render(){
+
 		return(
-			<Card cardHeader={'Change Pay Frequency'} color="blue">
+			<Card cardHeader={'Change Pay Frequency'} color="blue" className="custom-row-item">
 				<div className="row" style={{paddingTop:'20px'}}>
 					<div className="form-group col-lg-6">
 						<div>

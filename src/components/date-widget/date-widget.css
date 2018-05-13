@@ -10,9 +10,9 @@
       border: 0;
       text-shadow: none !important;
       outline: none !important;
-      height: 2.75rem;
+      height: 2rem;
       padding: 0 1.25rem;
-      font-size: 1rem; }
+      font-size: .75rem; }
     .date-widget-container .date-widget-arrow-container .date-widget-arrow:hover {
       background: #e2e5ec;
       cursor: pointer; }
@@ -26,13 +26,13 @@
       border: 0;
       text-shadow: none !important;
       outline: none !important;
-      height: 2.75rem;
+      height: 2rem;
       padding: 1.25rem;
-      font-size: 1rem; }
+      font-size: .75rem; }
   .date-widget-container .date-widget-select {
     float: right; }
   .date-widget-container .date-widget-date {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 500;
     text-transform: uppercase;
     margin-top: 0.75rem;

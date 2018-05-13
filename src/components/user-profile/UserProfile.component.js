@@ -55,7 +55,7 @@ class UserProfile extends Component {
 
 	renderProfilePicture(){
 		if(this.props.user){
-				return <img className="user-profile-picture" src={this.props.user.profilePicture ? this.props.user.profilePicture : require("/assets/images/user-avatar-placeholder.png")  }/>
+				return <img className="user-profile-picture" src={this.props.user.profilePicture ? this.props.user.profilePicture : require("../../../assets/images/user-avatar-placeholder.png")  }/>
 		}
 	}
 

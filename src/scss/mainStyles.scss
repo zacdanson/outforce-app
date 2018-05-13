@@ -19,6 +19,7 @@ a, a:hover, a:focus{
 
 .btn{
   display:block;
+  font-size:0.75rem !important;
 }
 .btn:hover{
   cursor: pointer !important;
@@ -27,12 +28,11 @@ a, a:hover, a:focus{
 .btn-primary{
   color:#9699a2;
   display: inline;
-  font-size: 1.25rem;
+  font-size: 0.75rem;
   outline: none !important;
-  height: 2.75rem;
-  padding: .5rem 1.25rem;
-  margin: 0px;
-  font-size: 1rem;
+  height: 2.5rem;
+  padding: 0.5rem 1.25rem;
+  margin: 0;
   background: #f4f5f8;
   border: 0;
   text-shadow: none !important;
@@ -42,6 +42,10 @@ a, a:hover, a:focus{
   border: 0;
   background: #e2e5ec;
   cursor: pointer;
+}
+
+.form-control{
+  font-size:.75rem !important;
 }
 
 
@@ -148,6 +152,7 @@ a, a:hover, a:focus{
   pointer-events: auto;
   padding: 100px 20px 0 20px;
   height:100%;
+  min-width:450px !important;
 }
 
 .home-content-header{

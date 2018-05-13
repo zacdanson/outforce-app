@@ -40,13 +40,8 @@ export class EmployerDashboard extends Component {
 		componentDidMount(){
 
 			console.log(' --------- EMPLOYER DASH ----------- ', this.props.user);
-			this.props.dispatch(WorkDataActions.getWorkTypes(this.props.user.uid, this.props.user.companyId));
-			this.props.dispatch(WorkDataActions.getWorkLogs(this.props.user.companyId));
 			this.props.dispatch(WorkDataActions.getWorkName(this.props.user.companyId));
 			this.props.dispatch(EmployerDataActions.getContractors(this.props.user.uid, this.props.user.companyId));
-			this.props.dispatch(CompanyDataActions.payPeriodsToDate(this.props.user.companyId));
-			this.props.dispatch(EmployerDataActions.getFinanceTotals(this.props.user.companyId, 'week'));
-
 		}
 
     render() {
@@ -59,6 +54,7 @@ export class EmployerDashboard extends Component {
 								<div className="col-sm-6">
 									<WorkLogs
 										workLogs={this.props.workLogs}
+										getWorkLogs={()=>this.props.dispatch(WorkDataActions.getWorkLogs(this.props.user.companyId))}
 										globalWorkName={this.props.globalWorkName}
 									/>
 								</div>
@@ -78,6 +74,7 @@ export class EmployerDashboard extends Component {
 								<div className="col-sm-6">
 									<TotalProfits
 										payPeriods={this.props.payPeriods}
+
 									/>
 								</div>
 							</div>
@@ -101,6 +98,7 @@ export class EmployerDashboard extends Component {
 									contractors={this.props.contractors}
 								/>
 								<PayPeriodSummary
+									getPayPeriods={()=>(this.props.dispatch(CompanyDataActions.payPeriodsToDate(this.props.user.companyId)))}
 									payPeriod={this.props.payPeriod}
 									invoiceTotals={this.props.invoiceTotals}
 									getInvoicesTotal={(from, to)=>this.props.dispatch(EmployerDataActions.calculateTotalInvoices(this.props.user.companyId, from, to))}

@@ -1,5 +1,28 @@
 .work-information-container{
 
 
+  .custom-row {
+  }
+
+  .custom-inline-row{
+
+    display:flex;
+    justify-content: space-between;
+
+  }
+
+  .custom-row-item{
+    flex:1;
+    margin:10px 10px 0 10px;
+  }
+
+
+}
+
+@media (max-width: 1100px){
+
+  .custom-inline-row{
+    flex-direction:column;
+  }
 
 }

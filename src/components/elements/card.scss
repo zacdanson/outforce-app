@@ -51,7 +51,7 @@
 
   .o-card-content{
     padding:2.2rem !important;
-    margin-bottom:30px;
+    margin-bottom:10px;
     color:#9699a2;
 
 
@@ -62,7 +62,7 @@
     padding:0 !important;
 
     .dashboard-card-summary-container{
-      padding:2.2rem !important;
+      padding:1.5rem !important;
 
       .dashboard-card-summary-row{
         padding:1rem !important;
@@ -79,12 +79,11 @@
 
     .card-ranges-button{
       display: inline;
-      font-size: 1.25rem;
       outline: none !important;
-      height: 2.75rem;
+      height: 2rem;
       padding: .5rem 1.25rem;
       margin: 0px;
-      font-size: 1rem;
+      font-size: 0.75rem;
       background: #f4f5f8;
       border: 0;
       text-shadow: none !important;

@@ -9,8 +9,6 @@ describe("test login pages", ()=>{
 	it("should allow login", ()=>{
 
 		cy.visit("http://localhost:8080/login");
-		console.log(localStorage);
-
 	});
 
 

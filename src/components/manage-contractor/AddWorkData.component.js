@@ -56,7 +56,7 @@ class AddWorkData extends Component {
 
 
 	render(){
-		console.log(this.props);
+
 		return(
 			<Modal
 				name="addWorkData"

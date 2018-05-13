@@ -12,7 +12,8 @@ a, a:hover, a:focus {
   opacity: 0; }
 
 .btn {
-  display: block; }
+  display: block;
+  font-size: 0.75rem !important; }
 
 .btn:hover {
   cursor: pointer !important; }
@@ -20,12 +21,11 @@ a, a:hover, a:focus {
 .btn-primary {
   color: #9699a2;
   display: inline;
-  font-size: 1.25rem;
+  font-size: 0.75rem;
   outline: none !important;
-  height: 2.75rem;
-  padding: .5rem 1.25rem;
-  margin: 0px;
-  font-size: 1rem;
+  height: 2.5rem;
+  padding: 0.5rem 1.25rem;
+  margin: 0;
   background: #f4f5f8;
   border: 0;
   text-shadow: none !important; }
@@ -34,6 +34,9 @@ a, a:hover, a:focus {
   border: 0;
   background: #e2e5ec;
   cursor: pointer; }
+
+.form-control {
+  font-size: .75rem !important; }
 
 .btn-yellow {
   background-color: #FBA502 !important;
@@ -126,7 +129,8 @@ a, a:hover, a:focus {
 .home-content {
   pointer-events: auto;
   padding: 100px 20px 0 20px;
-  height: 100%; }
+  height: 100%;
+  min-width: 450px !important; }
 
 .home-content-header {
   border-bottom: 1px solid #ebebeb;
@@ -207,7 +211,7 @@ a, a:hover, a:focus {
     transition: transform 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, opacity 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
     box-sizing: border-box;
     font-family: Roboto, sans-serif;
-    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     box-shadow: rgba(0, 0, 0, 0.12) 0 1px 6px, rgba(0, 0, 0, 0.12) 0 1px 4px;
     position: absolute;
     z-index: 2100;
@@ -413,7 +417,8 @@ a, a:hover, a:focus {
   opacity: 0; }
 
 .btn {
-  display: block; }
+  display: block;
+  font-size: 0.75rem !important; }
 
 .btn:hover {
   cursor: pointer !important; }
@@ -421,12 +426,11 @@ a, a:hover, a:focus {
 .btn-primary {
   color: #9699a2;
   display: inline;
-  font-size: 1.25rem;
+  font-size: 0.75rem;
   outline: none !important;
-  height: 2.75rem;
-  padding: .5rem 1.25rem;
-  margin: 0px;
-  font-size: 1rem;
+  height: 2.5rem;
+  padding: 0.5rem 1.25rem;
+  margin: 0;
   background: #f4f5f8;
   border: 0;
   text-shadow: none !important; }
@@ -435,6 +439,9 @@ a, a:hover, a:focus {
   border: 0;
   background: #e2e5ec;
   cursor: pointer; }
+
+.form-control {
+  font-size: .75rem !important; }
 
 .btn-yellow {
   background-color: #FBA502 !important;
@@ -527,7 +534,8 @@ a, a:hover, a:focus {
 .home-content {
   pointer-events: auto;
   padding: 100px 20px 0 20px;
-  height: 100%; }
+  height: 100%;
+  min-width: 450px !important; }
 
 .home-content-header {
   border-bottom: 1px solid #ebebeb;
@@ -608,7 +616,7 @@ a, a:hover, a:focus {
     transition: transform 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, opacity 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
     box-sizing: border-box;
     font-family: Roboto, sans-serif;
-    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     box-shadow: rgba(0, 0, 0, 0.12) 0 1px 6px, rgba(0, 0, 0, 0.12) 0 1px 4px;
     position: absolute;
     z-index: 2100;
@@ -792,7 +800,7 @@ a, a:hover, a:focus {
     background-color: white;
     transition: transform 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, opacity 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
     box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     box-shadow: rgba(0, 0, 0, 0.12) 0 1px 6px, rgba(0, 0, 0, 0.12) 0 1px 4px;
     position: fixed;
     z-index: 2100;
@@ -858,7 +866,8 @@ a, a:hover, a:focus {
   opacity: 0; }
 
 .btn {
-  display: block; }
+  display: block;
+  font-size: 0.75rem !important; }
 
 .btn:hover {
   cursor: pointer !important; }
@@ -866,12 +875,11 @@ a, a:hover, a:focus {
 .btn-primary {
   color: #9699a2;
   display: inline;
-  font-size: 1.25rem;
+  font-size: 0.75rem;
   outline: none !important;
-  height: 2.75rem;
-  padding: .5rem 1.25rem;
-  margin: 0px;
-  font-size: 1rem;
+  height: 2.5rem;
+  padding: 0.5rem 1.25rem;
+  margin: 0;
   background: #f4f5f8;
   border: 0;
   text-shadow: none !important; }
@@ -880,6 +888,9 @@ a, a:hover, a:focus {
   border: 0;
   background: #e2e5ec;
   cursor: pointer; }
+
+.form-control {
+  font-size: .75rem !important; }
 
 .btn-yellow {
   background-color: #FBA502 !important;
@@ -972,7 +983,8 @@ a, a:hover, a:focus {
 .home-content {
   pointer-events: auto;
   padding: 100px 20px 0 20px;
-  height: 100%; }
+  height: 100%;
+  min-width: 450px !important; }
 
 .home-content-header {
   border-bottom: 1px solid #ebebeb;
@@ -1053,7 +1065,7 @@ a, a:hover, a:focus {
     transition: transform 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, opacity 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
     box-sizing: border-box;
     font-family: Roboto, sans-serif;
-    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     box-shadow: rgba(0, 0, 0, 0.12) 0 1px 6px, rgba(0, 0, 0, 0.12) 0 1px 4px;
     position: absolute;
     z-index: 2100;
@@ -1222,7 +1234,8 @@ a, a:hover, a:focus {
   opacity: 0; }
 
 .btn {
-  display: block; }
+  display: block;
+  font-size: 0.75rem !important; }
 
 .btn:hover {
   cursor: pointer !important; }
@@ -1230,12 +1243,11 @@ a, a:hover, a:focus {
 .btn-primary {
   color: #9699a2;
   display: inline;
-  font-size: 1.25rem;
+  font-size: 0.75rem;
   outline: none !important;
-  height: 2.75rem;
-  padding: .5rem 1.25rem;
-  margin: 0px;
-  font-size: 1rem;
+  height: 2.5rem;
+  padding: 0.5rem 1.25rem;
+  margin: 0;
   background: #f4f5f8;
   border: 0;
   text-shadow: none !important; }
@@ -1244,6 +1256,9 @@ a, a:hover, a:focus {
   border: 0;
   background: #e2e5ec;
   cursor: pointer; }
+
+.form-control {
+  font-size: .75rem !important; }
 
 .btn-yellow {
   background-color: #FBA502 !important;
@@ -1336,7 +1351,8 @@ a, a:hover, a:focus {
 .home-content {
   pointer-events: auto;
   padding: 100px 20px 0 20px;
-  height: 100%; }
+  height: 100%;
+  min-width: 450px !important; }
 
 .home-content-header {
   border-bottom: 1px solid #ebebeb;
@@ -1417,7 +1433,7 @@ a, a:hover, a:focus {
     transition: transform 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, opacity 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
     box-sizing: border-box;
     font-family: Roboto, sans-serif;
-    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     box-shadow: rgba(0, 0, 0, 0.12) 0 1px 6px, rgba(0, 0, 0, 0.12) 0 1px 4px;
     position: absolute;
     z-index: 2100;
@@ -1744,7 +1760,8 @@ a, a:hover, a:focus {
   opacity: 0; }
 
 .btn {
-  display: block; }
+  display: block;
+  font-size: 0.75rem !important; }
 
 .btn:hover {
   cursor: pointer !important; }
@@ -1752,12 +1769,11 @@ a, a:hover, a:focus {
 .btn-primary {
   color: #9699a2;
   display: inline;
-  font-size: 1.25rem;
+  font-size: 0.75rem;
   outline: none !important;
-  height: 2.75rem;
-  padding: .5rem 1.25rem;
-  margin: 0px;
-  font-size: 1rem;
+  height: 2.5rem;
+  padding: 0.5rem 1.25rem;
+  margin: 0;
   background: #f4f5f8;
   border: 0;
   text-shadow: none !important; }
@@ -1766,6 +1782,9 @@ a, a:hover, a:focus {
   border: 0;
   background: #e2e5ec;
   cursor: pointer; }
+
+.form-control {
+  font-size: .75rem !important; }
 
 .btn-yellow {
   background-color: #FBA502 !important;
@@ -1858,7 +1877,8 @@ a, a:hover, a:focus {
 .home-content {
   pointer-events: auto;
   padding: 100px 20px 0 20px;
-  height: 100%; }
+  height: 100%;
+  min-width: 450px !important; }
 
 .home-content-header {
   border-bottom: 1px solid #ebebeb;
@@ -1939,7 +1959,7 @@ a, a:hover, a:focus {
     transition: transform 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, opacity 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
     box-sizing: border-box;
     font-family: Roboto, sans-serif;
-    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     box-shadow: rgba(0, 0, 0, 0.12) 0 1px 6px, rgba(0, 0, 0, 0.12) 0 1px 4px;
     position: absolute;
     z-index: 2100;
@@ -2110,7 +2130,8 @@ a, a:hover, a:focus {
   opacity: 0; }
 
 .btn {
-  display: block; }
+  display: block;
+  font-size: 0.75rem !important; }
 
 .btn:hover {
   cursor: pointer !important; }
@@ -2118,12 +2139,11 @@ a, a:hover, a:focus {
 .btn-primary {
   color: #9699a2;
   display: inline;
-  font-size: 1.25rem;
+  font-size: 0.75rem;
   outline: none !important;
-  height: 2.75rem;
-  padding: .5rem 1.25rem;
-  margin: 0px;
-  font-size: 1rem;
+  height: 2.5rem;
+  padding: 0.5rem 1.25rem;
+  margin: 0;
   background: #f4f5f8;
   border: 0;
   text-shadow: none !important; }
@@ -2132,6 +2152,9 @@ a, a:hover, a:focus {
   border: 0;
   background: #e2e5ec;
   cursor: pointer; }
+
+.form-control {
+  font-size: .75rem !important; }
 
 .btn-yellow {
   background-color: #FBA502 !important;
@@ -2224,7 +2247,8 @@ a, a:hover, a:focus {
 .home-content {
   pointer-events: auto;
   padding: 100px 20px 0 20px;
-  height: 100%; }
+  height: 100%;
+  min-width: 450px !important; }
 
 .home-content-header {
   border-bottom: 1px solid #ebebeb;
@@ -2305,7 +2329,7 @@ a, a:hover, a:focus {
     transition: transform 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, opacity 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
     box-sizing: border-box;
     font-family: Roboto, sans-serif;
-    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     box-shadow: rgba(0, 0, 0, 0.12) 0 1px 6px, rgba(0, 0, 0, 0.12) 0 1px 4px;
     position: absolute;
     z-index: 2100;
@@ -2463,7 +2487,8 @@ a, a:hover, a:focus {
   opacity: 0; }
 
 .btn {
-  display: block; }
+  display: block;
+  font-size: 0.75rem !important; }
 
 .btn:hover {
   cursor: pointer !important; }
@@ -2471,12 +2496,11 @@ a, a:hover, a:focus {
 .btn-primary {
   color: #9699a2;
   display: inline;
-  font-size: 1.25rem;
+  font-size: 0.75rem;
   outline: none !important;
-  height: 2.75rem;
-  padding: .5rem 1.25rem;
-  margin: 0px;
-  font-size: 1rem;
+  height: 2.5rem;
+  padding: 0.5rem 1.25rem;
+  margin: 0;
   background: #f4f5f8;
   border: 0;
   text-shadow: none !important; }
@@ -2485,6 +2509,9 @@ a, a:hover, a:focus {
   border: 0;
   background: #e2e5ec;
   cursor: pointer; }
+
+.form-control {
+  font-size: .75rem !important; }
 
 .btn-yellow {
   background-color: #FBA502 !important;
@@ -2577,7 +2604,8 @@ a, a:hover, a:focus {
 .home-content {
   pointer-events: auto;
   padding: 100px 20px 0 20px;
-  height: 100%; }
+  height: 100%;
+  min-width: 450px !important; }
 
 .home-content-header {
   border-bottom: 1px solid #ebebeb;
@@ -2658,7 +2686,7 @@ a, a:hover, a:focus {
     transition: transform 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, opacity 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
     box-sizing: border-box;
     font-family: Roboto, sans-serif;
-    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     box-shadow: rgba(0, 0, 0, 0.12) 0 1px 6px, rgba(0, 0, 0, 0.12) 0 1px 4px;
     position: absolute;
     z-index: 2100;
@@ -2824,13 +2852,13 @@ a, a:hover, a:focus {
       vertical-align: middle; }
   .o-card-container .o-card-content {
     padding: 2.2rem !important;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     color: #9699a2; }
   .o-card-container .o-card-content-no-padding {
     color: #9699a2;
     padding: 0 !important; }
     .o-card-container .o-card-content-no-padding .dashboard-card-summary-container {
-      padding: 2.2rem !important; }
+      padding: 1.5rem !important; }
       .o-card-container .o-card-content-no-padding .dashboard-card-summary-container .dashboard-card-summary-row {
         padding: 1rem !important; }
   .o-card-container .card-ranges-buttons {
@@ -2839,12 +2867,11 @@ a, a:hover, a:focus {
     margin-left: 9px; }
     .o-card-container .card-ranges-buttons .card-ranges-button {
       display: inline;
-      font-size: 1.25rem;
       outline: none !important;
-      height: 2.75rem;
+      height: 2rem;
       padding: .5rem 1.25rem;
       margin: 0px;
-      font-size: 1rem;
+      font-size: 0.75rem;
       background: #f4f5f8;
       border: 0;
       text-shadow: none !important; }
@@ -2864,7 +2891,8 @@ a, a:hover, a:focus {
   opacity: 0; }
 
 .btn {
-  display: block; }
+  display: block;
+  font-size: 0.75rem !important; }
 
 .btn:hover {
   cursor: pointer !important; }
@@ -2872,12 +2900,11 @@ a, a:hover, a:focus {
 .btn-primary {
   color: #9699a2;
   display: inline;
-  font-size: 1.25rem;
+  font-size: 0.75rem;
   outline: none !important;
-  height: 2.75rem;
-  padding: .5rem 1.25rem;
-  margin: 0px;
-  font-size: 1rem;
+  height: 2.5rem;
+  padding: 0.5rem 1.25rem;
+  margin: 0;
   background: #f4f5f8;
   border: 0;
   text-shadow: none !important; }
@@ -2886,6 +2913,9 @@ a, a:hover, a:focus {
   border: 0;
   background: #e2e5ec;
   cursor: pointer; }
+
+.form-control {
+  font-size: .75rem !important; }
 
 .btn-yellow {
   background-color: #FBA502 !important;
@@ -2978,7 +3008,8 @@ a, a:hover, a:focus {
 .home-content {
   pointer-events: auto;
   padding: 100px 20px 0 20px;
-  height: 100%; }
+  height: 100%;
+  min-width: 450px !important; }
 
 .home-content-header {
   border-bottom: 1px solid #ebebeb;
@@ -3059,7 +3090,7 @@ a, a:hover, a:focus {
     transition: transform 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, opacity 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
     box-sizing: border-box;
     font-family: Roboto, sans-serif;
-    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     box-shadow: rgba(0, 0, 0, 0.12) 0 1px 6px, rgba(0, 0, 0, 0.12) 0 1px 4px;
     position: absolute;
     z-index: 2100;
@@ -3217,7 +3248,8 @@ a, a:hover, a:focus {
   opacity: 0; }
 
 .btn {
-  display: block; }
+  display: block;
+  font-size: 0.75rem !important; }
 
 .btn:hover {
   cursor: pointer !important; }
@@ -3225,12 +3257,11 @@ a, a:hover, a:focus {
 .btn-primary {
   color: #9699a2;
   display: inline;
-  font-size: 1.25rem;
+  font-size: 0.75rem;
   outline: none !important;
-  height: 2.75rem;
-  padding: .5rem 1.25rem;
-  margin: 0px;
-  font-size: 1rem;
+  height: 2.5rem;
+  padding: 0.5rem 1.25rem;
+  margin: 0;
   background: #f4f5f8;
   border: 0;
   text-shadow: none !important; }
@@ -3239,6 +3270,9 @@ a, a:hover, a:focus {
   border: 0;
   background: #e2e5ec;
   cursor: pointer; }
+
+.form-control {
+  font-size: .75rem !important; }
 
 .btn-yellow {
   background-color: #FBA502 !important;
@@ -3331,7 +3365,8 @@ a, a:hover, a:focus {
 .home-content {
   pointer-events: auto;
   padding: 100px 20px 0 20px;
-  height: 100%; }
+  height: 100%;
+  min-width: 450px !important; }
 
 .home-content-header {
   border-bottom: 1px solid #ebebeb;
@@ -3412,7 +3447,7 @@ a, a:hover, a:focus {
     transition: transform 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, opacity 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
     box-sizing: border-box;
     font-family: Roboto, sans-serif;
-    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     box-shadow: rgba(0, 0, 0, 0.12) 0 1px 6px, rgba(0, 0, 0, 0.12) 0 1px 4px;
     position: absolute;
     z-index: 2100;
@@ -3592,6 +3627,18 @@ a, a:hover, a:focus {
 .add-work-data-btn {
   float: right; }
 
+.work-information-container .custom-inline-row {
+  display: flex;
+  justify-content: space-between; }
+
+.work-information-container .custom-row-item {
+  flex: 1;
+  margin: 10px 10px 0 10px; }
+
+@media (max-width: 1100px) {
+  .custom-inline-row {
+    flex-direction: column; } }
+
 .dashboard-list .dashboard-list-header-container {
   display: flex; }
   .dashboard-list .dashboard-list-header-container .dashboard-list-header-text {
@@ -3644,9 +3691,9 @@ a, a:hover, a:focus {
       border: 0;
       text-shadow: none !important;
       outline: none !important;
-      height: 2.75rem;
+      height: 2rem;
       padding: 0 1.25rem;
-      font-size: 1rem; }
+      font-size: .75rem; }
     .date-widget-container .date-widget-arrow-container .date-widget-arrow:hover {
       background: #e2e5ec;
       cursor: pointer; }
@@ -3660,13 +3707,13 @@ a, a:hover, a:focus {
       border: 0;
       text-shadow: none !important;
       outline: none !important;
-      height: 2.75rem;
+      height: 2rem;
       padding: 1.25rem;
-      font-size: 1rem; }
+      font-size: .75rem; }
   .date-widget-container .date-widget-select {
     float: right; }
   .date-widget-container .date-widget-date {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 500;
     text-transform: uppercase;
     margin-top: 0.75rem;
@@ -3717,23 +3764,23 @@ a, a:hover, a:focus {
 .employer-dashboard .dashboard-card-summary-row {
   display: table;
   width: 100%;
-  margin-bottom: 2.85rem; }
+  margin-bottom: 2rem; }
   .employer-dashboard .dashboard-card-summary-row .dashboard-card-summary-item {
     display: table-cell;
     padding-right: 0.36rem; }
   .employer-dashboard .dashboard-card-summary-row .dashboard-card-summary-number {
     color: #575962;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 600; }
 
 .employer-dashboard .dashboard-card-number {
   color: #575962;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 600; }
 
 .dashboard-card-number {
   color: #575962;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 600; }
 
 .readmin-panel {

@@ -18,7 +18,6 @@ const DefinePlugins = new webpack.DefinePlugin({
 const Uglify = new webpack.optimize.UglifyJsPlugin();
 
 
-
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 	template: './src/index.html',
 	filename: 'index.html',
@@ -26,10 +25,26 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 });
 
 
+function returnPlugins(){
+
+	let plugins = [
+		DefinePlugins,
+		HtmlWebpackPluginConfig,
+		ProvidePlugins
+	];
+
+	if(process.env.NODE_ENV === 'production'){
+		plugins.push(Uglify);
+	}
+
+	return plugins;
+
+}
+
 module.exports = {
 	entry: ['babel-polyfill', './src/index.js'],
 	output: {
-		path: path.resolve(__dirname, 'dist'),
+		path: path.resolve('dist'),
 		filename: 'app.bundle.js',
 		publicPath: '/'
 	},
@@ -51,18 +66,36 @@ module.exports = {
 			{
 				test: /\.scss$/,
 				loader: 'style-loader!css-loader!sass-loader'
-			}
-        ]
+			},
+			{
+				test: /\.(jpe?g|png|gif|svg)$/i,
+				loaders: ['file-loader?context=src/images&name=images/[path][name].[ext]', {
+					loader: 'image-webpack-loader',
+					query: {
+						mozjpeg: {
+							progressive: true,
+						},
+						gifsicle: {
+							interlaced: false,
+						},
+						optipng: {
+							optimizationLevel: 4,
+						},
+						pngquant: {
+							quality: '75-90',
+							speed: 3,
+						},
+					},
+				}],
+				exclude: /node_modules/,
+				include: __dirname,
+			},
+		]
 	},
     devtool: 'source-map',
     devServer: {
         historyApiFallback: true
     },
-	plugins: [
-		HtmlWebpackPluginConfig,
-		DefinePlugins,
-		ProvidePlugins,
-		Uglify
-	],
+	plugins: returnPlugins()
 
 };

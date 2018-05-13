@@ -93,13 +93,16 @@ const signupEmployer = (uid, props, formData) =>{
 		db.collection('users').doc(uid)
 			.set(userData).then(()=>{
 			db.collection('companies').add({
-				name: userData.companyName
+				companyName: userData.companyName,
+				selectedPayFrequency: "bi-weekly",
+				autoSendInvoices:false,
+				assignCondition: "numLogs",
+
 			}).then(docRef=> {
 				let uid = userData.uid;
 				let apiKey = uuid();
 				db.collection('companies').doc(docRef.id+'/users/'+uid).set({uid});
-				db.collection('companies').doc(docRef.id).update({companyId: docRef.id}).catch(error=>{
-
+				db.collection('companies').doc(docRef.id).update({companyId: docRef.id }).catch(error=>{
 				});
 				db.collection('companies').doc(docRef.id+'/apiKeys/'+apiKey).set({uid, enabled: true});
 				db.collection('users').doc(uid).update({companyId: docRef.id, apiKey});
@@ -233,7 +236,6 @@ export const checkAuth = (props) =>{
 			if(unsubscribe){
 				unsubscribe();
 			}
-			console.log('this. local ', window.localStorage);
 			unsubscribe =	firebase.auth().onAuthStateChanged(data=>{
 			if(data){
 				console.log(' --------- CHECK AUTH ----------- ', data);
