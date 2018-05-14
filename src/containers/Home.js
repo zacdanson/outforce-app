@@ -37,7 +37,6 @@ class Home extends Component{
 		} else {
 			if(currentPath !== this.props.selectedTab.location && Object.keys(gotParams).length == 0){
 				window.location = this.props.selectedTab.location;
-
 			}
 		}
 		this.props.dispatch(loading(false))

@@ -53,7 +53,7 @@ class WorkLogsSummary extends Component {
 		let totalDuration = 0;
 
 		_.each(logs, (log, index)=>{
-			if(log.start >= from && log.end <= to){
+			if(log.start >= from && log.start <= to){
 				totalDuration+= parseFloat(log.duration);
 				workLogs.push(log);
 			}
@@ -123,13 +123,3 @@ class WorkLogsSummary extends Component {
 }
 
 export default WorkLogsSummary;
-
-/// SAVE FOR LATER add a workTypesSummary
-
-/*
- <AnnotatedMeter type='circle'
- max={this.state.workLogs.length}
- series={this.getWorkTypeStats(this.state.workTypes)}
- legend={false} />
- */
-

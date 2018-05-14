@@ -129,8 +129,6 @@ export const saveContractorObject = (object) =>{
 	});
 };
 
-
-
 export const addContractor = (user, employerName, companyId, companyName) => {
 	return new Promise((resolve, reject)=>{
 		try{
@@ -138,6 +136,7 @@ export const addContractor = (user, employerName, companyId, companyName) => {
 			if(!email || !firstName ||!secondName || !phoneNumber){
 				resolve({error: 'must include email, name and phone number'});
 			}
+			
 			db.collection('users').add({
 				registered: false,
 				phoneNumber,
@@ -163,7 +162,7 @@ export const addContractor = (user, employerName, companyId, companyName) => {
 					uid: id
 				}).then(data=>{
 					resolve({data});
-					axios.post(BASE_URL+'/contractors/contractor/invite/'+id, {
+					axios.post(BASE_URL+'contractors/contractor/invite/'+id, {
 						headers:{
 							"Content-Type": "application/json"
 						},

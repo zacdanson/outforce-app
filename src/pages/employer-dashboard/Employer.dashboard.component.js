@@ -38,10 +38,15 @@ export class EmployerDashboard extends Component {
 		}
 
 		componentDidMount(){
-
-			console.log(' --------- EMPLOYER DASH ----------- ', this.props.user);
-			this.props.dispatch(WorkDataActions.getWorkName(this.props.user.companyId));
-			this.props.dispatch(EmployerDataActions.getContractors(this.props.user.uid, this.props.user.companyId));
+			let baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost8080' : 'https://outforce-app.firebaseapp.com';
+			if(this.props.user.userRole !== 'employer'){
+				window.location=BASE_URL+"/index/contractor/contractor-dashboard";
+			} else {
+				console.log(' --------- EMPLOYER DASH ----------- ', this.props.user);
+				this.props.dispatch(WorkDataActions.getWorkName(this.props.user.companyId));
+				this.props.dispatch(EmployerDataActions.getContractors(this.props.user.uid, this.props.user.companyId));
+			}
+		
 		}
 
     render() {

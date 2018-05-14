@@ -46,7 +46,7 @@ class WorkLogs extends Component{
 		_.each(months, month=> {
 			month.logs = 0;
 			_.each(this.state.workLogs, log=>{
-					if(log.start > month.start && log.end < month.end ){
+					if(log.start > month.start && log.start < month.end ){
 						month.logs+=1;
 					}
 				});
