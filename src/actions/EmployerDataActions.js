@@ -34,6 +34,7 @@ const addEmployerContractor = (user, employerName, companyId, companyName) => {
 		addContractor(user, employerName, companyId, companyName).then(res=>{
 			if(!res.error){
 				dispatch(getContractors('', companyId));
+				$('#addContractorModal').modal('toggle');
 				swal({
 					title: 'Success',
 					text: 'Added Contractor',
@@ -42,9 +43,10 @@ const addEmployerContractor = (user, employerName, companyId, companyName) => {
 					timer:2000,
 					className: 'swal-custom-padding'
 				});
+
 				return;
 			}
-			$('#addContractorModal').modal('toggle');
+
 			swal({
 				title: 'error',
 				text: res.error.message,
