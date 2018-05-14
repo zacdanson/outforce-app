@@ -12,7 +12,7 @@ export const getContractorDetails = (uid) => {
 					if(response.error){
 						reject(response.error);
 					}
-					resolve(response);/**/
+					resolve(response);
 				});
 				return console.log('no contractor found with that id. Checking pending invites.');
 			} else {
