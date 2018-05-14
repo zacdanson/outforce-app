@@ -9,7 +9,7 @@
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start-js": "webpack-dev-server --open",
     "test": "export NODE_ENV=test && jest",
-    "compile": "API_URL=https://outforce-backend.herokuapp.com/ NODE_ENV=production webpack --config ./webpack.config.js --progress",
+    "compile": "API_URL=https://outforce-backend.herokuapp.com NODE_ENV=production webpack --config ./webpack.config.js --progress",
     "clean": "rm -rf ./dist/app.bundle.js",
     "build": "npm run clean && npm run compile",
     "deploy": "npm run build && firebase deploy"
