@@ -296,14 +296,11 @@ export const addWorkType = (companyId, workTypeId, workType) => {
 };
 
 
-export const saveEmployerJobRole = (id, name, hourlyRate, assign, roleRequirements, companyId) => {
+export const saveEmployerJobRole = (jobRole, companyId) => {
 	return new Promise((resolve, reject)=>{
-		db.collection('companies').doc(companyId).collection('jobRoles').doc(id).update({
-			name,
-			hourlyRate,
-			assign,
-			roleRequirements
-		}).then(result=>{
+		db.collection('companies').doc(companyId).collection('jobRoles').doc(jobRole.id).set(
+			jobRole
+		).then(result=>{
 			resolve({success:true});
 		}).catch(error=>{
 			reject({error});
@@ -333,9 +330,9 @@ export const addEmployerJobRole = (name, hourlyRate, companyId, assign) => {
 	});
 }
 
-export const deleteEmployerJobRole = (jobRoleId, companyId)=> {
+export const deleteEmployerJobRole = (jobRole, companyId)=> {
 	return new Promise((resolve, reject)=>{
-		db.collection('companies').doc(companyId).collection('jobRoles').doc(jobRoleId).delete().then(result=>{
+		db.collection('companies').doc(companyId).collection('jobRoles').doc(jobRole.id).delete().then(result=>{
 			resolve({success:true});
 		}).catch(error=>{
 			reject({error});
@@ -411,12 +408,11 @@ export const getJobRoles = (companyId) => {
 		db.collection('companies').doc(companyId).collection('jobRoles').get()
 			.then(snapshot=>{
 				let proms = [];
-				if(snapshot.exists){
-					snapshot.forEach(snap=>{
-						proms.push(snap);
-					});
-					resolve(proms);
-				}
+				snapshot.forEach(snap=>{
+					proms.push(snap.data());
+				});
+
+				resolve(proms);
 			})
 	});
 };

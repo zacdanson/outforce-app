@@ -15,6 +15,18 @@ class AddJobRole extends Component {
 		});
 	}
 
+	addJobRole(){
+
+		this.props.addJobRole(this.state.name, this.state.hourlyRate);
+
+		this.setState({
+			name: '',
+			hourlyRate: ''
+		});
+
+
+	}
+
 	render(){
 		return(
 				<Card cardHeader={'Add Job Role'} >
@@ -30,7 +42,7 @@ class AddJobRole extends Component {
 							<br/>
 							<Input value={this.state.hourlyRate} placeholder="hourly rate" onChange={(e)=>this.setState({hourlyRate: e.target.value})} />
 							<br/>
-							<Button  text='Save Job Role'  className='btn-success pull-right' onClick={()=>this.props.addJobRole(this.state.name, this.state.hourlyRate)}/>
+							<Button  text='Save Job Role'  className='btn-success pull-right' onClick={()=>this.addJobRole()}/>
 						</div>
 					</div>
 				</Card>

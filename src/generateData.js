@@ -15,12 +15,9 @@ module.exports = () => {
 		patientId:"-L8boVQOpnvT_zbBcZ87",
 		price:48,
 		start:1524413700000,
-		uid:"532cb0f8-6641-4813-974b-bf771330c85d",
+		uid:"mmsl56TIbiNudjTSKDxfLNnLuzk1",
 		workType:"Standard Appt",
 		workTypeId:587,
-	};
-
-	let dataObj = {
 	};
 
 	let hourlyCost = '22.50';
@@ -52,7 +49,7 @@ module.exports = () => {
 			start: data.start-=112700000
 		};
 
-		Axios.post('http://localhost:3001/workData/workData/multi-upload/e4f871dc-0f70-47b4-8a84-aafe8ae7ffdc', {
+		Axios.post('https://outforce-backend.herokuapp.com/workData/workData/multi-upload/3a185a0f-ef18-41fa-a7c1-5b55ade2db07', {
 			workData:[
 				newData
 			]

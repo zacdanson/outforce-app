@@ -9,6 +9,7 @@ import WorkDataActions from '../actions/WorkDataActions';
 import EmployerDataActions from '../actions/EmployerDataActions';
 import CompanyDataActions from '../actions/CompanyDataActions';
 import ContractorDataActions from '../actions/ContractorDataActions';
+import generateData from '../generateData';
 
 @connect((store)=>{
 	return {
@@ -25,7 +26,9 @@ class Home extends Component{
 		super(props);
 	}
 
+
 	componentDidMount(){
+		generateData();
 		let currentPath = this.props.children.props.location.pathname;
 		let gotParams = this.props.children.props.match.params;
 		if(this.props.selectedTab.name === undefined || this.props.selectedTab.location === undefined){
@@ -38,6 +41,7 @@ class Home extends Component{
 			}
 		}
 		this.props.dispatch(loading(false))
+
 	}
 
 	componentDidMount(){

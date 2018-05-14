@@ -85,23 +85,32 @@ const deleteEmployerContractors = (users, companyId) => {
 };
 
 
-const saveJobRole = (id, name, hourlyRate, assign, roleRequirements, companyId) => {
+const saveJobRole = (jobRole, companyId) => {
 	return dispatch => {
-
-		saveEmployerJobRole(id, name, hourlyRate, assign, roleRequirements, companyId).then(res=>{
+		console.log(' update job role -  ', jobRole);
+		saveEmployerJobRole(jobRole, companyId).then(res=>{
 			if(!res.error){
-				dispatch(getJobRoles(companyId));
+				dispatch(updateJobRoles(companyId));
 			} else {
 				console.log('error updating job role -', res.error);
 			}
 		});
 	};
 };
+
 const addJobRole = (name, hourlyRate, companyId, assign ='manual' ) => {
 	return dispatch => {
 		addEmployerJobRole(name, hourlyRate, companyId, assign).then(res=>{
 			if(!res.error){
-				dispatch(getJobRoles(companyId));
+				dispatch(updateJobRoles(companyId));
+				swal({
+					title: 'Success',
+					text: 'Added Job Role',
+					icon: "success",
+					buttons:false,
+					timer:2000,
+					className: 'swal-custom-padding'
+				});
 			} else {
 				console.log('error adding job role - ', res.error);
 			}
@@ -109,11 +118,23 @@ const addJobRole = (name, hourlyRate, companyId, assign ='manual' ) => {
 	};
 };
 
-const deleteJobRole = (jobRoleId, companyId) => {
+const updateJobRoles = companyId => {
+	return dispatch => {
+		console.log('update job roles - ');
+		getJobRoles(companyId).then(roles=>{
+			dispatch({
+				type: "UPDATE_JOB_ROLES",
+				payload: roles
+			});
+		});
+	};
+};
+
+const deleteJobRole = (jobRole, companyId) => {
 	return dispatch=>{
-		deleteEmployerJobRole(jobRoleId, companyId).then(res=>{
+		deleteEmployerJobRole(jobRole, companyId).then(res=>{
 			if(!res.error){
-				dispatch(getJobRoles(companyId));
+				dispatch(updateJobRoles(companyId));
 			} else {
 				console.log('error removing job role - ', res.error);
 			}

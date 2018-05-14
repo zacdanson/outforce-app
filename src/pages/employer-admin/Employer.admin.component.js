@@ -94,7 +94,7 @@ export class EmployerAdmin extends Component {
 										company={this.props.companyData}
 										updatePayPeriodDetails={(selectedPayFrequency)=>this.props.dispatch(CompanyDataActions.updatePayPeriodDetails(selectedPayFrequency, this.props.user.companyId))}
 										user={this.props.user}
-										globalWorkName={this.props.companyData.globalWorkName || 'Work ogs' }
+										globalWorkName={this.props.companyData.globalWorkName || 'Work Logs' }
 										workLogs={this.props.workLogs}
 										workTypes={this.props.workTypes}
 										updateWorkType={(workTypeId, workType, duration)=>this.props.dispatch(WorkDataActions.updateWorkType(this.props.user.companyId, workTypeId, workType, duration))}
@@ -116,10 +116,10 @@ export class EmployerAdmin extends Component {
 													updateAssignCondition={(assignCondition)=>this.props.dispatch(EmployerDataActions.updateAssignCondition(this.props.user.companyId, assignCondition))}
 													assignCondition={this.props.assignCondition}
 													globalWorkName={this.props.companyData.globalWorkName || ''}
-													deleteJobRole={(jobRoleId, companyId)=>this.props.dispatch(EmployerDataActions.deleteJobRole(jobRoleId, companyId))}
+													deleteJobRole={(jobRole)=>this.props.dispatch(EmployerDataActions.deleteJobRole(jobRole, this.props.user.companyId))}
 													user={this.props.user}
 													jobRoles={this.props.jobRoles}
-													saveJobRole={(id, name, hourlyRate, assign, roleRequirements, companyId)=>this.props.dispatch(EmployerDataActions.saveJobRole(id, name, hourlyRate, assign, roleRequirements, companyId))}
+													saveJobRole={(jobRole)=>this.props.dispatch(EmployerDataActions.saveJobRole(jobRole, this.props.user.companyId))}
 													addJobRole={(name, hourlyRate)=>this.props.dispatch(EmployerDataActions.addJobRole(name, hourlyRate, this.props.user.companyId))}
 												/> : ''}
 									{ tabs[3].active ?

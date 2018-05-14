@@ -15,8 +15,8 @@ const JobRoles = (props) => {
 							assignCondition={props.assignCondition}
 							globalWorkName={props.globalWorkName}
 							jobRoles={props.jobRoles}
-							deleteJobRole={(jobRoleId)=>props.deleteJobRole(jobRoleId, props.user.companyId)}
-							saveJobRole={(id, name, hourlyRate, assign, roleRequirements)=>props.saveJobRole(id, name, hourlyRate, assign, roleRequirements, props.user.companyId)}
+							deleteJobRole={(jobRole)=>props.deleteJobRole(jobRole)}
+							saveJobRole={(jobRole)=>props.saveJobRole(jobRole)}
 						/>
 					</Card>
 				</div>
