@@ -44,7 +44,7 @@ const addEmployerContractor = (user, employerName, companyId, companyName) => {
 				});
 				return;
 			}
-
+			$('#addContractorModal').modal('toggle');
 			swal({
 				title: 'error',
 				text: res.error.message,

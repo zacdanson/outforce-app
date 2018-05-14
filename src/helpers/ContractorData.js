@@ -162,7 +162,7 @@ export const addContractor = (user, employerName, companyId, companyName) => {
 					uid: id
 				}).then(data=>{
 					resolve({data});
-					axios.post(BASE_URL+'/contractors/contractor/invite/'+id,{
+					axios.post(BASE_URL+'contractors/contractor/invite/'+id,{
 						contractorName: name,
 						email,
 						employerName,
