@@ -64,7 +64,7 @@ export const checkInviteLink = (id, cid, type) => {
 			dispatch(loading(false));
 		}
 
-		db.collection('users').doc(id).get()
+		db.collection('inviteLinks').doc(id).get()
 			.then(docRef=>{
 				/// if there isn't an active link or the link is === false.
 				if(docRef.exists){

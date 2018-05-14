@@ -18,7 +18,7 @@ class ContractorEarnings extends Component{
 				contentClassName="full-height"
 				name={"Earned This Pay Period"}
 				color="1"
-				figure={'£' + this.props.payPeriodStats.earned}
+				figure={this.props.payPeriodStats.earned ? '£' + this.props.payPeriodStats.earned : '£'+0}
 				loading={this.props.loading}
 			/>
 		);

@@ -16,11 +16,11 @@ class ContractorNumLogs extends Component {
 	render(){
 		return(
 			<DashboardCard
-				name={'Number of '+ this.props.globalWorkName+"'s This Pay Period" || ' Work Logs This Pay Period'}
+				name={'Number of '+ this.props.globalWorkName +"'s This Pay Period" || ' Work Logs This Pay Period'}
 				color="2"
 				className="full-height"
 				contentClassName="full-height"
-				figure={this.props.payPeriodStats.workLogs.length}
+				figure={this.props.payPeriodStats.workLogs ? this.props.payPeriodStats.workLogs.length : 0}
 				loading={this.props.loading}
 			/>
 		);

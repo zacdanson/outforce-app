@@ -139,9 +139,8 @@ export const signupContractor = (contractor, id, cid) =>{
 					contractorData.userRole='contractor';
 					contractorData.companyId= tempData.companyId;
 					contractorData.registered = true;
-					contractorData.linkActive= false;
 					contractorData.dateAdded= tempData.dateAdded;
-					contractorData.fullName = contractorData.firstName + ' ' + contractorData
+					contractorData.fullName = contractorData.firstName + ' ' + contractorData.secondName;
 					//// get all of the contractor work data if any has been added.
 					db.collection('companies').doc(contractorData.companyId).collection('workData').where('uid', '==', id).get()
 						.then(snapshot=>{
@@ -156,11 +155,11 @@ export const signupContractor = (contractor, id, cid) =>{
 								usersRef.doc(id).delete();
 								db.collection('companies').doc(contractorData.companyId).collection('contractors').doc(id).delete();
 								db.collection('companies').doc(contractorData.companyId).collection('contractors').doc(uid).set({uid: uid});
-
 								workData.forEach(logId=>{
 									usersRef.doc(uid).collection('workData').doc(logId).set({logId});
 								});
 
+								db.collection('inviteLinks').doc(id).delete();
 								//// log the user in and update the user prop.
 								dispatch({
 									type: 'UPDATE_USER_DATA',

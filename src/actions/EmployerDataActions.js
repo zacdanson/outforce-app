@@ -32,9 +32,9 @@ const getContractors = (userId, companyId) => {
 const addEmployerContractor = (user, employerName, companyId, companyName) => {
 	return dispatch => {
 		addContractor(user, employerName, companyId, companyName).then(res=>{
+			$('#addContractorModal').modal('toggle');
 			if(!res.error){
 				dispatch(getContractors('', companyId));
-				$('#addContractorModal').modal('toggle');
 				swal({
 					title: 'Success',
 					text: 'Added Contractor',

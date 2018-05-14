@@ -9,7 +9,7 @@ const ContractorNextJobRole = (props) => {
 				color="3"
 				className="full-height"
 				contentClassName="full-height"
-				figure={props.nextJobRole.leftToObtain}
+				figure={props.nextJobRole.leftToObtain || 0}
 				loading={props.loading}
 			/>
 	);

@@ -139,7 +139,6 @@ export const addContractor = (user, employerName, companyId, companyName) => {
 				resolve({error: 'must include email, name and phone number'});
 			}
 			db.collection('users').add({
-				linkActive: true,
 				registered: false,
 				phoneNumber,
 				email,
@@ -151,7 +150,9 @@ export const addContractor = (user, employerName, companyId, companyName) => {
 				dateAdded: moment().format('x')
 			}).then(data=>{
 				let id = data.id;
-
+				db.collection('inviteLinks').doc(id).set({
+					linkActive: true
+				});
 				db.collection('users').doc(id).update({
 					uid: id
 				}).catch(error=>{
@@ -162,12 +163,12 @@ export const addContractor = (user, employerName, companyId, companyName) => {
 					uid: id
 				}).then(data=>{
 					resolve({data});
-					axios.post(BASE_URL+'contractors/contractor/invite/', id, {
+					axios.post(BASE_URL+'/contractors/contractor/invite/'+id, {
 						headers:{
 							"Content-Type": "application/json"
 						},
 						data: {
-							contractorName: name,
+							contractorName: firstName,
 							email,
 							employerName,
 							companyName,

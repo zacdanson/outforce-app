@@ -9,7 +9,7 @@ const ContractorAllTimeLogs = (props) => {
 				contentClassName="full-height"
 				name={'All Completed ' + props.globalWorkName+'\'s'}
 				color="4"
-				figure={props.contractor.workLogs.length}
+				figure={props.contractor.workLogs ? props.contractor.workLogs.length : 0}
 				loading={props.loading}
 			/>
 	);
