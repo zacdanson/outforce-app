@@ -50,8 +50,7 @@ export class EmployerAdmin extends Component {
 		}
 
 
-    render() {
-
+    render() {			
 				let tabs = [
 					{
 						name: this.props.companyData && this.props.companyData.globalWorkName ? this.props.companyData.globalWorkName.toUpperCase() + ' INFO' : 'INFO',
@@ -67,19 +66,14 @@ export class EmployerAdmin extends Component {
 						name: 'JOB ROLES',
 						url: '/job-roles',
 						active: this.props.match.params.tab === 'job-roles'
-					},
-					{
-						name: 'INVOICES',
-						url: '/invoices',
-						active: this.props.match.params.tab === 'invoices'
-					},
+					},				
 					{
 						name: 'COMPANY DETAILS',
 						url: '/company-details',
 						active: this.props.match.params.tab === 'company-details'
 					}
 				];
-        return (
+        return (			
             <div className={this.props.sidebar === 'max' ? 'home-content home-content-max' : 'home-content home-content-min' }>
 							{this.props.loading ? <Loader size="small"/> : '' }
 								<Tabs
@@ -121,15 +115,8 @@ export class EmployerAdmin extends Component {
 													jobRoles={this.props.jobRoles}
 													saveJobRole={(jobRole)=>this.props.dispatch(EmployerDataActions.saveJobRole(jobRole, this.props.user.companyId))}
 													addJobRole={(name, hourlyRate)=>this.props.dispatch(EmployerDataActions.addJobRole(name, hourlyRate, this.props.user.companyId))}
-												/> : ''}
+												/> : ''}								
 									{ tabs[3].active ?
-										<Invoices
-											user={this.props.user}
-											company={this.props.companyData}
-											autoSendInvoices={this.props.companyData.autoSendInvoices}
-											updateAutoSendInvoice={(status)=>this.props.dispatch(CompanyDataActions.updateAutoSendInvoices(this.props.user.companyId, status))}
-										/> : ''}
-									{ tabs[4].active ?
 										<CompanyDetails
 											loading={this.props.loading}
 											companyDetails={this.props.companyData}

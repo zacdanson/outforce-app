@@ -32,7 +32,7 @@ class ContractorInvoices extends Component {
 	render(){
 		return(
 			<div className={this.props.sidebar === 'max' ? 'home-content home-content-max' : 'home-content home-content-min' } style={{height:'100%'}}>
-				<div className="row" style={{height:'75%', width:'100%'}}>
+				<div className="row" style={{height:'90%', width:'100%'}}>
 					<div className="col-lg-12"  style={{height:'100%'}}>
 						<ContractorInvoice
 							invoices={this.props.invoices}

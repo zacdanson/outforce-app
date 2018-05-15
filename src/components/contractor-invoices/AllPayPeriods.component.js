@@ -8,7 +8,7 @@ const AllPayPeriods = (props) => {
 			return(
 				<Card
 					headerStyle='card-header-color'
-					cardHeader="Invoices For Each Pay Period"
+					cardHeader={props.header}
 				>
 					{
 						props.invoices.map((invoice, index) =>{

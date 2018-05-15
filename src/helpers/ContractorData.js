@@ -2,6 +2,7 @@ import axios from 'axios';
 const BASE_URL = process.env.API_URL;
 
 import { db } from '../../firebase-config';
+
 export const getContractorDetails = (uid) => {
 	return new Promise((resolve, reject)=>{
 		db.collection('users').doc(uid).get().then(docRef=>{
@@ -212,6 +213,7 @@ export const addWorkData = (workData, contractorData) => {
 		let { uid, companyId, fullName, hourlyRate } = contractorData;
 		console.log('user id ', uid, '. contractor data - ', contractorData);
 		let { workType, workTypeId, duration, start, end } = workData;
+		let price = parseFloat(duration)/60*parseFloat(hourlyRate);
 		db.collection('companies').doc(companyId).collection('workData')
 			.add({
 				uid,
@@ -219,6 +221,7 @@ export const addWorkData = (workData, contractorData) => {
 				workTypeId,
 				companyId,
 				duration,
+				price: parseFloat(price).toFixed(2),
 				start,
 				end,
 				contractorName: fullName

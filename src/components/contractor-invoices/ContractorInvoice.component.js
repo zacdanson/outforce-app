@@ -27,12 +27,13 @@ class ContractorInvoice extends Component {
 	render(){
 
 		return(
-			<div className="row" style={{width:'100%'}}>
+			<div className="row" style={{width:'100%', height:'100%'}}>
 				<div className="col-lg-3">
 					<AllPayPeriods
 						invoices={this.props.invoices}
 						selectedInvoice={this.state.invoice}
 						selectInvoice={(index)=>this.selectInvoice(index)}
+						header="Invoices For Each Pay Period"
 					/>
 				</div>
 

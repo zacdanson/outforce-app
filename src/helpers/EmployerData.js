@@ -1,7 +1,7 @@
-import axios from 'axios';
 import firebase from 'firebase';
 import { db } from '../../firebase-config.js'
-
+import { getContractorDetails } from './ContractorData';
+import axios from 'axios';
 
 const getEmployerUserData = () => {
 
@@ -75,7 +75,6 @@ export const deleteWorkTypeById = (userId, companyId, workTypeId) => {
 		});
 	});
 };
-
 
 export const updateEmployerWorkTypes = (userId, companyId, workTypes) => {
 	return new Promise((resolve, reject)=>{
@@ -433,17 +432,13 @@ export const getProfits = (companyId, start, end) => {
 			});
 
 			_.each(logs, log=>{
-
 				let price = parseInt(log.price);
 				profits+=price;
-
-
 			});
 
 			getCosts(companyId, start, end ).then(contractorCosts=>{
 
-				grossProfits = parseInt(profits)- parseInt(contractorCosts);
-
+				grossProfits = parseInt(profits)- parseInt(contractorCosts);				
 				resolve({
 					grossProfit: parseInt(grossProfits).toFixed(2),
 					costs: parseInt(contractorCosts).toFixed(2),
@@ -459,26 +454,34 @@ export const getProfits = (companyId, start, end) => {
 
 export const getCosts = (companyId, start, end) => {
 	return new Promise((resolve, reject)=>{
-		getEmployerWorkTypes('', companyId).then(workTypes=>{
-			getWorkLogsRange(companyId, start, end).then(workLogs=> {
-				let logs =  workLogs.logs;
-
-				let amount = 0;
-				_.each(logs, log=>{
-
-
-						amount += (parseFloat(log.duration).toFixed(2)/60)*parseFloat(log.hourlyCost).toFixed(2);
-				});
-
-				resolve(amount);
-			});
+		
+		let cost = 0;		
+		
+		
+		getWorkLogsRange(companyId, start, end).then(workLogs=> {
+			let logs =  workLogs.logs;			
+			let promises = [];		
+			_.each(logs, log=>{
+				promises.push(
+					new Promise((newResolve, newReject)=>{
+						getContractorDetails(log.uid).then(details=>{					
+							cost += parseInt(log.duration)/60*parseFloat(details.hourlyRate);							
+							newResolve();
+						});	
+					})
+				);			
+			});								
+			Promise.all(promises).then(res=>{				
+				resolve(cost);
+			});			
 		});
+
 	});
 };
 
 
 export const getEmployerFinanceTotals = (companyId, range ) => {
-	console.log('--------- update finance totals -------- ', range);
+	
 	return new Promise((resolve, reject)=>{
 		let ranges = [];
 		let promises = [];
@@ -487,7 +490,7 @@ export const getEmployerFinanceTotals = (companyId, range ) => {
 			start = moment().startOf('week').format('x');
 			end = moment(start, 'x').endOf('day').format('x');
 			for(let i = 0; i<=6; i++){
-				ranges.unshift({
+				ranges.push({
 					start,
 					end,
 					name: moment(start,'x').format('dd')
@@ -499,7 +502,7 @@ export const getEmployerFinanceTotals = (companyId, range ) => {
 			start = moment().startOf('month').format('x');
 			end = moment(start, 'x').endOf('week').format('x');
 			for(let i = 0; i<=4; i++){
-				ranges.unshift({
+				ranges.push({
 					start,
 					end,
 					name: moment(start,'x').format('DD-MMM')
@@ -511,7 +514,7 @@ export const getEmployerFinanceTotals = (companyId, range ) => {
 			start = moment().startOf('year').format('x');
 			end = moment(start, 'x').endOf('month').format('x');
 			for(let i = 0; i<=11; i++){
-				ranges.unshift({
+				ranges.push({
 					start,
 					end,
 					name: moment(start,'x').format('MMM')
@@ -522,13 +525,13 @@ export const getEmployerFinanceTotals = (companyId, range ) => {
 		}
 
 		_.each(ranges, (range, index)=>{
-			promises.unshift(getProfits(companyId, range.start, range.end));
+			promises.push(getProfits(companyId, range.start, range.end));
 		});
 
 		Promise.all(promises).then(results=>{
 			let data = [];
 			_.each(results, (result, index)=>{
-				data.unshift({
+				data.push({
 					name: ranges[index].name,
 					revenue: parseInt(result.profit),
 					costs: parseInt(result.costs),

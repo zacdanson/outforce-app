@@ -161,7 +161,6 @@ const getPayPeriodStats = (contractorObject, jobRoles, start, end) => {
 
 			let hourlyRate = parseFloat(contractorObject.hourlyRate);
 			if(!hourlyRate){
-
 				return;
 			}
 
@@ -169,8 +168,9 @@ const getPayPeriodStats = (contractorObject, jobRoles, start, end) => {
 
 				let earned = 0;
 				_.each(workLogs, log=>{
-					earned+=parseFloat(log.total)/60*hourlyRate;
+					earned+=parseFloat(log.duration)/60*hourlyRate;
 				});
+				
 				totalEarned = parseFloat(earned).toFixed(2);
 				let stats = {
 					start,

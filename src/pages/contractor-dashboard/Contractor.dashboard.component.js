@@ -7,7 +7,8 @@ import {
 	ContractorEarnings,
 	ContractorNumLogs,
 	ContractorNextJobRole,
-	ContractorAllTimeLogs
+	ContractorAllTimeLogs,
+	ContractorDashboardInvoice
 } from '../../components/contractor-dashboard';
 
 import { Loading } from '../../actions/main_actions';
@@ -24,7 +25,9 @@ import ContractorWorkLogs from '../../components/contractor-dashboard/Contractor
 		loading: store.main.loading,
 		jobRoles: store.firebaseData.jobRoles,
 		nextJobRole: store.contractor.nextJobRole,
-		workLogs: store.contractor.workLogs	
+		workLogs: store.contractor.workLogs,
+		invoices: store.contractor.invoices
+
 	}
 })
 
@@ -79,6 +82,11 @@ export class ContractorDashboard extends Component {
 							</div>
 							<br/>
 							<div className="row">
+								<div className="col-lg-4">
+									<ContractorDashboardInvoice
+										invoices={this.props.invoices}
+									/>
+								</div>
 								<div className="col-lg-8">
 										<ContractorWorkLogs
 											logs={this.props.contractor.workLogs}
