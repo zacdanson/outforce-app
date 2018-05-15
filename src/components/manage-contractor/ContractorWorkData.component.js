@@ -19,6 +19,7 @@ const ContractorWorkData = (props) => {
 									openModal="true"
 									modalName="uploadWorkDataModal"
 									style={{float:'right'}}
+									size="small"
 									className="btn btn-warning"/>,
 								<Button
 									name="add-work-data"
@@ -55,6 +56,7 @@ const ContractorWorkData = (props) => {
 					<AddWorkData
 						addWorkData={(workData)=>props.addWorkData(workData)}
 						workTypes={props.workTypes}
+						setLoading={(state)=>props.setLoading(state)}
 					/>
 
 			</Card>

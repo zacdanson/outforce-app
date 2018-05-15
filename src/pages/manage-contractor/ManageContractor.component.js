@@ -15,7 +15,7 @@ import {
 import ContractorInvoice from '../../components/contractor-invoices/ContractorInvoice.component';
 import ContractorDataActions from '../../actions/ContractorDataActions';
 import WorkDataActions from '../../actions/WorkDataActions';
-import {loading} from '../../actions/main_actions';
+import {loadingAnimation} from '../../actions/main_actions';
 import  Loader from '../../components/loading-animation/Loader.component';
 
 @connect((store)=>{
@@ -24,7 +24,7 @@ import  Loader from '../../components/loading-animation/Loader.component';
 		sidebar: store.main.sidebar,
 		workTypes: store.firebaseData.workTypes,
 		contractors: store.firebaseData.contractors,
-		loading: store.main.loading,
+		appLoading: store.main.loadingAnimation,
 		contractor:store.contractor.contractor,
 		globalWorkName: store.firebaseData.globalWorkName,
 		invoices: store.contractor.invoices
@@ -53,6 +53,14 @@ class ManageContractor extends Component {
 		});
 	}
 
+	componentWillUnmount(){
+		this.setLoading(false);
+	}
+
+	setLoading(state){
+		this.props.dispatch(loadingAnimation(state));
+	}
+
 	render(){
 		let tabs = [
 			{
@@ -79,7 +87,7 @@ class ManageContractor extends Component {
 					text=" back"
 					onClick={()=>this.props.history.push('/index/employer/employer-contractors')}
 				/>
-
+				{ this.props.appLoading ? <Loader/> : '' }
 				{ this.props.contractor ? <Tabs
 						horizontal={true}
 						baseUrl={"/index/employer/employer-contractors/"+this.props.match.params.id}
@@ -89,6 +97,7 @@ class ManageContractor extends Component {
 							globalWorkName={this.props.globalWorkName}
 							contractor={this.props.contractor}
 							saveContractorDetails={(details)=>this.props.dispatch(ContractorDataActions.updateContractorDetails(details))}
+							setLoading={(state)=>this.setLoading(state)}
 						/>
 					: ''}
 					{ tabs[1].active ?
@@ -100,6 +109,7 @@ class ManageContractor extends Component {
 								contractor={this.props.contractor}
 								updateWorkLog={(logId, workTypeId, companyId)=>this.props.dispatch(ContractorDataActions.updateContractorWorkLog(logId, workTypeId, companyId, this.props.contractor.uid))}
 								deleteWorkLog={(contractorId, logId, companyId)=>this.props.dispatch(ContractorDataActions.deleteContractorWorkLog(contractorId, logId, companyId))}
+								setLoading={(state)=>this.setLoading(state)}
 							/>
 						</div> : ''}
 					{
@@ -107,6 +117,7 @@ class ManageContractor extends Component {
 							<div className="row" style={{height:'100%'}}>
 								<ContractorInvoice
 									invoices={this.props.invoices}
+									setLoading={(state)=>this.setLoading(state)}
 								/>
 							</div> : ''
 					}

@@ -73,6 +73,7 @@ class Contractors extends Component {
 					onSelectUser={(userId, all)=>this.selectUser(userId, all)}
 					showOpen={true}
 					selectedUsers={this.state.selectedUsers}
+		
 				/>
 				<AddContractor
 					addContractor={(contractor)=>this.props.addContractor(contractor)}

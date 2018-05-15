@@ -13,7 +13,8 @@ class AddWorkData extends Component {
 			workData: {
 				start:'',
 				end: '',
-				total:''
+				total:'',
+
 			}
 		});
 	}
@@ -49,9 +50,12 @@ class AddWorkData extends Component {
 		workData.workTypeId = this.state.workType.value;
 		workData.workType = this.state.workType.label;
 		workData.duration = this.state.workType.duration;
+		workData.price = this.state.workType.price;
 		workData.start = moment(workData.start, 'M/D/YYYY h:mm a').format('x');
 		this.props.addWorkData(workData);
+		console.log(workData);
 		$('#addWorkData').modal('toggle');
+		this.props.setLoading(true);
 	}
 
 

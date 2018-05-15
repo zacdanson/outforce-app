@@ -203,7 +203,9 @@ export const getUserData = (uid, props) => {
 					dispatch(signupEmployer(uid, props, props.formData));
 				}
 			});
+		dispatch(loading(false));
 	}
+	
 };
 
 const goToDashboard = (dispatch, userRole) => {

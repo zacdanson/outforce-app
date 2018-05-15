@@ -1,7 +1,7 @@
-import { db } from '../../firebase-config';
 import axios from 'axios';
 const BASE_URL = process.env.API_URL;
 
+import { db } from '../../firebase-config';
 export const getContractorDetails = (uid) => {
 	return new Promise((resolve, reject)=>{
 		db.collection('users').doc(uid).get().then(docRef=>{
@@ -210,7 +210,7 @@ export const deleteContractors = (users, companyId) =>{
 export const addWorkData = (workData, contractorData) => {
 	return new Promise((resolve, reject)=>{
 		let { uid, companyId, fullName, hourlyRate } = contractorData;
-		console.log('user id ', uid);
+		console.log('user id ', uid, '. contractor data - ', contractorData);
 		let { workType, workTypeId, duration, start, end } = workData;
 		db.collection('companies').doc(companyId).collection('workData')
 			.add({

@@ -35,6 +35,17 @@ const updateContractorWorkLog = (logId, workTypeId, companyId, userId) => {
 
 };
 
+const getAllContractorWorkLogs = (uid) => {
+	return dispatch => {
+		getContractorWorkData(uid).then(res=>{
+			dispatch({
+				type: 'UPDATE_CONTRACTOR_WORK_LOGS',
+				payload: res
+			});
+		});
+	};
+};
+
 const deleteContractorWorkLog = (userId, logId, companyId) => {
 	return dispatch => {
 		deleteLog(userId, logId, companyId ).then(res=>{
@@ -68,6 +79,8 @@ const getContractorData = (userId) => {
 	};
 };
 
+
+
 const addContractorWorkData = (workData, contractorData) => {
 	return dispatch => {
 		addWorkData(workData, contractorData).then(res=>{
@@ -81,6 +94,10 @@ const addContractorWorkData = (workData, contractorData) => {
 						className: 'swal-custom-padding'
 					});
 					dispatch(getContractorData(contractorData.uid));
+					dispatch({
+						type: 'LOADING',
+						payload: false
+					});
 			} else {
 				swal({
 					title: 'error',
