@@ -9,7 +9,8 @@ import {
 	getAllContractorsInvoiceTotal,
 	getJobRoles,
 	getEmployerFinanceTotals,
-	getProfits
+	getProfits,
+	getCosts
 } from  '../helpers/EmployerData';
 
 import {
@@ -189,6 +190,18 @@ export const calculateProfit = (companyId, start, end) => {
 	};
 };
 
+
+export const calculateCosts = (companyId, start, end) => {
+	return dispatch => {
+		getCosts(companyId, start, end ).then(result=>{			
+			dispatch({
+				type:"UPDATE_TOTAL_INVOICES",
+				payload: result.toFixed(2)
+			});
+		});
+	};
+};
+
 const getFinanceTotals = (companyId, range) => {
 
 	return dispatch => {
@@ -217,7 +230,8 @@ const EmployerDataActions = {
 	updateAssignCondition,
 	calculateTotalInvoices,
 	calculateProfit,
-	getFinanceTotals
+	getFinanceTotals,
+	calculateCosts
 };
 
 export default EmployerDataActions;

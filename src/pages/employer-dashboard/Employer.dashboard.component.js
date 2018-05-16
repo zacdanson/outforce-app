@@ -51,7 +51,7 @@ export class EmployerDashboard extends Component {
 				this.props.dispatch(EmployerDataActions.getContractors(this.props.user.uid, this.props.user.companyId));
 				this.props.dispatch(WorkDataActions.getWorkLogs(this.props.user.companyId));
 				this.props.dispatch(EmployerDataActions.getFinanceTotals(this.props.user.companyId, 'year'));
-				this.props.dispatch(CompanyDataActions.payPeriodsToDate(this.props.user.companyId));
+				this.props.dispatch(CompanyDataActions.payPeriodsToDate(this.props.user.companyId));					
 			}
 		}
 
@@ -112,7 +112,7 @@ export class EmployerDashboard extends Component {
 									getPayPeriods={()=>(this.props.dispatch(CompanyDataActions.payPeriodsToDate(this.props.user.companyId)))}
 									payPeriod={this.props.payPeriod}
 									invoiceTotals={this.props.invoiceTotals}
-									getInvoicesTotal={(from, to)=>this.props.dispatch(EmployerDataActions.calculateTotalInvoices(this.props.user.companyId, from, to))}
+									getInvoicesTotal={(from, to)=>this.props.dispatch(EmployerDataActions.calculateCosts(this.props.user.companyId, from, to))}
 								/>
 							</div>
 						</div>

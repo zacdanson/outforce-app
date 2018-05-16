@@ -6,7 +6,7 @@ import { db } from '../../firebase-config';
 export const getContractorDetails = (uid) => {
 	return new Promise((resolve, reject)=>{
 		db.collection('users').doc(uid).get().then(docRef=>{
-			console.log('get contractor');
+			
 			if(!docRef.exists){
 				console.log('no contractor.....');
 				getPendingContractor(uid).then(reponse=>{

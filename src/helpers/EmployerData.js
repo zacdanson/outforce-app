@@ -367,41 +367,6 @@ export const getEmployerAssignCondition = (companyId) => {
 	});
 };
 
-export const getAllContractorsInvoiceTotal = (companyId, start, end) => {
-	return new Promise((resolve, reject)=>{
-		let ids = [];
-		let total = 0;
-		let promises = [];
-		db.collection('companies').doc(companyId).collection('contractors').get()
-			.then(snapshot=>{
-				snapshot.forEach(contractor=>{
-					let contractorData = contractor.data();
-					promises.push(db.collection('users').doc(contractorData.uid).collection('invoices').where('start', '>=', start).where('start', '<=', end).get());
-				});
-
-				Promise.all(promises).then(results=>{
-
-					let total = 0;
-					if(!results){
-						resolve(total);
-						return;
-					}
-					_.each(results, snapshot=>{
-						_.each(snapshot.docs, snap=>{
-							let invoice = snap.data();
-							total+=parseFloat(invoice.total).toFixed(2);
-						});
-					});
-
-					resolve(parseFloat(total).toFixed(2));
-
-				});
-
-		});
-
-	});
-};
-
 export const getJobRoles = (companyId) => {
 	return new Promise((resolve, reject)=>{
 		db.collection('companies').doc(companyId).collection('jobRoles').get()
@@ -459,7 +424,7 @@ export const getCosts = (companyId, start, end) => {
 		
 		
 		getWorkLogsRange(companyId, start, end).then(workLogs=> {
-			let logs =  workLogs.logs;			
+			let logs =  workLogs.logs;
 			let promises = [];		
 			_.each(logs, log=>{
 				promises.push(
