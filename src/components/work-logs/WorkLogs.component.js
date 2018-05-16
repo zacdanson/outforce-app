@@ -74,7 +74,7 @@ class  WorkLogs extends Component {
 										types={types}
 										removeLog={(contractorId, logId)=>this.props.removeLog(contractorId, logId)}
 										updateLog={(logId, workTypeId)=>this.props.updateLog(logId, workTypeId)}
-								/>);
+								/>);  
 							}
 						})
 						}

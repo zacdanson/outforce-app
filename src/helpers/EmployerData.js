@@ -237,7 +237,7 @@ export const updateLog = (logId, workTypeId, companyId) =>{
 				return;
 			}
 			let workTypeData = snapshot.data();
-			db.collection('companies').doc(companyId).collection('workData').doc(logId).update({workTypeId: workTypeId, workType: workTypeData.workType }).then(res=>{
+			db.collection('companies').doc(companyId).collection('workData').doc(logId).update({workTypeId: workTypeId, workType: workTypeData.workType, duration: workTypeData.duration }).then(res=>{
 					resolve({res});
 			}).catch(error=>{
 				reject({error});
@@ -513,7 +513,8 @@ export const getEmployerFinanceTotals = (companyId, range ) => {
 		} else if(range === 'year'){
 			start = moment().startOf('year').format('x');
 			end = moment(start, 'x').endOf('month').format('x');
-			for(let i = 0; i<=11; i++){
+			let currentMonth = moment().format('M');
+			for(let i = 0; i<=currentMonth; i++){
 				ranges.push({
 					start,
 					end,

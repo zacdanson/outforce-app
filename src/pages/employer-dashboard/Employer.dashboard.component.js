@@ -38,6 +38,10 @@ export class EmployerDashboard extends Component {
 		}
 
 		componentDidMount(){
+			this.init();	
+		}
+
+		init(){
 			let baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost8080' : 'https://outforce-app.firebaseapp.com';
 			if(this.props.user.userRole !== 'employer'){
 				window.location=BASE_URL+"/index/contractor/contractor-dashboard";
@@ -45,11 +49,13 @@ export class EmployerDashboard extends Component {
 				console.log(' --------- EMPLOYER DASH ----------- ', this.props.user);
 				this.props.dispatch(WorkDataActions.getWorkName(this.props.user.companyId));
 				this.props.dispatch(EmployerDataActions.getContractors(this.props.user.uid, this.props.user.companyId));
+				this.props.dispatch(WorkDataActions.getWorkLogs(this.props.user.companyId));
+				this.props.dispatch(EmployerDataActions.getFinanceTotals(this.props.user.companyId, 'year'));
+				this.props.dispatch(CompanyDataActions.payPeriodsToDate(this.props.user.companyId));
 			}
-		
 		}
 
-    render() {
+    	render() {
 			return (
 				<div className={this.props.sidebar === 'max' ? 'home-content home-content-max employer-dashboard' : 'home-content home-content-min employer-dashboard' }>
 					<div className="row">

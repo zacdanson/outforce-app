@@ -25,7 +25,7 @@ const updateContractorDetails = (contractor) => {
 };
 
 const updateContractorWorkLog = (logId, workTypeId, companyId, userId) => {
-	return dispatch => {
+	return dispatch => {	
 		updateLog(logId, workTypeId, companyId ).then(res=>{
 			if(!res.error){
 				dispatch(getContractorData(userId));
